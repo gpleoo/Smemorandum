@@ -1,0 +1,49 @@
+{
+  "expo": {
+    "name": "Smemorandum",
+    "slug": "smemorandum",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#6C63FF"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.smemorandum.app",
+      "buildNumber": "1",
+      "infoPlist": {
+        "NSCalendarsUsageDescription": "Smemorandum needs calendar access to sync your events.",
+        "UIBackgroundModes": ["remote-notification"]
+      }
+    },
+    "android": {
+      "package": "com.smemorandum.app",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "backgroundColor": "#6C63FF",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "permissions": ["NOTIFICATIONS", "VIBRATE", "RECEIVE_BOOT_COMPLETED"],
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-notifications",
+      "expo-localization",
+      "expo-secure-store"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "your-project-id-here"
+      }
+    }
+  }
+}
