@@ -171,12 +171,75 @@ export function SettingsScreen() {
               backgroundColor: colors.surfaceVariant,
               borderRadius: borderRadius.lg,
               padding: spacing.md,
+              marginBottom: spacing.sm,
             },
           ]}
         >
           <Ionicons name="shield-checkmark" size={20} color={colors.success} />
           <Text style={[typo.bodySmall, { color: colors.textSecondary, flex: 1, marginLeft: spacing.sm }]}>
             {t('settings.yourDataDescription')}
+          </Text>
+        </View>
+
+        {/* Privacy Policy */}
+        <Text style={[typo.label, { color: colors.textSecondary, marginBottom: spacing.xs }]}>
+          {t('settings.privacyPolicy')}
+        </Text>
+        <View
+          style={[
+            styles.infoBox,
+            {
+              backgroundColor: colors.surfaceVariant,
+              borderRadius: borderRadius.lg,
+              padding: spacing.md,
+              marginBottom: spacing.sm,
+            },
+          ]}
+        >
+          <Ionicons name="document-text" size={20} color={colors.primary} />
+          <Text style={[typo.bodySmall, { color: colors.textSecondary, flex: 1, marginLeft: spacing.sm }]}>
+            {t('settings.privacyPolicyText')}
+          </Text>
+        </View>
+
+        {/* Cookie Policy */}
+        <Text style={[typo.label, { color: colors.textSecondary, marginBottom: spacing.xs }]}>
+          {t('settings.cookiePolicy')}
+        </Text>
+        <View
+          style={[
+            styles.infoBox,
+            {
+              backgroundColor: colors.surfaceVariant,
+              borderRadius: borderRadius.lg,
+              padding: spacing.md,
+              marginBottom: spacing.sm,
+            },
+          ]}
+        >
+          <Ionicons name="globe-outline" size={20} color={colors.primary} />
+          <Text style={[typo.bodySmall, { color: colors.textSecondary, flex: 1, marginLeft: spacing.sm }]}>
+            {t('settings.cookiePolicyText')}
+          </Text>
+        </View>
+
+        {/* Owner */}
+        <Text style={[typo.label, { color: colors.textSecondary, marginBottom: spacing.xs }]}>
+          {t('settings.owner')}
+        </Text>
+        <View
+          style={[
+            styles.infoBox,
+            {
+              backgroundColor: colors.surfaceVariant,
+              borderRadius: borderRadius.lg,
+              padding: spacing.md,
+            },
+          ]}
+        >
+          <Ionicons name="person" size={20} color={colors.primary} />
+          <Text style={[typo.bodySmall, { color: colors.textSecondary, flex: 1, marginLeft: spacing.sm }]}>
+            {t('settings.ownerDescription', { name: t('settings.ownerName'), email: t('settings.ownerEmail') })}
           </Text>
         </View>
 

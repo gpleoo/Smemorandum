@@ -93,6 +93,13 @@
     "termsOfService": "Terms of service",
     "yourData": "Your data",
     "yourDataDescription": "Your events are saved only on your device. We never send your data to any server.",
+    "privacyPolicyText": "Smemorandum respects your privacy. The app does not collect, transmit, or share personal data with third parties. All event data is stored exclusively on your device. We do not use third-party tracking or analytics tools.",
+    "cookiePolicy": "Cookies",
+    "cookiePolicyText": "Smemorandum is a native mobile application and does not use cookies or similar tracking technologies. No browsing data is collected or stored.",
+    "owner": "Owner",
+    "ownerName": "Your Name",
+    "ownerEmail": "youremail@example.com",
+    "ownerDescription": "This app is owned and developed by {{name}}. For any questions or requests, contact: {{email}}.",
     "about": "About",
     "version": "Version",
     "rateApp": "Rate this app"
