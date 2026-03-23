@@ -3,6 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { ThemeProvider, useTheme } from './src/theme/ThemeContext';
+import { EventProvider } from './src/context/EventContext';
 import { AppNavigator } from './src/navigation/AppNavigator';
 import './src/i18n';
 
@@ -22,7 +23,9 @@ function AppContent() {
 export default function App() {
   return (
     <ThemeProvider>
-      <AppContent />
+      <EventProvider>
+        <AppContent />
+      </EventProvider>
     </ThemeProvider>
   );
 }
