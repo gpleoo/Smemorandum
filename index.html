@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smemorandum – App per ricordare ricorrenze e scadenze</title>
+  <style>
+    :root {
+      --primary: #6C63FF;
+      --primary-dark: #5A52D5;
+      --bg: #F8F9FA;
+      --surface: #FFFFFF;
+      --text: #1A1A2E;
+      --text-secondary: #6B7280;
+      --border: #E5E7EB;
+      --success: #10B981;
+      --radius: 16px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      text-align: center;
+      padding: 60px 20px 50px;
+    }
+
+    .hero-icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 40px;
+    }
+
+    .hero h1 {
+      font-size: 2.2em;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .hero p {
+      font-size: 1.1em;
+      opacity: 0.9;
+      max-width: 500px;
+      margin: 0 auto 24px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 1em;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    .btn-white {
+      background: white;
+      color: var(--primary);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: white;
+      border: 2px solid rgba(255,255,255,0.5);
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .section {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    .section h2 {
+      font-size: 1.3em;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section p, .section li {
+      color: var(--text-secondary);
+      font-size: 0.95em;
+    }
+
+    .section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .section ul li {
+      padding: 6px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .section ul li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--success);
+      font-weight: bold;
+    }
+
+    .badge {
+      display: inline-block;
+      background: #E8F5E9;
+      color: var(--success);
+      font-size: 0.75em;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    .owner-card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .owner-avatar {
+      width: 50px;
+      height: 50px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.4em;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .owner-info p { margin: 0; }
+    .owner-info .name { color: var(--text); font-weight: 600; font-size: 1em; }
+    .owner-info .email { color: var(--primary); font-size: 0.9em; }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: var(--text-secondary);
+      font-size: 0.85em;
+    }
+
+    footer a { color: var(--primary); text-decoration: none; }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111827;
+        --surface: #1F2937;
+        --text: #F9FAFB;
+        --text-secondary: #9CA3AF;
+        --border: #374151;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="hero-icon">📅</div>
+    <h1>Smemorandum</h1>
+    <p>L'app per non dimenticare mai ricorrenze e scadenze importanti</p>
+    <div class="hero-buttons">
+      <a href="https://github.com/gpleoo/Smemorandum" class="btn btn-white">
+        ⭐ GitHub Repository
+      </a>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Features -->
+    <div class="section">
+      <h2>📱 Funzionalità</h2>
+      <ul>
+        <li>Gestione di ricorrenze e scadenze con promemoria</li>
+        <li>Calendario integrato con vista giornaliera</li>
+        <li>Notifiche intelligenti con suoni personalizzabili</li>
+        <li>Categorie personalizzabili per organizzare gli eventi</li>
+        <li>Tema chiaro, scuro e automatico</li>
+        <li>Supporto multilingua (Italiano e Inglese)</li>
+      </ul>
+    </div>
+
+    <!-- Privacy Policy -->
+    <div class="section" id="privacy">
+      <h2>🔒 Informativa sulla Privacy <span class="badge">100% Locale</span></h2>
+      <p>
+        Smemorandum rispetta la tua privacy. L'app <strong>non raccoglie, trasmette o condivide</strong>
+        dati personali con terze parti. Tutti i dati degli eventi vengono archiviati
+        <strong>esclusivamente in locale</strong> sul tuo dispositivo.
+      </p>
+      <br/>
+      <p>
+        Non utilizziamo strumenti di tracciamento, analisi di terze parti o servizi pubblicitari
+        che raccolgono informazioni personali. I tuoi dati restano tuoi.
+      </p>
+    </div>
+
+    <!-- Cookie Policy -->
+    <div class="section" id="cookie">
+      <h2>🍪 Cookie Policy</h2>
+      <p>
+        Smemorandum è un'applicazione mobile nativa e <strong>non utilizza cookie</strong>
+        o tecnologie di tracciamento simili. Nessun dato di navigazione viene raccolto o memorizzato.
+      </p>
+      <br/>
+      <p>
+        Questo sito web informativo non utilizza cookie di profilazione. Non viene tracciata
+        alcuna attività dell'utente.
+      </p>
+    </div>
+
+    <!-- Owner -->
+    <div class="section" id="owner">
+      <h2>👤 Proprietario</h2>
+      <div class="owner-card">
+        <div class="owner-avatar">S</div>
+        <div class="owner-info">
+          <p class="name">Il Tuo Nome</p>
+          <p class="email">tuaemail@esempio.com</p>
+          <p style="margin-top:4px;">Questa app è di proprietà e sviluppata dal suo autore. Per qualsiasi domanda o richiesta, contattare l'indirizzo email indicato.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Smemorandum. Tutti i diritti riservati.</p>
+    <p style="margin-top:8px;">
+      <a href="#privacy">Privacy</a> · <a href="#cookie">Cookie</a> · <a href="https://github.com/gpleoo/Smemorandum">GitHub</a>
+    </p>
+  </footer>
+</body>
+</html>
