@@ -123,6 +123,17 @@
     "next": "Siguiente",
     "skip": "Saltar"
   },
+  "manageCategories": {
+    "title": "Gestionar categorías",
+    "addCategory": "Añadir categoría",
+    "editCategory": "Editar categoría",
+    "newCategory": "Nueva categoría",
+    "namePlaceholder": "Nombre de categoría",
+    "color": "Color",
+    "icon": "Icono",
+    "deleteTitle": "Eliminar categoría",
+    "deleteMessage": "¿Estás seguro de que quieres eliminar la categoría \"{{name}}\"?"
+  },
   "common": {
     "save": "Guardar",
     "cancel": "Cancelar",

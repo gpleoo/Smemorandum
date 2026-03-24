@@ -167,6 +167,30 @@ export function SettingsScreen() {
           <Ionicons name="chevron-forward" size={20} color={colors.textTertiary} />
         </TouchableOpacity>
 
+        {/* Categories */}
+        <SectionHeader title={t('settings.categories')} colors={colors} typo={typo} spacing={spacing} />
+
+        <TouchableOpacity
+          style={[
+            styles.settingsRow,
+            {
+              backgroundColor: colors.surface,
+              borderRadius: borderRadius.lg,
+              padding: spacing.md,
+              marginBottom: spacing.sm,
+            },
+          ]}
+          onPress={() => navigation.navigate('ManageCategories')}
+        >
+          <View style={styles.settingsRowLeft}>
+            <Ionicons name="color-palette" size={20} color={colors.primary} />
+            <Text style={[typo.body, { color: colors.text, marginLeft: spacing.sm }]}>
+              {t('settings.manageCategories')}
+            </Text>
+          </View>
+          <Ionicons name="chevron-forward" size={20} color={colors.textTertiary} />
+        </TouchableOpacity>
+
         {/* Premium */}
         <SectionHeader title={t('settings.premium')} colors={colors} typo={typo} spacing={spacing} />
 

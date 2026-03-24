@@ -31,10 +31,11 @@ export const DEFAULT_SETTINGS: AppSettings = {
   adsConsent: null,
 };
 
+// TODO: restore limits before production release
 export const FREE_PLAN_LIMITS = {
-  MAX_EVENTS: 10,
-  MAX_CATEGORIES: 3,
-  MAX_REMINDERS_PER_EVENT: 1,
+  MAX_EVENTS: 999, // DEV: unlocked for testing (was 10)
+  MAX_CATEGORIES: 999, // DEV: unlocked for testing (was 3)
+  MAX_REMINDERS_PER_EVENT: 10, // DEV: unlocked for testing (was 1)
 } as const;
 
 export const CATEGORY_COLORS = [

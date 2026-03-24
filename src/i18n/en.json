@@ -148,6 +148,17 @@
     "step6Title": "Customize the app",
     "step6Description": "In Settings you can change the language, theme, and manage your preferences."
   },
+  "manageCategories": {
+    "title": "Manage categories",
+    "addCategory": "Add category",
+    "editCategory": "Edit category",
+    "newCategory": "New category",
+    "namePlaceholder": "Category name",
+    "color": "Color",
+    "icon": "Icon",
+    "deleteTitle": "Delete category",
+    "deleteMessage": "Are you sure you want to delete the category \"{{name}}\"?"
+  },
   "common": {
     "save": "Save",
     "cancel": "Cancel",

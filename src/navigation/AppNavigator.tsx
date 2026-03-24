@@ -24,6 +24,7 @@ import { EventDetailScreen } from '../screens/EventDetailScreen';
 import { EventFormScreen } from '../screens/EventFormScreen';
 import { SettingsScreen } from '../screens/SettingsScreen';
 import { PremiumScreen } from '../screens/PremiumScreen';
+import { ManageCategoriesScreen } from '../screens/ManageCategoriesScreen';
 import { OnboardingScreen } from '../screens/OnboardingScreen';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -96,6 +97,7 @@ function SettingsStackNavigator() {
     >
       <SettingsStack.Screen name="Settings" component={SettingsScreen} options={{ headerShown: false }} />
       <SettingsStack.Screen name="Premium" component={PremiumScreen} />
+      <SettingsStack.Screen name="ManageCategories" component={ManageCategoriesScreen} />
     </SettingsStack.Navigator>
   );
 }

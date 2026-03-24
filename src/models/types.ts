@@ -79,4 +79,5 @@ export type EventsStackParamList = {
 export type SettingsStackParamList = {
   Settings: undefined;
   Premium: undefined;
+  ManageCategories: undefined;
 };
