@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, createNavigationContainerRef } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
@@ -8,6 +8,8 @@ import { useTranslation } from 'react-i18next';
 import { useTheme } from '../theme/ThemeContext';
 import { TutorialProvider } from '../context/TutorialContext';
 import { TutorialOverlay } from '../components/TutorialOverlay';
+export const navigationRef = createNavigationContainerRef<RootStackParamList>();
+
 import {
   RootStackParamList,
   TabParamList,
@@ -173,7 +175,7 @@ export function AppNavigator() {
   return (
     <TutorialProvider>
       <View style={{ flex: 1 }}>
-        <NavigationContainer>
+        <NavigationContainer ref={navigationRef}>
           <RootStack.Navigator screenOptions={{ headerShown: false }}>
             <RootStack.Screen name="MainTabs" component={MainTabs} />
             <RootStack.Group screenOptions={{ presentation: 'modal' }}>
