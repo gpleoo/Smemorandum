@@ -122,7 +122,9 @@ export function EventFormScreen() {
     navigation.goBack();
   };
 
-  const freeSounds = SOUNDS.filter((s) => !s.premium);
+  // TODO: restore premium filter before production release
+  // const freeSounds = SOUNDS.filter((s) => !s.premium);
+  const freeSounds = SOUNDS; // DEV: all sounds unlocked for testing
 
   return (
     <ScrollView
