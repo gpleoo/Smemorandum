@@ -27,6 +27,7 @@ export const DEFAULT_SETTINGS: AppSettings = {
   theme: 'auto',
   defaultSoundId: 'gentle-bell',
   hasSeenOnboarding: false,
+  hasSeenTutorial: false,
   adsConsent: null,
 };
 

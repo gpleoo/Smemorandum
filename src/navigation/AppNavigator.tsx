@@ -1,10 +1,13 @@
 import React from 'react';
+import { View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../theme/ThemeContext';
+import { TutorialProvider } from '../context/TutorialContext';
+import { TutorialOverlay } from '../components/TutorialOverlay';
 import {
   RootStackParamList,
   TabParamList,
@@ -166,14 +169,19 @@ export function AppNavigator() {
   const { colors } = useTheme();
 
   return (
-    <NavigationContainer>
-      <RootStack.Navigator screenOptions={{ headerShown: false }}>
-        <RootStack.Screen name="MainTabs" component={MainTabs} />
-        <RootStack.Group screenOptions={{ presentation: 'modal' }}>
-          <RootStack.Screen name="Onboarding" component={OnboardingScreen} />
-          <RootStack.Screen name="Premium" component={PremiumScreen} />
-        </RootStack.Group>
-      </RootStack.Navigator>
-    </NavigationContainer>
+    <TutorialProvider>
+      <View style={{ flex: 1 }}>
+        <NavigationContainer>
+          <RootStack.Navigator screenOptions={{ headerShown: false }}>
+            <RootStack.Screen name="MainTabs" component={MainTabs} />
+            <RootStack.Group screenOptions={{ presentation: 'modal' }}>
+              <RootStack.Screen name="Onboarding" component={OnboardingScreen} />
+              <RootStack.Screen name="Premium" component={PremiumScreen} />
+            </RootStack.Group>
+          </RootStack.Navigator>
+        </NavigationContainer>
+        <TutorialOverlay />
+      </View>
+    </TutorialProvider>
   );
 }
