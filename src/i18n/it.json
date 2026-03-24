@@ -102,7 +102,8 @@
     "ownerDescription": "Questa app è di proprietà e sviluppata da {{name}}. Per qualsiasi domanda o richiesta, contattare: {{email}}.",
     "about": "Info",
     "version": "Versione",
-    "rateApp": "Valuta l'app"
+    "rateApp": "Valuta l'app",
+    "replayTutorial": "Rivedi il tutorial"
   },
   "premium": {
     "title": "Smemorandum Premium",
@@ -129,6 +130,23 @@
     "getStarted": "Inizia",
     "next": "Avanti",
     "skip": "Salta"
+  },
+  "tutorial": {
+    "skip": "Salta tutorial",
+    "next": "Avanti",
+    "gotIt": "Ho capito!",
+    "step1Title": "Benvenuto nella tua dashboard",
+    "step1Description": "Qui troverai i tuoi prossimi eventi organizzati per oggi, questa settimana e questo mese.",
+    "step2Title": "Crea un nuovo evento",
+    "step2Description": "Tocca il pulsante + per aggiungere una nuova ricorrenza o scadenza.",
+    "step3Title": "Naviga tra le sezioni",
+    "step3Description": "Usa la barra in basso per passare tra Home, Calendario, Eventi e Impostazioni.",
+    "step4Title": "Due tipi di eventi",
+    "step4Description": "Le Ricorrenze sono eventi che si ripetono (compleanni, anniversari). Le Scadenze hanno una data precisa (bollette, rinnovi).",
+    "step5Title": "Vista calendario",
+    "step5Description": "Tocca Calendario per vedere tutti i tuoi eventi in una vista mensile. Tocca un giorno per vederne i dettagli.",
+    "step6Title": "Personalizza l'app",
+    "step6Description": "Nelle Impostazioni puoi cambiare lingua, tema e gestire le tue preferenze."
   },
   "common": {
     "save": "Salva",

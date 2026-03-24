@@ -11,11 +11,14 @@ import { useTranslation } from 'react-i18next';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { CompositeNavigationProp } from '@react-navigation/native';
+import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { useTheme } from '../theme/ThemeContext';
-import { AppSettings, SettingsStackParamList, ThemeMode } from '../models/types';
+import { AppSettings, SettingsStackParamList, TabParamList, ThemeMode } from '../models/types';
 import { getSettings, updateSetting } from '../storage/settingsStorage';
 import { SUPPORTED_LANGUAGES } from '../utils/constants';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useTutorial } from '../context/TutorialContext';
 
 type Nav = NativeStackNavigationProp<SettingsStackParamList, 'Settings'>;
 
@@ -23,6 +26,7 @@ export function SettingsScreen() {
   const { t, i18n } = useTranslation();
   const { colors, typography: typo, spacing, borderRadius, setThemeMode } = useTheme();
   const navigation = useNavigation<Nav>();
+  const { showTutorial } = useTutorial();
   const [settings, setSettings] = useState<AppSettings | null>(null);
 
   useEffect(() => {
@@ -136,6 +140,32 @@ export function SettingsScreen() {
             </TouchableOpacity>
           ))}
         </View>
+
+        {/* Replay Tutorial */}
+        <TouchableOpacity
+          style={[
+            styles.settingsRow,
+            {
+              backgroundColor: colors.surface,
+              borderRadius: borderRadius.lg,
+              padding: spacing.md,
+              marginTop: spacing.md,
+              marginBottom: spacing.sm,
+            },
+          ]}
+          onPress={() => {
+            navigation.getParent<BottomTabNavigationProp<TabParamList>>()?.navigate('HomeTab');
+            setTimeout(() => showTutorial(), 300);
+          }}
+        >
+          <View style={styles.settingsRowLeft}>
+            <Ionicons name="help-circle" size={20} color={colors.primary} />
+            <Text style={[typo.body, { color: colors.text, marginLeft: spacing.sm }]}>
+              {t('settings.replayTutorial')}
+            </Text>
+          </View>
+          <Ionicons name="chevron-forward" size={20} color={colors.textTertiary} />
+        </TouchableOpacity>
 
         {/* Premium */}
         <SectionHeader title={t('settings.premium')} colors={colors} typo={typo} spacing={spacing} />

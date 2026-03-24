@@ -41,6 +41,7 @@ export interface AppSettings {
   theme: ThemeMode;
   defaultSoundId: string;
   hasSeenOnboarding: boolean;
+  hasSeenTutorial: boolean;
   adsConsent: boolean | null; // null = not asked yet
 }
 

@@ -102,7 +102,8 @@
     "ownerDescription": "This app is owned and developed by {{name}}. For any questions or requests, contact: {{email}}.",
     "about": "About",
     "version": "Version",
-    "rateApp": "Rate this app"
+    "rateApp": "Rate this app",
+    "replayTutorial": "Replay tutorial"
   },
   "premium": {
     "title": "Smemorandum Premium",
@@ -129,6 +130,23 @@
     "getStarted": "Get started",
     "next": "Next",
     "skip": "Skip"
+  },
+  "tutorial": {
+    "skip": "Skip tutorial",
+    "next": "Next",
+    "gotIt": "Got it!",
+    "step1Title": "Welcome to your dashboard",
+    "step1Description": "Here you'll find your upcoming events organized by today, this week, and this month.",
+    "step2Title": "Create a new event",
+    "step2Description": "Tap the + button to add a new recurring event or deadline.",
+    "step3Title": "Navigate between sections",
+    "step3Description": "Use the bottom bar to switch between Home, Calendar, Events, and Settings.",
+    "step4Title": "Two types of events",
+    "step4Description": "Recurring events repeat over time (birthdays, anniversaries). Deadlines have a specific due date (bills, renewals).",
+    "step5Title": "Calendar view",
+    "step5Description": "Tap Calendar to see all your events in a monthly view. Tap any day to see its details.",
+    "step6Title": "Customize the app",
+    "step6Description": "In Settings you can change the language, theme, and manage your preferences."
   },
   "common": {
     "save": "Save",

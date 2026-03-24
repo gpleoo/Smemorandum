@@ -13,6 +13,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { useTheme } from '../theme/ThemeContext';
 import { updateSetting } from '../storage/settingsStorage';
+import { useTutorial } from '../context/TutorialContext';
 
 const { width } = Dimensions.get('window');
 
@@ -52,6 +53,7 @@ export function OnboardingScreen() {
   const { t } = useTranslation();
   const { colors, typography: typo, spacing, borderRadius } = useTheme();
   const navigation = useNavigation();
+  const { showTutorial } = useTutorial();
   const [currentIndex, setCurrentIndex] = useState(0);
   const flatListRef = useRef<FlatList>(null);
 
@@ -68,6 +70,7 @@ export function OnboardingScreen() {
   const handleFinish = async () => {
     await updateSetting('hasSeenOnboarding', true);
     navigation.goBack();
+    setTimeout(() => showTutorial(), 500);
   };
 
   const handleNext = () => {
