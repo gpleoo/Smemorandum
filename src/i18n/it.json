@@ -106,7 +106,16 @@
     "rateApp": "Valuta l'app",
     "replayTutorial": "Rivedi il tutorial",
     "data": "Dati",
-    "importContacts": "Importa compleanni dalla rubrica"
+    "importContacts": "Importa compleanni dalla rubrica",
+    "exportBackup": "Esporta backup",
+    "importBackup": "Ripristina backup"
+  },
+  "backup": {
+    "importConfirm": "Ripristina backup",
+    "importConfirmMessage": "I dati attuali verranno sostituiti con quelli del backup. Vuoi continuare?",
+    "importSuccess": "Backup ripristinato",
+    "importedCount": "Ripristinati {{events}} eventi e {{categories}} categorie.",
+    "importError": "File non valido. Seleziona un file di backup Smemorandum."
   },
   "importContacts": {
     "title": "Importa contatti",
@@ -161,7 +170,11 @@
     "step5Title": "Vista calendario",
     "step5Description": "Tocca Calendario per vedere tutti i tuoi eventi in una vista mensile. Tocca un giorno per vederne i dettagli.",
     "step6Title": "Personalizza l'app",
-    "step6Description": "Nelle Impostazioni puoi cambiare lingua, tema e gestire le tue preferenze."
+    "step6Description": "Nelle Impostazioni puoi cambiare lingua, tema e gestire le tue preferenze.",
+    "step7Title": "Importa dalla rubrica",
+    "step7Description": "Vai in Impostazioni > Dati per importare automaticamente i compleanni dai tuoi contatti. Non dovrai inserirli a mano!",
+    "step8Title": "Backup dei tuoi dati",
+    "step8Description": "Sempre in Impostazioni > Dati puoi esportare un backup dei tuoi eventi e ripristinarli su un altro dispositivo."
   },
   "manageCategories": {
     "title": "Gestisci categorie",

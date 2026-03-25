@@ -42,6 +42,7 @@
       "expo-localization",
       "expo-secure-store",
       "expo-contacts",
+      "expo-document-picker",
       ["react-native-android-widget", {
         "widgets": [
           {

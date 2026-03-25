@@ -19,6 +19,8 @@ import { getSettings, updateSetting } from '../storage/settingsStorage';
 import { SUPPORTED_LANGUAGES } from '../utils/constants';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTutorial } from '../context/TutorialContext';
+import { useEventContext } from '../context/EventContext';
+import { shareBackup, pickAndRestoreBackup } from '../services/backupService';
 
 type Nav = NativeStackNavigationProp<SettingsStackParamList, 'Settings'>;
 
@@ -27,6 +29,7 @@ export function SettingsScreen() {
   const { colors, typography: typo, spacing, borderRadius, setThemeMode } = useTheme();
   const navigation = useNavigation<Nav>();
   const { showTutorial } = useTutorial();
+  const { refreshData } = useEventContext();
   const [settings, setSettings] = useState<AppSettings | null>(null);
 
   useEffect(() => {
@@ -43,6 +46,40 @@ export function SettingsScreen() {
     setThemeMode(theme);
     const updated = await updateSetting('theme', theme);
     setSettings(updated);
+  };
+
+  const handleExportBackup = async () => {
+    try {
+      await shareBackup();
+    } catch {
+      // User cancelled share sheet — ignore
+    }
+  };
+
+  const handleImportBackup = () => {
+    Alert.alert(
+      t('backup.importConfirm'),
+      t('backup.importConfirmMessage'),
+      [
+        { text: t('common.cancel'), style: 'cancel' },
+        {
+          text: t('common.ok'),
+          onPress: async () => {
+            try {
+              const result = await pickAndRestoreBackup();
+              await refreshData();
+              Alert.alert(
+                t('backup.importSuccess'),
+                t('backup.importedCount', { events: result.events, categories: result.categories }),
+              );
+            } catch (e: any) {
+              if (e?.message === 'cancelled') return;
+              Alert.alert(t('common.error'), t('backup.importError'));
+            }
+          },
+        },
+      ],
+    );
   };
 
   const themes: { key: ThemeMode; label: string; icon: string }[] = [
@@ -210,6 +247,48 @@ export function SettingsScreen() {
             <Ionicons name="people" size={20} color={colors.primary} />
             <Text style={[typo.body, { color: colors.text, marginLeft: spacing.sm }]}>
               {t('settings.importContacts')}
+            </Text>
+          </View>
+          <Ionicons name="chevron-forward" size={20} color={colors.textTertiary} />
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[
+            styles.settingsRow,
+            {
+              backgroundColor: colors.surface,
+              borderRadius: borderRadius.lg,
+              padding: spacing.md,
+              marginBottom: spacing.sm,
+            },
+          ]}
+          onPress={handleExportBackup}
+        >
+          <View style={styles.settingsRowLeft}>
+            <Ionicons name="cloud-upload" size={20} color={colors.primary} />
+            <Text style={[typo.body, { color: colors.text, marginLeft: spacing.sm }]}>
+              {t('settings.exportBackup')}
+            </Text>
+          </View>
+          <Ionicons name="chevron-forward" size={20} color={colors.textTertiary} />
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={[
+            styles.settingsRow,
+            {
+              backgroundColor: colors.surface,
+              borderRadius: borderRadius.lg,
+              padding: spacing.md,
+              marginBottom: spacing.sm,
+            },
+          ]}
+          onPress={handleImportBackup}
+        >
+          <View style={styles.settingsRowLeft}>
+            <Ionicons name="cloud-download" size={20} color={colors.primary} />
+            <Text style={[typo.body, { color: colors.text, marginLeft: spacing.sm }]}>
+              {t('settings.importBackup')}
             </Text>
           </View>
           <Ionicons name="chevron-forward" size={20} color={colors.textTertiary} />

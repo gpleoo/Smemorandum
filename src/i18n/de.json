@@ -98,7 +98,16 @@
     "version": "Version",
     "rateApp": "App bewerten",
     "data": "Daten",
-    "importContacts": "Geburtstage aus Kontakten importieren"
+    "importContacts": "Geburtstage aus Kontakten importieren",
+    "exportBackup": "Backup exportieren",
+    "importBackup": "Backup wiederherstellen"
+  },
+  "backup": {
+    "importConfirm": "Backup wiederherstellen",
+    "importConfirmMessage": "Die aktuellen Daten werden durch die Backup-Daten ersetzt. Möchten Sie fortfahren?",
+    "importSuccess": "Backup wiederhergestellt",
+    "importedCount": "{{events}} Ereignisse und {{categories}} Kategorien wiederhergestellt.",
+    "importError": "Ungültige Datei. Bitte wählen Sie eine Smemorandum-Backup-Datei."
   },
   "importContacts": {
     "title": "Kontakte importieren",
@@ -148,6 +157,27 @@
     "icon": "Symbol",
     "deleteTitle": "Kategorie löschen",
     "deleteMessage": "Sind Sie sicher, dass Sie die Kategorie \"{{name}}\" löschen möchten?"
+  },
+  "tutorial": {
+    "skip": "Tutorial überspringen",
+    "next": "Weiter",
+    "gotIt": "Verstanden!",
+    "step1Title": "Willkommen auf Ihrem Dashboard",
+    "step1Description": "Hier finden Sie Ihre nächsten Ereignisse nach Heute, Diese Woche und Diesen Monat sortiert.",
+    "step2Title": "Neues Ereignis erstellen",
+    "step2Description": "Tippen Sie auf + um ein neues Datum oder eine Frist hinzuzufügen.",
+    "step3Title": "Zwischen Bereichen navigieren",
+    "step3Description": "Nutzen Sie die untere Leiste um zwischen Start, Kalender, Ereignisse und Einstellungen zu wechseln.",
+    "step4Title": "Zwei Arten von Ereignissen",
+    "step4Description": "Wiederkehrende Ereignisse wiederholen sich (Geburtstage, Jahrestage). Fristen haben ein genaues Datum (Rechnungen, Verlängerungen).",
+    "step5Title": "Kalenderansicht",
+    "step5Description": "Tippen Sie auf Kalender um alle Ihre Ereignisse in der Monatsansicht zu sehen.",
+    "step6Title": "App anpassen",
+    "step6Description": "In den Einstellungen können Sie Sprache, Design und Ihre Präferenzen verwalten.",
+    "step7Title": "Aus Kontakten importieren",
+    "step7Description": "Gehen Sie zu Einstellungen > Daten um automatisch Geburtstage aus Ihren Kontakten zu importieren.",
+    "step8Title": "Ihre Daten sichern",
+    "step8Description": "Ebenfalls unter Einstellungen > Daten können Sie ein Backup Ihrer Ereignisse exportieren und auf einem anderen Gerät wiederherstellen."
   },
   "common": {
     "save": "Speichern",

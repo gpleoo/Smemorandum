@@ -106,7 +106,16 @@
     "rateApp": "Rate this app",
     "replayTutorial": "Replay tutorial",
     "data": "Data",
-    "importContacts": "Import birthdays from contacts"
+    "importContacts": "Import birthdays from contacts",
+    "exportBackup": "Export backup",
+    "importBackup": "Restore backup"
+  },
+  "backup": {
+    "importConfirm": "Restore backup",
+    "importConfirmMessage": "Your current data will be replaced with the backup data. Do you want to continue?",
+    "importSuccess": "Backup restored",
+    "importedCount": "Restored {{events}} events and {{categories}} categories.",
+    "importError": "Invalid file. Please select a Smemorandum backup file."
   },
   "importContacts": {
     "title": "Import contacts",
@@ -161,7 +170,11 @@
     "step5Title": "Calendar view",
     "step5Description": "Tap Calendar to see all your events in a monthly view. Tap any day to see its details.",
     "step6Title": "Customize the app",
-    "step6Description": "In Settings you can change the language, theme, and manage your preferences."
+    "step6Description": "In Settings you can change the language, theme, and manage your preferences.",
+    "step7Title": "Import from contacts",
+    "step7Description": "Go to Settings > Data to automatically import birthdays from your contacts. No need to enter them manually!",
+    "step8Title": "Back up your data",
+    "step8Description": "Also in Settings > Data, you can export a backup of your events and restore them on another device."
   },
   "manageCategories": {
     "title": "Manage categories",
