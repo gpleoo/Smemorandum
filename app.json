@@ -41,7 +41,24 @@
       "expo-notifications",
       "expo-localization",
       "expo-secure-store",
-      "expo-contacts"
+      "expo-contacts",
+      ["react-native-android-widget", {
+        "widgets": [
+          {
+            "name": "UpcomingEvents",
+            "label": "Smemorandum",
+            "description": "Prossimi eventi e compleanni",
+            "minWidth": "256dp",
+            "minHeight": "120dp",
+            "targetCellWidth": 4,
+            "targetCellHeight": 2,
+            "maxResizeWidth": "400dp",
+            "maxResizeHeight": "300dp",
+            "resizeMode": "horizontal|vertical",
+            "updatePeriodMillis": 1800000
+          }
+        ]
+      }]
     ],
     "extra": {
       "eas": {
