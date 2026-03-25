@@ -2,6 +2,7 @@
   "expo": {
     "name": "Smemorandum",
     "slug": "smemorandum",
+    "description": "Smemorandum - Promemoria & Scadenze. Non dimenticare mai più compleanni, anniversari e scadenze importanti.",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
