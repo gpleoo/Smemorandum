@@ -191,6 +191,30 @@ export function SettingsScreen() {
           <Ionicons name="chevron-forward" size={20} color={colors.textTertiary} />
         </TouchableOpacity>
 
+        {/* Data */}
+        <SectionHeader title={t('settings.data')} colors={colors} typo={typo} spacing={spacing} />
+
+        <TouchableOpacity
+          style={[
+            styles.settingsRow,
+            {
+              backgroundColor: colors.surface,
+              borderRadius: borderRadius.lg,
+              padding: spacing.md,
+              marginBottom: spacing.sm,
+            },
+          ]}
+          onPress={() => navigation.navigate('ImportContacts')}
+        >
+          <View style={styles.settingsRowLeft}>
+            <Ionicons name="people" size={20} color={colors.primary} />
+            <Text style={[typo.body, { color: colors.text, marginLeft: spacing.sm }]}>
+              {t('settings.importContacts')}
+            </Text>
+          </View>
+          <Ionicons name="chevron-forward" size={20} color={colors.textTertiary} />
+        </TouchableOpacity>
+
         {/* Premium */}
         <SectionHeader title={t('settings.premium')} colors={colors} typo={typo} spacing={spacing} />
 

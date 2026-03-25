@@ -104,7 +104,21 @@
     "about": "Info",
     "version": "Versione",
     "rateApp": "Valuta l'app",
-    "replayTutorial": "Rivedi il tutorial"
+    "replayTutorial": "Rivedi il tutorial",
+    "data": "Dati",
+    "importContacts": "Importa compleanni dalla rubrica"
+  },
+  "importContacts": {
+    "title": "Importa contatti",
+    "found": "{{count}} contatti con compleanno",
+    "selectAll": "Seleziona tutti",
+    "deselectAll": "Deseleziona tutti",
+    "importSelected": "Importa {{count}} selezionati",
+    "alreadyImported": "Già importato",
+    "noContacts": "Nessun contatto nella rubrica ha una data di compleanno salvata.",
+    "permissionDenied": "Accesso alla rubrica negato. Abilita il permesso dalle impostazioni del dispositivo.",
+    "done": "Importazione completata",
+    "importedCount": "{{count}} compleanni importati con successo!"
   },
   "premium": {
     "title": "Smemorandum Premium",

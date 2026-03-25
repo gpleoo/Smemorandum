@@ -96,7 +96,21 @@
     "yourDataDescription": "Vos événements sont enregistrés uniquement sur votre appareil. Nous n'envoyons jamais vos données à aucun serveur.",
     "about": "À propos",
     "version": "Version",
-    "rateApp": "Évaluer l'application"
+    "rateApp": "Évaluer l'application",
+    "data": "Données",
+    "importContacts": "Importer les anniversaires depuis les contacts"
+  },
+  "importContacts": {
+    "title": "Importer des contacts",
+    "found": "{{count}} contacts avec anniversaire",
+    "selectAll": "Tout sélectionner",
+    "deselectAll": "Tout désélectionner",
+    "importSelected": "Importer {{count}} sélectionnés",
+    "alreadyImported": "Déjà importé",
+    "noContacts": "Aucun contact de votre répertoire n'a de date d'anniversaire enregistrée.",
+    "permissionDenied": "Accès aux contacts refusé. Activez l'autorisation dans les paramètres de l'appareil.",
+    "done": "Importation terminée",
+    "importedCount": "{{count}} anniversaires importés avec succès !"
   },
   "premium": {
     "title": "Smemorandum Premium",

@@ -28,6 +28,7 @@ import { SettingsScreen } from '../screens/SettingsScreen';
 import { PremiumScreen } from '../screens/PremiumScreen';
 import { ManageCategoriesScreen } from '../screens/ManageCategoriesScreen';
 import { OnboardingScreen } from '../screens/OnboardingScreen';
+import { ImportContactsScreen } from '../screens/ImportContactsScreen';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator<TabParamList>();
@@ -100,6 +101,7 @@ function SettingsStackNavigator() {
       <SettingsStack.Screen name="Settings" component={SettingsScreen} options={{ headerShown: false }} />
       <SettingsStack.Screen name="Premium" component={PremiumScreen} />
       <SettingsStack.Screen name="ManageCategories" component={ManageCategoriesScreen} />
+      <SettingsStack.Screen name="ImportContacts" component={ImportContactsScreen} />
     </SettingsStack.Navigator>
   );
 }

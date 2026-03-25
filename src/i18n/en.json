@@ -104,7 +104,21 @@
     "about": "About",
     "version": "Version",
     "rateApp": "Rate this app",
-    "replayTutorial": "Replay tutorial"
+    "replayTutorial": "Replay tutorial",
+    "data": "Data",
+    "importContacts": "Import birthdays from contacts"
+  },
+  "importContacts": {
+    "title": "Import contacts",
+    "found": "{{count}} contacts with birthday",
+    "selectAll": "Select all",
+    "deselectAll": "Deselect all",
+    "importSelected": "Import {{count}} selected",
+    "alreadyImported": "Already imported",
+    "noContacts": "No contacts in your address book have a birthday saved.",
+    "permissionDenied": "Contacts access denied. Enable the permission in your device settings.",
+    "done": "Import complete",
+    "importedCount": "{{count}} birthdays imported successfully!"
   },
   "premium": {
     "title": "Smemorandum Premium",

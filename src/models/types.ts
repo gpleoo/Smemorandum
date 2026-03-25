@@ -81,4 +81,5 @@ export type SettingsStackParamList = {
   Settings: undefined;
   Premium: undefined;
   ManageCategories: undefined;
+  ImportContacts: undefined;
 };

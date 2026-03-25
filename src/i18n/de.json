@@ -96,7 +96,21 @@
     "yourDataDescription": "Ihre Ereignisse werden nur auf Ihrem Gerät gespeichert. Wir senden Ihre Daten niemals an einen Server.",
     "about": "Info",
     "version": "Version",
-    "rateApp": "App bewerten"
+    "rateApp": "App bewerten",
+    "data": "Daten",
+    "importContacts": "Geburtstage aus Kontakten importieren"
+  },
+  "importContacts": {
+    "title": "Kontakte importieren",
+    "found": "{{count}} Kontakte mit Geburtstag",
+    "selectAll": "Alle auswählen",
+    "deselectAll": "Alle abwählen",
+    "importSelected": "{{count}} ausgewählte importieren",
+    "alreadyImported": "Bereits importiert",
+    "noContacts": "Kein Kontakt in Ihrem Adressbuch hat ein gespeichertes Geburtsdatum.",
+    "permissionDenied": "Zugriff auf Kontakte verweigert. Aktivieren Sie die Berechtigung in den Geräteeinstellungen.",
+    "done": "Import abgeschlossen",
+    "importedCount": "{{count}} Geburtstage erfolgreich importiert!"
   },
   "premium": {
     "title": "Smemorandum Premium",
