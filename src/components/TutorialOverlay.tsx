@@ -73,6 +73,20 @@ const STEPS: TutorialStep[] = [
     icon: 'settings',
     tooltipPosition: 'top',
   },
+  {
+    id: 'importContacts',
+    titleKey: 'tutorial.step7Title',
+    descriptionKey: 'tutorial.step7Description',
+    icon: 'people',
+    tooltipPosition: 'center',
+  },
+  {
+    id: 'backup',
+    titleKey: 'tutorial.step8Title',
+    descriptionKey: 'tutorial.step8Description',
+    icon: 'cloud-upload',
+    tooltipPosition: 'center',
+  },
 ];
 
 const FAB_SIZE = 56;

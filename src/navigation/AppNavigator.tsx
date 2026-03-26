@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, createNavigationContainerRef } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
@@ -8,6 +8,8 @@ import { useTranslation } from 'react-i18next';
 import { useTheme } from '../theme/ThemeContext';
 import { TutorialProvider } from '../context/TutorialContext';
 import { TutorialOverlay } from '../components/TutorialOverlay';
+export const navigationRef = createNavigationContainerRef<RootStackParamList>();
+
 import {
   RootStackParamList,
   TabParamList,
@@ -24,7 +26,9 @@ import { EventDetailScreen } from '../screens/EventDetailScreen';
 import { EventFormScreen } from '../screens/EventFormScreen';
 import { SettingsScreen } from '../screens/SettingsScreen';
 import { PremiumScreen } from '../screens/PremiumScreen';
+import { ManageCategoriesScreen } from '../screens/ManageCategoriesScreen';
 import { OnboardingScreen } from '../screens/OnboardingScreen';
+import { ImportContactsScreen } from '../screens/ImportContactsScreen';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 const Tab = createBottomTabNavigator<TabParamList>();
@@ -96,6 +100,8 @@ function SettingsStackNavigator() {
     >
       <SettingsStack.Screen name="Settings" component={SettingsScreen} options={{ headerShown: false }} />
       <SettingsStack.Screen name="Premium" component={PremiumScreen} />
+      <SettingsStack.Screen name="ManageCategories" component={ManageCategoriesScreen} />
+      <SettingsStack.Screen name="ImportContacts" component={ImportContactsScreen} />
     </SettingsStack.Navigator>
   );
 }
@@ -171,7 +177,7 @@ export function AppNavigator() {
   return (
     <TutorialProvider>
       <View style={{ flex: 1 }}>
-        <NavigationContainer>
+        <NavigationContainer ref={navigationRef}>
           <RootStack.Navigator screenOptions={{ headerShown: false }}>
             <RootStack.Screen name="MainTabs" component={MainTabs} />
             <RootStack.Group screenOptions={{ presentation: 'modal' }}>

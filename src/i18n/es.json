@@ -7,6 +7,7 @@
   },
   "home": {
     "title": "Smemorandum",
+    "subtitle": "Recordatorios y Vencimientos",
     "today": "Hoy",
     "thisWeek": "Esta semana",
     "thisMonth": "Este mes",
@@ -95,7 +96,30 @@
     "yourDataDescription": "Tus eventos se guardan solo en tu dispositivo. Nunca enviamos tus datos a ningún servidor.",
     "about": "Acerca de",
     "version": "Versión",
-    "rateApp": "Valora la app"
+    "rateApp": "Valora la app",
+    "data": "Datos",
+    "importContacts": "Importar cumpleaños desde contactos",
+    "exportBackup": "Exportar copia de seguridad",
+    "importBackup": "Restaurar copia de seguridad"
+  },
+  "backup": {
+    "importConfirm": "Restaurar copia",
+    "importConfirmMessage": "Los datos actuales serán reemplazados por los de la copia. ¿Deseas continuar?",
+    "importSuccess": "Copia restaurada",
+    "importedCount": "Restaurados {{events}} eventos y {{categories}} categorías.",
+    "importError": "Archivo no válido. Selecciona un archivo de copia de Smemorandum."
+  },
+  "importContacts": {
+    "title": "Importar contactos",
+    "found": "{{count}} contactos con cumpleaños",
+    "selectAll": "Seleccionar todos",
+    "deselectAll": "Deseleccionar todos",
+    "importSelected": "Importar {{count}} seleccionados",
+    "alreadyImported": "Ya importado",
+    "noContacts": "Ningún contacto de tu agenda tiene una fecha de cumpleaños guardada.",
+    "permissionDenied": "Acceso a contactos denegado. Habilita el permiso en los ajustes del dispositivo.",
+    "done": "Importación completada",
+    "importedCount": "¡{{count}} cumpleaños importados con éxito!"
   },
   "premium": {
     "title": "Smemorandum Premium",
@@ -122,6 +146,38 @@
     "getStarted": "Empezar",
     "next": "Siguiente",
     "skip": "Saltar"
+  },
+  "manageCategories": {
+    "title": "Gestionar categorías",
+    "addCategory": "Añadir categoría",
+    "editCategory": "Editar categoría",
+    "newCategory": "Nueva categoría",
+    "namePlaceholder": "Nombre de categoría",
+    "color": "Color",
+    "icon": "Icono",
+    "deleteTitle": "Eliminar categoría",
+    "deleteMessage": "¿Estás seguro de que quieres eliminar la categoría \"{{name}}\"?"
+  },
+  "tutorial": {
+    "skip": "Saltar tutorial",
+    "next": "Siguiente",
+    "gotIt": "¡Entendido!",
+    "step1Title": "Bienvenido a tu panel",
+    "step1Description": "Aquí encontrarás tus próximos eventos organizados por hoy, esta semana y este mes.",
+    "step2Title": "Crea un nuevo evento",
+    "step2Description": "Toca el botón + para añadir una nueva fecha o vencimiento.",
+    "step3Title": "Navega entre secciones",
+    "step3Description": "Usa la barra inferior para moverte entre Inicio, Calendario, Eventos y Ajustes.",
+    "step4Title": "Dos tipos de eventos",
+    "step4Description": "Las Recurrencias son eventos que se repiten (cumpleaños, aniversarios). Los Vencimientos tienen una fecha precisa (facturas, renovaciones).",
+    "step5Title": "Vista calendario",
+    "step5Description": "Toca Calendario para ver todos tus eventos en vista mensual.",
+    "step6Title": "Personaliza la app",
+    "step6Description": "En Ajustes puedes cambiar idioma, tema y gestionar tus preferencias.",
+    "step7Title": "Importar desde contactos",
+    "step7Description": "Ve a Ajustes > Datos para importar automáticamente los cumpleaños de tus contactos.",
+    "step8Title": "Copia de seguridad",
+    "step8Description": "También en Ajustes > Datos puedes exportar una copia de tus eventos y restaurarla en otro dispositivo."
   },
   "common": {
     "save": "Guardar",

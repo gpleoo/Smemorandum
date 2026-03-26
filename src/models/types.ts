@@ -23,6 +23,7 @@ export interface SEvent {
   categoryId: string;
   reminders: Reminder[];
   soundId: string;
+  sourceContactId?: string; // Phone contact ID, used to detect duplicates on re-import
   createdAt: string;
   updatedAt: string;
 }
@@ -79,4 +80,6 @@ export type EventsStackParamList = {
 export type SettingsStackParamList = {
   Settings: undefined;
   Premium: undefined;
+  ManageCategories: undefined;
+  ImportContacts: undefined;
 };

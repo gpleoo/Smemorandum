@@ -1,6 +1,7 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import { useTheme } from '../theme/ThemeContext';
 import { useTranslation } from 'react-i18next';
 import { Reminder } from '../models/types';
@@ -21,6 +22,29 @@ const REMINDER_OPTIONS = [
 export function ReminderPicker({ reminders, onChange, maxReminders = 5 }: ReminderPickerProps) {
   const { colors, spacing, borderRadius, typography: typo } = useTheme();
   const { t } = useTranslation();
+  const [editingReminderId, setEditingReminderId] = useState<string | null>(null);
+  const [showTimePicker, setShowTimePicker] = useState(false);
+
+  const handleTimeChange = (_event: DateTimePickerEvent, selectedDate?: Date) => {
+    setShowTimePicker(Platform.OS === 'ios');
+    if (selectedDate && editingReminderId) {
+      const hours = String(selectedDate.getHours()).padStart(2, '0');
+      const minutes = String(selectedDate.getMinutes()).padStart(2, '0');
+      const newTime = `${hours}:${minutes}`;
+      onChange(reminders.map((r) => (r.id === editingReminderId ? { ...r, time: newTime } : r)));
+    }
+    if (Platform.OS === 'android') {
+      setEditingReminderId(null);
+    }
+  };
+
+  const getTimePickerValue = (): Date => {
+    const editing = reminders.find((r) => r.id === editingReminderId);
+    const [h, m] = (editing?.time ?? '09:00').split(':').map(Number);
+    const d = new Date();
+    d.setHours(h, m, 0, 0);
+    return d;
+  };
 
   const addReminder = (daysBefore: number) => {
     if (reminders.length >= maxReminders) return;
@@ -59,9 +83,29 @@ export function ReminderPicker({ reminders, onChange, maxReminders = 5 }: Remind
           ]}
         >
           <Ionicons name="notifications-outline" size={18} color={colors.primary} />
-          <Text style={[typo.body, { color: colors.text, flex: 1, marginLeft: spacing.sm }]}>
-            {getReminderLabel(reminder.daysBefore)} - {reminder.time}
+          <Text style={[typo.body, { color: colors.text, marginLeft: spacing.sm }]}>
+            {getReminderLabel(reminder.daysBefore)} -
           </Text>
+          <TouchableOpacity
+            onPress={() => {
+              setEditingReminderId(reminder.id);
+              setShowTimePicker(true);
+            }}
+            style={[
+              styles.timeBadge,
+              {
+                backgroundColor: colors.primary + '20',
+                borderRadius: borderRadius.sm,
+                marginLeft: 4,
+              },
+            ]}
+          >
+            <Ionicons name="time-outline" size={14} color={colors.primary} />
+            <Text style={[typo.bodySmall, { color: colors.primary, fontWeight: '600', marginLeft: 2 }]}>
+              {reminder.time}
+            </Text>
+          </TouchableOpacity>
+          <View style={{ flex: 1 }} />
           <TouchableOpacity onPress={() => removeReminder(reminder.id)}>
             <Ionicons name="close-circle" size={22} color={colors.error} />
           </TouchableOpacity>
@@ -96,6 +140,16 @@ export function ReminderPicker({ reminders, onChange, maxReminders = 5 }: Remind
           ))}
         </View>
       )}
+
+      {showTimePicker && (
+        <DateTimePicker
+          value={getTimePickerValue()}
+          mode="time"
+          is24Hour
+          display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+          onChange={handleTimeChange}
+        />
+      )}
     </View>
   );
 }
@@ -114,5 +168,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     borderWidth: 1,
+  },
+  timeBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 6,
+    paddingVertical: 2,
   },
 });

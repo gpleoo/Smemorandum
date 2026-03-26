@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useReducer, useEffect, useCallback } from 'react';
 import { SEvent, Category } from '../models/types';
 import * as eventStorage from '../storage/eventStorage';
+import { requestPermissions, scheduleAllEventNotifications } from '../services/notificationService';
+import { updateWidget } from '../services/widgetService';
 
 interface EventState {
   events: SEvent[];
@@ -54,6 +56,8 @@ export function EventProvider({ children }: { children: React.ReactNode }) {
     dispatch({ type: 'SET_EVENTS', payload: events });
     dispatch({ type: 'SET_CATEGORIES', payload: categories });
     dispatch({ type: 'SET_LOADING', payload: false });
+    await scheduleAllEventNotifications(events);
+    updateWidget(events);
   }, []);
 
   useEffect(() => {
@@ -61,18 +65,25 @@ export function EventProvider({ children }: { children: React.ReactNode }) {
   }, [refreshData]);
 
   const addEvent = useCallback(async (event: SEvent) => {
+    await requestPermissions();
     const events = await eventStorage.addEvent(event);
     dispatch({ type: 'SET_EVENTS', payload: events });
+    await scheduleAllEventNotifications(events);
+    updateWidget(events);
   }, []);
 
   const updateEvent = useCallback(async (event: SEvent) => {
     const events = await eventStorage.updateEvent(event);
     dispatch({ type: 'SET_EVENTS', payload: events });
+    await scheduleAllEventNotifications(events);
+    updateWidget(events);
   }, []);
 
   const deleteEvent = useCallback(async (eventId: string) => {
     const events = await eventStorage.deleteEvent(eventId);
     dispatch({ type: 'SET_EVENTS', payload: events });
+    await scheduleAllEventNotifications(events);
+    updateWidget(events);
   }, []);
 
   const addCategory = useCallback(async (category: Category) => {

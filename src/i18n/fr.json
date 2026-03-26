@@ -7,6 +7,7 @@
   },
   "home": {
     "title": "Smemorandum",
+    "subtitle": "Rappels & Échéances",
     "today": "Aujourd'hui",
     "thisWeek": "Cette semaine",
     "thisMonth": "Ce mois-ci",
@@ -95,7 +96,30 @@
     "yourDataDescription": "Vos événements sont enregistrés uniquement sur votre appareil. Nous n'envoyons jamais vos données à aucun serveur.",
     "about": "À propos",
     "version": "Version",
-    "rateApp": "Évaluer l'application"
+    "rateApp": "Évaluer l'application",
+    "data": "Données",
+    "importContacts": "Importer les anniversaires depuis les contacts",
+    "exportBackup": "Exporter la sauvegarde",
+    "importBackup": "Restaurer la sauvegarde"
+  },
+  "backup": {
+    "importConfirm": "Restaurer la sauvegarde",
+    "importConfirmMessage": "Les données actuelles seront remplacées par celles de la sauvegarde. Voulez-vous continuer ?",
+    "importSuccess": "Sauvegarde restaurée",
+    "importedCount": "{{events}} événements et {{categories}} catégories restaurés.",
+    "importError": "Fichier non valide. Sélectionnez un fichier de sauvegarde Smemorandum."
+  },
+  "importContacts": {
+    "title": "Importer des contacts",
+    "found": "{{count}} contacts avec anniversaire",
+    "selectAll": "Tout sélectionner",
+    "deselectAll": "Tout désélectionner",
+    "importSelected": "Importer {{count}} sélectionnés",
+    "alreadyImported": "Déjà importé",
+    "noContacts": "Aucun contact de votre répertoire n'a de date d'anniversaire enregistrée.",
+    "permissionDenied": "Accès aux contacts refusé. Activez l'autorisation dans les paramètres de l'appareil.",
+    "done": "Importation terminée",
+    "importedCount": "{{count}} anniversaires importés avec succès !"
   },
   "premium": {
     "title": "Smemorandum Premium",
@@ -122,6 +146,38 @@
     "getStarted": "Commencer",
     "next": "Suivant",
     "skip": "Passer"
+  },
+  "manageCategories": {
+    "title": "Gérer les catégories",
+    "addCategory": "Ajouter une catégorie",
+    "editCategory": "Modifier la catégorie",
+    "newCategory": "Nouvelle catégorie",
+    "namePlaceholder": "Nom de la catégorie",
+    "color": "Couleur",
+    "icon": "Icône",
+    "deleteTitle": "Supprimer la catégorie",
+    "deleteMessage": "Êtes-vous sûr de vouloir supprimer la catégorie \"{{name}}\" ?"
+  },
+  "tutorial": {
+    "skip": "Passer le tutoriel",
+    "next": "Suivant",
+    "gotIt": "Compris !",
+    "step1Title": "Bienvenue sur votre tableau de bord",
+    "step1Description": "Retrouvez vos prochains événements organisés par aujourd'hui, cette semaine et ce mois.",
+    "step2Title": "Créez un nouvel événement",
+    "step2Description": "Appuyez sur le bouton + pour ajouter une nouvelle date ou échéance.",
+    "step3Title": "Naviguez entre les sections",
+    "step3Description": "Utilisez la barre en bas pour passer entre Accueil, Calendrier, Événements et Paramètres.",
+    "step4Title": "Deux types d'événements",
+    "step4Description": "Les Récurrences sont des événements répétitifs (anniversaires). Les Échéances ont une date précise (factures, renouvellements).",
+    "step5Title": "Vue calendrier",
+    "step5Description": "Appuyez sur Calendrier pour voir tous vos événements en vue mensuelle.",
+    "step6Title": "Personnalisez l'application",
+    "step6Description": "Dans Paramètres, changez la langue, le thème et gérez vos préférences.",
+    "step7Title": "Importer depuis les contacts",
+    "step7Description": "Allez dans Paramètres > Données pour importer automatiquement les anniversaires de vos contacts.",
+    "step8Title": "Sauvegarde de vos données",
+    "step8Description": "Toujours dans Paramètres > Données, exportez une sauvegarde de vos événements et restaurez-la sur un autre appareil."
   },
   "common": {
     "save": "Enregistrer",

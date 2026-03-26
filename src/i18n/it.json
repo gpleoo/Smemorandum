@@ -7,6 +7,7 @@
   },
   "home": {
     "title": "Smemorandum",
+    "subtitle": "Promemoria & Scadenze",
     "today": "Oggi",
     "thisWeek": "Questa settimana",
     "thisMonth": "Questo mese",
@@ -103,7 +104,30 @@
     "about": "Info",
     "version": "Versione",
     "rateApp": "Valuta l'app",
-    "replayTutorial": "Rivedi il tutorial"
+    "replayTutorial": "Rivedi il tutorial",
+    "data": "Dati",
+    "importContacts": "Importa compleanni dalla rubrica",
+    "exportBackup": "Esporta backup",
+    "importBackup": "Ripristina backup"
+  },
+  "backup": {
+    "importConfirm": "Ripristina backup",
+    "importConfirmMessage": "I dati attuali verranno sostituiti con quelli del backup. Vuoi continuare?",
+    "importSuccess": "Backup ripristinato",
+    "importedCount": "Ripristinati {{events}} eventi e {{categories}} categorie.",
+    "importError": "File non valido. Seleziona un file di backup Smemorandum."
+  },
+  "importContacts": {
+    "title": "Importa contatti",
+    "found": "{{count}} contatti con compleanno",
+    "selectAll": "Seleziona tutti",
+    "deselectAll": "Deseleziona tutti",
+    "importSelected": "Importa {{count}} selezionati",
+    "alreadyImported": "Già importato",
+    "noContacts": "Nessun contatto nella rubrica ha una data di compleanno salvata.",
+    "permissionDenied": "Accesso alla rubrica negato. Abilita il permesso dalle impostazioni del dispositivo.",
+    "done": "Importazione completata",
+    "importedCount": "{{count}} compleanni importati con successo!"
   },
   "premium": {
     "title": "Smemorandum Premium",
@@ -146,7 +170,22 @@
     "step5Title": "Vista calendario",
     "step5Description": "Tocca Calendario per vedere tutti i tuoi eventi in una vista mensile. Tocca un giorno per vederne i dettagli.",
     "step6Title": "Personalizza l'app",
-    "step6Description": "Nelle Impostazioni puoi cambiare lingua, tema e gestire le tue preferenze."
+    "step6Description": "Nelle Impostazioni puoi cambiare lingua, tema e gestire le tue preferenze.",
+    "step7Title": "Importa dalla rubrica",
+    "step7Description": "Vai in Impostazioni > Dati per importare automaticamente i compleanni dai tuoi contatti. Non dovrai inserirli a mano!",
+    "step8Title": "Backup dei tuoi dati",
+    "step8Description": "Sempre in Impostazioni > Dati puoi esportare un backup dei tuoi eventi e ripristinarli su un altro dispositivo."
+  },
+  "manageCategories": {
+    "title": "Gestisci categorie",
+    "addCategory": "Aggiungi categoria",
+    "editCategory": "Modifica categoria",
+    "newCategory": "Nuova categoria",
+    "namePlaceholder": "Nome categoria",
+    "color": "Colore",
+    "icon": "Icona",
+    "deleteTitle": "Elimina categoria",
+    "deleteMessage": "Sei sicuro di voler eliminare la categoria \"{{name}}\"?"
   },
   "common": {
     "save": "Salva",
