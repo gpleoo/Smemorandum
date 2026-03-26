@@ -11,7 +11,6 @@ import { useTranslation } from 'react-i18next';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { CompositeNavigationProp } from '@react-navigation/native';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { useTheme } from '../theme/ThemeContext';
 import { AppSettings, SettingsStackParamList, TabParamList, ThemeMode } from '../models/types';

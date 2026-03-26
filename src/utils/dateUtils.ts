@@ -6,11 +6,13 @@ import {
   isTomorrow,
   startOfDay,
 } from 'date-fns';
-import { it, en, es, fr, de } from 'date-fns/locale';
+import { it, enUS, es, fr, de } from 'date-fns/locale';
 
-const locales: Record<string, Locale> = { it, en, es, fr, de };
+type DateLocale = typeof it;
 
-export function getDateLocale(language: string): Locale {
+const locales: Record<string, DateLocale> = { it, en: enUS, es, fr, de };
+
+export function getDateLocale(language: string): DateLocale {
   return locales[language] ?? it;
 }
 

@@ -31,7 +31,7 @@ export function ManageCategoriesScreen() {
   const [editing, setEditing] = useState<Category | null>(null);
   const [isAdding, setIsAdding] = useState(false);
   const [name, setName] = useState('');
-  const [selectedColor, setSelectedColor] = useState(CATEGORY_COLORS[0]);
+  const [selectedColor, setSelectedColor] = useState<string>(CATEGORY_COLORS[0]);
   const [selectedIcon, setSelectedIcon] = useState(CATEGORY_ICONS[0]);
 
   const resetForm = () => {

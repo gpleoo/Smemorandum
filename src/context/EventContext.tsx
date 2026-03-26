@@ -57,7 +57,7 @@ export function EventProvider({ children }: { children: React.ReactNode }) {
     dispatch({ type: 'SET_CATEGORIES', payload: categories });
     dispatch({ type: 'SET_LOADING', payload: false });
     await scheduleAllEventNotifications(events);
-    updateWidget(events);
+    await updateWidget(events);
   }, []);
 
   useEffect(() => {
@@ -69,21 +69,21 @@ export function EventProvider({ children }: { children: React.ReactNode }) {
     const events = await eventStorage.addEvent(event);
     dispatch({ type: 'SET_EVENTS', payload: events });
     await scheduleAllEventNotifications(events);
-    updateWidget(events);
+    await updateWidget(events);
   }, []);
 
   const updateEvent = useCallback(async (event: SEvent) => {
     const events = await eventStorage.updateEvent(event);
     dispatch({ type: 'SET_EVENTS', payload: events });
     await scheduleAllEventNotifications(events);
-    updateWidget(events);
+    await updateWidget(events);
   }, []);
 
   const deleteEvent = useCallback(async (eventId: string) => {
     const events = await eventStorage.deleteEvent(eventId);
     dispatch({ type: 'SET_EVENTS', payload: events });
     await scheduleAllEventNotifications(events);
-    updateWidget(events);
+    await updateWidget(events);
   }, []);
 
   const addCategory = useCallback(async (category: Category) => {

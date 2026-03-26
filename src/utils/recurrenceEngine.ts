@@ -139,7 +139,11 @@ function findNextMonthly(baseDate: Date, ref: Date, dayOfMonth: number): Date {
 function findNextWeekly(baseDate: Date, ref: Date, dayOfWeek: number): Date {
   const currentDow = getDay(ref);
   let daysUntil = dayOfWeek - currentDow;
-  if (daysUntil < 0) daysUntil += 7;
+  if (daysUntil <= 0) daysUntil += 7;
+  // If today is the target day, return today (ref) instead of next week
+  if (dayOfWeek === currentDow) {
+    return startOfDay(ref);
+  }
   return startOfDay(addDays(ref, daysUntil));
 }
 

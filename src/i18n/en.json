@@ -142,7 +142,8 @@
     "yearlyPrice": "{{price}}/year",
     "subscribe": "Subscribe",
     "restore": "Restore purchases",
-    "alreadyPremium": "You're already Premium!"
+    "alreadyPremium": "You're already Premium!",
+    "comingSoon": "Premium subscription will be available soon!"
   },
   "onboarding": {
     "slide1Title": "Welcome to Smemorandum",

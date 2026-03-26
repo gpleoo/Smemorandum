@@ -94,6 +94,14 @@
     "termsOfService": "Conditions d'utilisation",
     "yourData": "Vos données",
     "yourDataDescription": "Vos événements sont enregistrés uniquement sur votre appareil. Nous n'envoyons jamais vos données à aucun serveur.",
+    "privacyPolicyText": "Smemorandum respecte votre vie privée. L'application ne collecte, ne transmet ni ne partage de données personnelles avec des tiers. Toutes les données d'événements sont stockées exclusivement sur votre appareil. Nous n'utilisons aucun outil de suivi ou d'analyse tiers.",
+    "cookiePolicy": "Cookies",
+    "cookiePolicyText": "Smemorandum est une application mobile native et n'utilise ni cookies ni technologies de suivi similaires. Aucune donnée de navigation n'est collectée ou stockée.",
+    "owner": "Propriétaire",
+    "ownerName": "Votre Nom",
+    "ownerEmail": "votreemail@exemple.com",
+    "ownerDescription": "Cette application est détenue et développée par {{name}}. Pour toute question ou demande, contacter : {{email}}.",
+    "replayTutorial": "Revoir le tutoriel",
     "about": "À propos",
     "version": "Version",
     "rateApp": "Évaluer l'application",
@@ -134,7 +142,8 @@
     "yearlyPrice": "{{price}}/an",
     "subscribe": "S'abonner",
     "restore": "Restaurer les achats",
-    "alreadyPremium": "Vous êtes déjà Premium !"
+    "alreadyPremium": "Vous êtes déjà Premium !",
+    "comingSoon": "L'abonnement Premium sera bientôt disponible !"
   },
   "onboarding": {
     "slide1Title": "Bienvenue dans Smemorandum",

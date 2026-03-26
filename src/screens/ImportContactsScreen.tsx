@@ -34,8 +34,9 @@ export function ImportContactsScreen() {
   const [permissionDenied, setPermissionDenied] = useState(false);
 
   // Contact IDs already imported
-  const importedIds = new Set(
-    events.filter((e) => e.sourceContactId).map((e) => e.sourceContactId!)
+  const importedIds = React.useMemo(
+    () => new Set(events.filter((e) => e.sourceContactId).map((e) => e.sourceContactId!)),
+    [events],
   );
 
   const loadContacts = useCallback(async () => {
@@ -51,15 +52,16 @@ export function ImportContactsScreen() {
     setContacts(result);
 
     // Pre-select all non-imported contacts
+    const alreadyImported = new Set(events.filter((e) => e.sourceContactId).map((e) => e.sourceContactId!));
     const newSelected = new Set<string>();
     for (const c of result) {
-      if (!importedIds.has(c.phoneContactId)) {
+      if (!alreadyImported.has(c.phoneContactId)) {
         newSelected.add(c.phoneContactId);
       }
     }
     setSelected(newSelected);
     setLoading(false);
-  }, []);
+  }, [events]);
 
   useEffect(() => {
     loadContacts();
