@@ -12,6 +12,8 @@ const MAX_SCHEDULED_NOTIFICATIONS = 60; // iOS limit is 64, keep margin
  * Call once at app startup, outside React components.
  */
 export function initializeNotifications() {
+  if (Platform.OS === 'web') return;
+
   Notifications.setNotificationHandler({
     handleNotification: async () => ({
       shouldShowAlert: true,
