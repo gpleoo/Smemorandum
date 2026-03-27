@@ -5,6 +5,7 @@ import {
   ScrollView,
   TouchableOpacity,
   StyleSheet,
+  Alert,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { Ionicons } from '@expo/vector-icons';
@@ -99,6 +100,7 @@ export function PremiumScreen() {
             },
           ]}
           activeOpacity={0.8}
+          onPress={() => Alert.alert(t('premium.title'), t('premium.comingSoon'))}
         >
           <Text style={[typo.button, { color: '#FFF' }]}>
             {t('premium.subscribe')} - {t('premium.yearlyPrice', { price: '€19.99' })}
@@ -115,6 +117,7 @@ export function PremiumScreen() {
             },
           ]}
           activeOpacity={0.8}
+          onPress={() => Alert.alert(t('premium.title'), t('premium.comingSoon'))}
         >
           <Text style={[typo.button, { color: colors.text }]}>
             {t('premium.subscribe')} - {t('premium.monthlyPrice', { price: '€2.99' })}

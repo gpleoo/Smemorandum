@@ -1,4 +1,9 @@
-import * as FileSystem from 'expo-file-system';
+import {
+  cacheDirectory,
+  writeAsStringAsync,
+  readAsStringAsync,
+  EncodingType,
+} from 'expo-file-system/legacy';
 import * as Sharing from 'expo-sharing';
 import * as DocumentPicker from 'expo-document-picker';
 import { SEvent, Category } from '../models/types';
@@ -62,10 +67,13 @@ export async function shareBackup(): Promise<void> {
   const json = await exportData();
   const date = new Date().toISOString().slice(0, 10);
   const filename = `smemorandum-backup-${date}.json`;
-  const fileUri = `${FileSystem.cacheDirectory}${filename}`;
+  if (!cacheDirectory) {
+    throw new Error('Cache directory not available');
+  }
+  const fileUri = `${cacheDirectory}${filename}`;
 
-  await FileSystem.writeAsStringAsync(fileUri, json, {
-    encoding: FileSystem.EncodingType.UTF8,
+  await writeAsStringAsync(fileUri, json, {
+    encoding: EncodingType.UTF8,
   });
 
   await Sharing.shareAsync(fileUri, {
@@ -89,8 +97,8 @@ export async function pickAndRestoreBackup(): Promise<{ events: number; categori
   }
 
   const fileUri = result.assets[0].uri;
-  const json = await FileSystem.readAsStringAsync(fileUri, {
-    encoding: FileSystem.EncodingType.UTF8,
+  const json = await readAsStringAsync(fileUri, {
+    encoding: EncodingType.UTF8,
   });
 
   return importData(json);

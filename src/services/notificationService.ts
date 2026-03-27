@@ -17,6 +17,8 @@ export function initializeNotifications() {
       shouldShowAlert: true,
       shouldPlaySound: true,
       shouldSetBadge: true,
+      shouldShowBanner: true,
+      shouldShowList: true,
     }),
   });
 
@@ -59,7 +61,9 @@ export async function scheduleAllEventNotifications(events: SEvent[]): Promise<v
     if (!nextOccurrence) continue;
 
     for (const reminder of event.reminders) {
-      const [hours, minutes] = reminder.time.split(':').map(Number);
+      const timeParts = reminder.time.split(':').map(Number);
+      if (timeParts.length !== 2 || isNaN(timeParts[0]) || isNaN(timeParts[1])) continue;
+      const [hours, minutes] = timeParts;
       let triggerDate = subDays(nextOccurrence, reminder.daysBefore);
       triggerDate = setHours(triggerDate, hours);
       triggerDate = setMinutes(triggerDate, minutes);
@@ -75,25 +79,29 @@ export async function scheduleAllEventNotifications(events: SEvent[]): Promise<v
   const limited = toSchedule.slice(0, MAX_SCHEDULED_NOTIFICATIONS);
 
   for (const item of limited) {
-    const soundFile = SOUNDS.find((s) => s.id === item.event.soundId)?.file;
-    const body = item.daysBefore === 0
-      ? `Oggi: ${item.event.title}`
-      : item.daysBefore === 1
-        ? `Domani: ${item.event.title}`
-        : `Tra ${item.daysBefore} giorni: ${item.event.title}`;
+    try {
+      const soundFile = SOUNDS.find((s) => s.id === item.event.soundId)?.file;
+      const body = item.daysBefore === 0
+        ? `Oggi: ${item.event.title}`
+        : item.daysBefore === 1
+          ? `Domani: ${item.event.title}`
+          : `Tra ${item.daysBefore} giorni: ${item.event.title}`;
 
-    await Notifications.scheduleNotificationAsync({
-      content: {
-        title: item.event.title,
-        body,
-        sound: soundFile ?? 'default',
-        data: { eventId: item.event.id },
-        ...(Platform.OS === 'android' && { channelId: 'smemorandum-reminders' }),
-      },
-      trigger: {
-        type: Notifications.SchedulableTriggerInputTypes.DATE,
-        date: item.date,
-      },
-    });
+      await Notifications.scheduleNotificationAsync({
+        content: {
+          title: item.event.title,
+          body,
+          sound: soundFile ?? 'default',
+          data: { eventId: item.event.id },
+          ...(Platform.OS === 'android' && { channelId: 'smemorandum-reminders' }),
+        },
+        trigger: {
+          type: Notifications.SchedulableTriggerInputTypes.DATE,
+          date: item.date,
+        },
+      });
+    } catch (error) {
+      console.error(`Failed to schedule notification for event ${item.event.id}:`, error);
+    }
   }
 }

@@ -8,8 +8,6 @@ import { useTranslation } from 'react-i18next';
 import { useTheme } from '../theme/ThemeContext';
 import { TutorialProvider } from '../context/TutorialContext';
 import { TutorialOverlay } from '../components/TutorialOverlay';
-export const navigationRef = createNavigationContainerRef<RootStackParamList>();
-
 import {
   RootStackParamList,
   TabParamList,
@@ -18,6 +16,8 @@ import {
   EventsStackParamList,
   SettingsStackParamList,
 } from '../models/types';
+
+export const navigationRef = createNavigationContainerRef<RootStackParamList>();
 
 import { HomeScreen } from '../screens/HomeScreen';
 import { CalendarScreen } from '../screens/CalendarScreen';
