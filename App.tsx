@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Platform } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -16,6 +17,8 @@ function AppContent() {
   const { isDark } = useTheme();
 
   useEffect(() => {
+    if (Platform.OS === 'web') return;
+
     // Handle notification tap when app is in foreground/background
     const subscription = Notifications.addNotificationResponseReceivedListener((response) => {
       const eventId = response.notification.request.content.data?.eventId as string;
