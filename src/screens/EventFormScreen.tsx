@@ -208,29 +208,53 @@ export function EventFormScreen() {
       <Text style={[typo.label, { color: colors.textSecondary, marginTop: spacing.lg, marginBottom: spacing.xs }]}>
         {t('eventForm.date')}
       </Text>
-      <TouchableOpacity
-        style={[
-          styles.dateButton,
-          {
-            backgroundColor: colors.surfaceVariant,
-            borderRadius: borderRadius.md,
-            padding: spacing.md,
-          },
-        ]}
-        onPress={() => setShowDatePicker(true)}
-      >
-        <Ionicons name="calendar-outline" size={20} color={colors.primary} />
-        <Text style={[typo.body, { color: colors.text, marginLeft: spacing.sm }]}>
-          {formatDate(date, 'dd MMMM yyyy', i18n.language)}
-        </Text>
-      </TouchableOpacity>
-      {showDatePicker && (
-        <DateTimePicker
-          value={date}
-          mode="date"
-          display={Platform.OS === 'ios' ? 'spinner' : 'default'}
-          onChange={handleDateChange}
-        />
+      {Platform.OS === 'web' ? (
+        <View style={[styles.dateButton, { backgroundColor: colors.surfaceVariant, borderRadius: borderRadius.md, padding: spacing.md }]}>
+          <Ionicons name="calendar-outline" size={20} color={colors.primary} />
+          <input
+            type="date"
+            value={toISODateString(date)}
+            onChange={(e: any) => {
+              if (e.target.value) setDate(new Date(e.target.value + 'T12:00:00'));
+            }}
+            style={{
+              background: 'transparent',
+              border: 'none',
+              color: colors.text,
+              fontSize: 16,
+              marginLeft: 8,
+              outline: 'none',
+              cursor: 'pointer',
+            }}
+          />
+        </View>
+      ) : (
+        <>
+          <TouchableOpacity
+            style={[
+              styles.dateButton,
+              {
+                backgroundColor: colors.surfaceVariant,
+                borderRadius: borderRadius.md,
+                padding: spacing.md,
+              },
+            ]}
+            onPress={() => setShowDatePicker(true)}
+          >
+            <Ionicons name="calendar-outline" size={20} color={colors.primary} />
+            <Text style={[typo.body, { color: colors.text, marginLeft: spacing.sm }]}>
+              {formatDate(date, 'dd MMMM yyyy', i18n.language)}
+            </Text>
+          </TouchableOpacity>
+          {showDatePicker && (
+            <DateTimePicker
+              value={date}
+              mode="date"
+              display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+              onChange={handleDateChange}
+            />
+          )}
+        </>
       )}
 
       {/* Recurrence */}
