@@ -36,6 +36,7 @@ export function initializeNotifications() {
  * Request notification permissions. Returns true if granted.
  */
 export async function requestPermissions(): Promise<boolean> {
+  if (Platform.OS === 'web') return false;
   const { status: existing } = await Notifications.getPermissionsAsync();
   if (existing === 'granted') return true;
 
@@ -49,6 +50,7 @@ export async function requestPermissions(): Promise<boolean> {
  * Cancel all existing notifications and reschedule from current events.
  */
 export async function scheduleAllEventNotifications(events: SEvent[]): Promise<void> {
+  if (Platform.OS === 'web') return;
   await Notifications.cancelAllScheduledNotificationsAsync();
 
   const now = new Date();

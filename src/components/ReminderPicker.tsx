@@ -86,25 +86,41 @@ export function ReminderPicker({ reminders, onChange, maxReminders = 5 }: Remind
           <Text style={[typo.body, { color: colors.text, marginLeft: spacing.sm }]}>
             {getReminderLabel(reminder.daysBefore)} -
           </Text>
-          <TouchableOpacity
-            onPress={() => {
-              setEditingReminderId(reminder.id);
-              setShowTimePicker(true);
-            }}
-            style={[
-              styles.timeBadge,
-              {
-                backgroundColor: colors.primary + '20',
-                borderRadius: borderRadius.sm,
-                marginLeft: 4,
-              },
-            ]}
-          >
-            <Ionicons name="time-outline" size={14} color={colors.primary} />
-            <Text style={[typo.bodySmall, { color: colors.primary, fontWeight: '600', marginLeft: 2 }]}>
-              {reminder.time}
-            </Text>
-          </TouchableOpacity>
+          {Platform.OS === 'web' ? (
+            <View style={[styles.timeBadge, { backgroundColor: colors.primary + '20', borderRadius: borderRadius.sm, marginLeft: 4 }]}>
+              <Ionicons name="time-outline" size={14} color={colors.primary} />
+              <input
+                type="time"
+                value={reminder.time}
+                onChange={(e: any) => {
+                  if (e.target.value) {
+                    onChange(reminders.map((r) => r.id === reminder.id ? { ...r, time: e.target.value } : r));
+                  }
+                }}
+                style={{ background: 'transparent', border: 'none', color: colors.primary, fontSize: 13, fontWeight: '600', marginLeft: 2, outline: 'none', cursor: 'pointer' }}
+              />
+            </View>
+          ) : (
+            <TouchableOpacity
+              onPress={() => {
+                setEditingReminderId(reminder.id);
+                setShowTimePicker(true);
+              }}
+              style={[
+                styles.timeBadge,
+                {
+                  backgroundColor: colors.primary + '20',
+                  borderRadius: borderRadius.sm,
+                  marginLeft: 4,
+                },
+              ]}
+            >
+              <Ionicons name="time-outline" size={14} color={colors.primary} />
+              <Text style={[typo.bodySmall, { color: colors.primary, fontWeight: '600', marginLeft: 2 }]}>
+                {reminder.time}
+              </Text>
+            </TouchableOpacity>
+          )}
           <View style={{ flex: 1 }} />
           <TouchableOpacity onPress={() => removeReminder(reminder.id)}>
             <Ionicons name="close-circle" size={22} color={colors.error} />
@@ -141,7 +157,7 @@ export function ReminderPicker({ reminders, onChange, maxReminders = 5 }: Remind
         </View>
       )}
 
-      {showTimePicker && (
+      {showTimePicker && Platform.OS !== 'web' && (
         <DateTimePicker
           value={getTimePickerValue()}
           mode="time"
