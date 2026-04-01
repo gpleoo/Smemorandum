@@ -87,7 +87,7 @@ export function ReminderPicker({ reminders, onChange, maxReminders = 5 }: Remind
             {getReminderLabel(reminder.daysBefore)} -
           </Text>
           {Platform.OS === 'web' ? (
-            <View style={[styles.timeBadge, { backgroundColor: colors.primary + '20', borderRadius: borderRadius.sm, marginLeft: 4 }]}>
+            <View style={[styles.timeBadge, { backgroundColor: colors.primary + '20', borderRadius: borderRadius.sm, marginLeft: 4, paddingHorizontal: 8, paddingVertical: 4 }]}>
               <Ionicons name="time-outline" size={14} color={colors.primary} />
               <input
                 type="time"
@@ -97,7 +97,18 @@ export function ReminderPicker({ reminders, onChange, maxReminders = 5 }: Remind
                     onChange(reminders.map((r) => r.id === reminder.id ? { ...r, time: e.target.value } : r));
                   }
                 }}
-                style={{ background: 'transparent', border: 'none', color: colors.primary, fontSize: 13, fontWeight: '600', marginLeft: 2, outline: 'none', cursor: 'pointer' }}
+                style={{
+                  background: 'transparent',
+                  border: 'none',
+                  color: colors.primary,
+                  fontSize: 14,
+                  fontWeight: 600,
+                  marginLeft: 4,
+                  outline: 'none',
+                  cursor: 'pointer',
+                  width: 80,
+                  height: 24,
+                }}
               />
             </View>
           ) : (
