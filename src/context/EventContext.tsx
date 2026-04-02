@@ -56,8 +56,8 @@ export function EventProvider({ children }: { children: React.ReactNode }) {
     dispatch({ type: 'SET_EVENTS', payload: events });
     dispatch({ type: 'SET_CATEGORIES', payload: categories });
     dispatch({ type: 'SET_LOADING', payload: false });
-    await scheduleAllEventNotifications(events);
-    await updateWidget(events);
+    scheduleAllEventNotifications(events).catch(() => {});
+    updateWidget(events).catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -68,22 +68,22 @@ export function EventProvider({ children }: { children: React.ReactNode }) {
     await requestPermissions();
     const events = await eventStorage.addEvent(event);
     dispatch({ type: 'SET_EVENTS', payload: events });
-    await scheduleAllEventNotifications(events);
-    await updateWidget(events);
+    scheduleAllEventNotifications(events).catch(() => {});
+    updateWidget(events).catch(() => {});
   }, []);
 
   const updateEvent = useCallback(async (event: SEvent) => {
     const events = await eventStorage.updateEvent(event);
     dispatch({ type: 'SET_EVENTS', payload: events });
-    await scheduleAllEventNotifications(events);
-    await updateWidget(events);
+    scheduleAllEventNotifications(events).catch(() => {});
+    updateWidget(events).catch(() => {});
   }, []);
 
   const deleteEvent = useCallback(async (eventId: string) => {
     const events = await eventStorage.deleteEvent(eventId);
     dispatch({ type: 'SET_EVENTS', payload: events });
-    await scheduleAllEventNotifications(events);
-    await updateWidget(events);
+    scheduleAllEventNotifications(events).catch(() => {});
+    updateWidget(events).catch(() => {});
   }, []);
 
   const addCategory = useCallback(async (category: Category) => {
