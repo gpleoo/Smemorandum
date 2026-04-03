@@ -17,10 +17,15 @@ import { Category } from '../models/types';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 const CATEGORY_ICONS = [
+  // Generale
   'heart', 'briefcase', 'receipt', 'school', 'car',
   'home', 'gift', 'medkit', 'fitness', 'paw',
-  'musical-notes', 'airplane', 'restaurant', 'cart', 'football',
-  'book', 'camera', 'people', 'star', 'leaf',
+  'musical-notes', 'airplane', 'restaurant', 'cart', 'book',
+  'camera', 'people', 'star', 'leaf', 'wallet',
+  // Sport
+  'fish', 'football', 'basketball', 'baseball', 'tennisball',
+  'golf', 'bicycle', 'boat', 'barbell', 'trophy',
+  'snow', 'walk', 'body', 'navigate', 'compass',
 ];
 
 export function ManageCategoriesScreen() {
