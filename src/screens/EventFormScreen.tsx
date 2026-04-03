@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   View,
   Text,
@@ -56,6 +56,8 @@ export function EventFormScreen() {
   const [reminders, setReminders] = useState<Reminder[]>(existingEvent?.reminders ?? []);
   const [soundId, setSoundId] = useState(existingEvent?.soundId ?? 'gentle-bell');
   const [titleError, setTitleError] = useState(false);
+  const titleInputRef = useRef<TextInput>(null);
+  const scrollViewRef = useRef<ScrollView>(null);
 
   const isEditing = !!existingEvent;
 
@@ -95,6 +97,8 @@ export function EventFormScreen() {
   const handleSave = async () => {
     if (!title.trim()) {
       setTitleError(true);
+      scrollViewRef.current?.scrollTo({ y: 0, animated: true });
+      setTimeout(() => titleInputRef.current?.focus(), 300);
       return;
     }
 
@@ -128,6 +132,7 @@ export function EventFormScreen() {
 
   return (
     <ScrollView
+      ref={scrollViewRef}
       style={[styles.container, { backgroundColor: colors.background }]}
       contentContainerStyle={{ padding: spacing.md, paddingBottom: 40 }}
       keyboardShouldPersistTaps="handled"
@@ -137,6 +142,7 @@ export function EventFormScreen() {
         {t('eventForm.title')}
       </Text>
       <TextInput
+        ref={titleInputRef}
         style={[
           styles.input,
           typo.body,
