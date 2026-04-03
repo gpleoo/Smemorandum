@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Alert,
+  Platform,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { Ionicons } from '@expo/vector-icons';
@@ -49,7 +50,13 @@ export function EventDetailScreen() {
   const days = nextDate ? daysUntil(nextDate) : null;
   const sound = SOUNDS.find((s) => s.id === event.soundId);
 
-  const handleDelete = () => {
+  const handleDelete = async () => {
+    if (Platform.OS === 'web') {
+      if (!window.confirm(t('events.deleteConfirm'))) return;
+      await deleteEvent(event.id);
+      navigation.goBack();
+      return;
+    }
     Alert.alert(t('events.delete'), t('events.deleteConfirm'), [
       { text: t('events.cancel'), style: 'cancel' },
       {
