@@ -18,6 +18,7 @@ import { CollapsibleSection } from '../components/CollapsibleSection';
 import { HomeStackParamList } from '../models/types';
 import { daysUntil } from '../utils/dateUtils';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { AdBanner } from '../components/AdBanner';
 
 type Nav = NativeStackNavigationProp<HomeStackParamList, 'Home'>;
 
@@ -106,6 +107,8 @@ export function HomeScreen() {
           }
         />
       )}
+
+      <AdBanner style={{ marginBottom: 4 }} />
 
       <TouchableOpacity
         style={[

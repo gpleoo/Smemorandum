@@ -8,6 +8,7 @@ import { ThemeProvider, useTheme } from './src/theme/ThemeContext';
 import { EventProvider } from './src/context/EventContext';
 import { AppNavigator, navigationRef } from './src/navigation/AppNavigator';
 import { initializeNotifications } from './src/services/notificationService';
+import { initializeAdMob } from './src/services/adService';
 import './src/i18n';
 
 // Initialize notifications at module load (before any component renders)
@@ -15,6 +16,11 @@ initializeNotifications();
 
 function AppContent() {
   const { isDark } = useTheme();
+
+  useEffect(() => {
+    // Initialize AdMob (no-op on web)
+    initializeAdMob().catch(() => {});
+  }, []);
 
   useEffect(() => {
     if (Platform.OS === 'web') return;

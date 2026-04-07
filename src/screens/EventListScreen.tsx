@@ -18,6 +18,7 @@ import { EventCard } from '../components/EventCard';
 import { EventsStackParamList, EventType } from '../models/types';
 import { getNextOccurrence } from '../utils/recurrenceEngine';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { AdBanner } from '../components/AdBanner';
 
 type Nav = NativeStackNavigationProp<EventsStackParamList, 'EventList'>;
 type FilterType = 'all' | EventType;
@@ -150,6 +151,8 @@ export function EventListScreen() {
           )}
         />
       )}
+
+      <AdBanner style={{ marginBottom: 4 }} />
 
       <TouchableOpacity
         style={[

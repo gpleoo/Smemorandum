@@ -20,6 +20,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTutorial } from '../context/TutorialContext';
 import { useEventContext } from '../context/EventContext';
 import { shareBackup, pickAndRestoreBackup } from '../services/backupService';
+import { setAdsConsent } from '../services/adService';
 
 type Nav = NativeStackNavigationProp<SettingsStackParamList, 'Settings'>;
 
@@ -38,6 +39,12 @@ export function SettingsScreen() {
   const handleLanguageChange = async (code: string) => {
     await i18n.changeLanguage(code);
     const updated = await updateSetting('language', code);
+    setSettings(updated);
+  };
+
+  const handleAdConsentChange = async (value: boolean) => {
+    await setAdsConsent(value);
+    const updated = await updateSetting('adsConsent', value);
     setSettings(updated);
   };
 
@@ -335,6 +342,62 @@ export function SettingsScreen() {
           <Text style={[typo.bodySmall, { color: colors.textSecondary, flex: 1, marginLeft: spacing.sm }]}>
             {t('settings.yourDataDescription')}
           </Text>
+        </View>
+
+        {/* Ad Consent */}
+        <Text style={[typo.label, { color: colors.textSecondary, marginTop: spacing.md, marginBottom: spacing.xs }]}>
+          {t('settings.adConsent')}
+        </Text>
+        <View
+          style={[
+            styles.infoBox,
+            {
+              backgroundColor: colors.surfaceVariant,
+              borderRadius: borderRadius.lg,
+              padding: spacing.md,
+              marginBottom: spacing.sm,
+            },
+          ]}
+        >
+          <Ionicons name="megaphone-outline" size={20} color={colors.primary} />
+          <Text style={[typo.bodySmall, { color: colors.textSecondary, flex: 1, marginLeft: spacing.sm }]}>
+            {t('settings.adConsentInfo')}
+          </Text>
+        </View>
+        <View style={styles.chipRow}>
+          {[
+            { value: false, label: t('settings.adConsentNonPersonalized') },
+            { value: true, label: t('settings.adConsentPersonalized') },
+          ].map((opt) => (
+            <TouchableOpacity
+              key={String(opt.value)}
+              style={[
+                styles.chip,
+                {
+                  backgroundColor:
+                    settings?.adsConsent === opt.value ? colors.primary : colors.surfaceVariant,
+                  borderRadius: borderRadius.full,
+                  paddingHorizontal: spacing.md,
+                  paddingVertical: spacing.xs,
+                  marginRight: spacing.xs,
+                  marginBottom: spacing.xs,
+                },
+              ]}
+              onPress={() => handleAdConsentChange(opt.value)}
+            >
+              <Text
+                style={[
+                  typo.bodySmall,
+                  {
+                    color: settings?.adsConsent === opt.value ? '#FFF' : colors.text,
+                    fontWeight: '600',
+                  },
+                ]}
+              >
+                {opt.label}
+              </Text>
+            </TouchableOpacity>
+          ))}
         </View>
 
         {/* Privacy Policy */}
