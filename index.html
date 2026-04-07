@@ -3,7 +3,117 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Smemorandum – App per ricordare ricorrenze e scadenze</title>
+
+  <!-- Primary SEO -->
+  <title>Smemorandum – App Promemoria Compleanni, Scadenze e Ricorrenze</title>
+  <meta name="description" content="Smemorandum è l'app gratuita per non dimenticare mai compleanni, anniversari, scadenze e ricorrenze. Promemoria con notifiche sonore, calendario integrato, categorie personalizzate. Disponibile su App Store e Google Play." />
+  <meta name="keywords" content="promemoria compleanni, app scadenze, reminder anniversari, ricorrenze, notifiche personalizzate, calendario eventi, gestione scadenze bollette, smemorandum, app promemoria gratis, birthday reminder app" />
+  <meta name="author" content="Giampietro Leonoro" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://gpleoo.github.io/Smemorandum/" />
+
+  <!-- Open Graph (Facebook, LinkedIn, WhatsApp) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Smemorandum – Non dimenticare mai più compleanni e scadenze" />
+  <meta property="og:description" content="L'app gratuita per gestire promemoria, ricorrenze e scadenze. Notifiche sonore, calendario integrato, categorie personalizzate. iOS e Android." />
+  <meta property="og:url" content="https://gpleoo.github.io/Smemorandum/" />
+  <meta property="og:image" content="https://gpleoo.github.io/Smemorandum/assets/icon.png" />
+  <meta property="og:locale" content="it_IT" />
+  <meta property="og:site_name" content="Smemorandum" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Smemorandum – Promemoria Compleanni e Scadenze" />
+  <meta name="twitter:description" content="Non dimenticare mai più compleanni, anniversari e scadenze importanti. App gratuita per iOS e Android." />
+  <meta name="twitter:image" content="https://gpleoo.github.io/Smemorandum/assets/icon.png" />
+
+  <!-- Schema.org Structured Data (AI SEO) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Smemorandum",
+    "alternateName": "Smemorandum Promemoria",
+    "description": "App mobile gratuita per gestire promemoria di compleanni, anniversari, ricorrenze e scadenze. Notifiche sonore personalizzabili, calendario integrato, categorie, backup e supporto multilingua.",
+    "applicationCategory": "UtilitiesApplication",
+    "applicationSubCategory": "Productivity",
+    "operatingSystem": "iOS, Android",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Giampietro Leonoro",
+      "email": "giampietro.leonoro@gmail.com"
+    },
+    "datePublished": "2026-01-01",
+    "dateModified": "2026-04-01",
+    "inLanguage": ["it", "en", "fr", "de", "es"],
+    "featureList": [
+      "Promemoria compleanni e anniversari",
+      "Gestione scadenze bollette e appuntamenti",
+      "Calendario integrato",
+      "Notifiche sonore personalizzate",
+      "Ricorrenze automatiche (annuale, mensile, settimanale)",
+      "Categorie personalizzabili",
+      "Importazione contatti dalla rubrica",
+      "Backup e ripristino dati",
+      "Tema chiaro e scuro",
+      "Multilingua: italiano, inglese, francese, tedesco, spagnolo"
+    ],
+    "screenshot": "https://gpleoo.github.io/Smemorandum/assets/icon.png",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "ratingCount": "1"
+    }
+  }
+  </script>
+
+  <!-- FAQ Schema (AI SEO) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Smemorandum è gratuita?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sì, Smemorandum è gratuita. Alcune funzionalità avanzate sono disponibili con l'abbonamento Premium."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "I miei dati sono al sicuro?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Assolutamente sì. Tutti i dati sono archiviati solo sul tuo dispositivo. Smemorandum non raccoglie né trasmette dati personali a server esterni."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Su quali dispositivi funziona Smemorandum?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Smemorandum è disponibile per iPhone (iOS) e smartphone Android. Supporta italiano, inglese, francese, tedesco e spagnolo."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Posso importare i compleanni dalla rubrica?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sì, Smemorandum permette di importare automaticamente i compleanni dai contatti del telefono con un solo tocco."
+        }
+      }
+    ]
+  }
+  </script>
+
   <style>
     :root {
       --primary: #6C63FF;
@@ -16,180 +126,40 @@
       --success: #10B981;
       --radius: 16px;
     }
-
     * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    .hero {
-      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
-      color: white;
-      text-align: center;
-      padding: 60px 20px 50px;
-    }
-
-    .hero-icon {
-      width: 80px;
-      height: 80px;
-      background: rgba(255,255,255,0.2);
-      border-radius: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px;
-      font-size: 40px;
-    }
-
-    .hero h1 {
-      font-size: 2.2em;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-
-    .hero p {
-      font-size: 1.1em;
-      opacity: 0.9;
-      max-width: 500px;
-      margin: 0 auto 24px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 24px;
-      border-radius: 12px;
-      font-size: 1em;
-      font-weight: 600;
-      text-decoration: none;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
-
-    .btn-white {
-      background: white;
-      color: var(--primary);
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: white;
-      border: 2px solid rgba(255,255,255,0.5);
-    }
-
-    .container {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
-
-    .section {
-      background: var(--surface);
-      border-radius: var(--radius);
-      padding: 28px;
-      margin-bottom: 20px;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-    }
-
-    .section h2 {
-      font-size: 1.3em;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .section p, .section li {
-      color: var(--text-secondary);
-      font-size: 0.95em;
-    }
-
-    .section ul {
-      list-style: none;
-      padding: 0;
-    }
-
-    .section ul li {
-      padding: 6px 0;
-      padding-left: 20px;
-      position: relative;
-    }
-
-    .section ul li::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: var(--success);
-      font-weight: bold;
-    }
-
-    .badge {
-      display: inline-block;
-      background: #E8F5E9;
-      color: var(--success);
-      font-size: 0.75em;
-      font-weight: 600;
-      padding: 3px 10px;
-      border-radius: 20px;
-    }
-
-    .owner-card {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .owner-avatar {
-      width: 50px;
-      height: 50px;
-      background: var(--primary);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 1.4em;
-      font-weight: 700;
-      flex-shrink: 0;
-    }
-
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+    .hero { background: linear-gradient(135deg, var(--primary), var(--primary-dark)); color: white; text-align: center; padding: 60px 20px 50px; }
+    .hero-icon { width: 80px; height: 80px; background: rgba(255,255,255,0.2); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 40px; }
+    .hero h1 { font-size: 2.2em; font-weight: 700; margin-bottom: 8px; }
+    .hero p { font-size: 1.1em; opacity: 0.9; max-width: 500px; margin: 0 auto 24px; }
+    .hero-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 24px; border-radius: 12px; font-size: 1em; font-weight: 600; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+    .btn-white { background: white; color: var(--primary); }
+    .btn-outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.5); }
+    .container { max-width: 720px; margin: 0 auto; padding: 40px 20px; }
+    .section { background: var(--surface); border-radius: var(--radius); padding: 28px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+    .section h2 { font-size: 1.3em; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+    .section p, .section li { color: var(--text-secondary); font-size: 0.95em; }
+    .section ul { list-style: none; padding: 0; }
+    .section ul li { padding: 6px 0; padding-left: 20px; position: relative; }
+    .section ul li::before { content: "✓"; position: absolute; left: 0; color: var(--success); font-weight: bold; }
+    .badge { display: inline-block; background: #E8F5E9; color: var(--success); font-size: 0.75em; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
+    .badge-blue { background: #EEF2FF; color: var(--primary); }
+    .owner-card { display: flex; align-items: flex-start; gap: 16px; }
+    .owner-avatar { width: 50px; height: 50px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.4em; font-weight: 700; flex-shrink: 0; }
     .owner-info p { margin: 0; }
     .owner-info .name { color: var(--text); font-weight: 600; font-size: 1em; }
     .owner-info .email { color: var(--primary); font-size: 0.9em; }
-
-    footer {
-      text-align: center;
-      padding: 30px 20px;
-      color: var(--text-secondary);
-      font-size: 0.85em;
-    }
-
+    .lang-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .lang-chip { background: #EEF2FF; color: var(--primary); font-size: 0.8em; font-weight: 600; padding: 4px 12px; border-radius: 20px; }
+    footer { text-align: center; padding: 30px 20px; color: var(--text-secondary); font-size: 0.85em; }
     footer a { color: var(--primary); text-decoration: none; }
-
     @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #111827;
-        --surface: #1F2937;
-        --text: #F9FAFB;
-        --text-secondary: #9CA3AF;
-        --border: #374151;
-      }
+      :root { --bg: #111827; --surface: #1F2937; --text: #F9FAFB; --text-secondary: #9CA3AF; --border: #374151; }
+      .badge { background: #064E3B; color: #34D399; }
+      .badge-blue { background: #1E1B4B; color: #A5B4FC; }
+      .lang-chip { background: #1E1B4B; color: #A5B4FC; }
     }
   </style>
 </head>
@@ -197,75 +167,114 @@
   <div class="hero">
     <div class="hero-icon">📅</div>
     <h1>Smemorandum</h1>
-    <p>L'app per non dimenticare mai ricorrenze e scadenze importanti</p>
+    <p>L'app per non dimenticare mai compleanni, anniversari e scadenze importanti</p>
     <div class="hero-buttons">
-      <a href="https://github.com/gpleoo/Smemorandum" class="btn btn-white">
-        ⭐ GitHub Repository
-      </a>
+      <a href="https://apps.apple.com" class="btn btn-white">🍎 App Store</a>
+      <a href="https://play.google.com" class="btn btn-outline">▶ Google Play</a>
     </div>
   </div>
 
   <div class="container">
+
     <!-- Features -->
     <div class="section">
-      <h2>📱 Funzionalità</h2>
+      <h2>📱 Funzionalità principali</h2>
       <ul>
-        <li>Gestione di ricorrenze e scadenze con promemoria</li>
-        <li>Calendario integrato con vista giornaliera</li>
-        <li>Notifiche intelligenti con suoni personalizzabili</li>
-        <li>Categorie personalizzabili per organizzare gli eventi</li>
+        <li>Promemoria compleanni, anniversari e ricorrenze con notifiche sonore</li>
+        <li>Gestione scadenze bollette, appuntamenti e rinnovi</li>
+        <li>Calendario integrato con vista giornaliera e mensile</li>
+        <li>Promemoria multipli per evento (stesso giorno, giorno prima, settimana prima)</li>
+        <li>Suoni di notifica personalizzati per ogni evento</li>
+        <li>Ricorrenze automatiche: annuali, mensili, settimanali</li>
+        <li>Categorie personalizzabili con icone e colori</li>
+        <li>Importazione compleanni dalla rubrica telefonica</li>
+        <li>Backup e ripristino dei dati</li>
         <li>Tema chiaro, scuro e automatico</li>
-        <li>Supporto multilingua (Italiano e Inglese)</li>
       </ul>
+    </div>
+
+    <!-- Languages -->
+    <div class="section">
+      <h2>🌍 Multilingua</h2>
+      <p>Smemorandum è disponibile in 5 lingue:</p>
+      <div class="lang-grid">
+        <span class="lang-chip">🇮🇹 Italiano</span>
+        <span class="lang-chip">🇬🇧 English</span>
+        <span class="lang-chip">🇫🇷 Français</span>
+        <span class="lang-chip">🇩🇪 Deutsch</span>
+        <span class="lang-chip">🇪🇸 Español</span>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="section">
+      <h2>❓ Domande frequenti</h2>
+      <p><strong>È gratuita?</strong></p>
+      <p>Sì, Smemorandum è gratuita. Alcune funzionalità avanzate sono disponibili con Premium.</p>
+      <br/>
+      <p><strong>I miei dati sono al sicuro?</strong></p>
+      <p>Assolutamente sì. Tutti i dati restano solo sul tuo dispositivo. Nessun server esterno, nessuna raccolta dati.</p>
+      <br/>
+      <p><strong>Posso importare i compleanni dalla rubrica?</strong></p>
+      <p>Sì, con un solo tocco puoi importare automaticamente tutti i compleanni dai tuoi contatti.</p>
     </div>
 
     <!-- Privacy Policy -->
     <div class="section" id="privacy">
       <h2>🔒 Informativa sulla Privacy <span class="badge">100% Locale</span></h2>
-      <p>
-        Smemorandum rispetta la tua privacy. L'app <strong>non raccoglie, trasmette o condivide</strong>
-        dati personali con terze parti. Tutti i dati degli eventi vengono archiviati
-        <strong>esclusivamente in locale</strong> sul tuo dispositivo.
-      </p>
+      <p>Titolare del trattamento: <strong>Giampietro Leonoro</strong> – <a href="mailto:giampietro.leonoro@gmail.com">giampietro.leonoro@gmail.com</a></p>
       <br/>
-      <p>
-        Non utilizziamo strumenti di tracciamento, analisi di terze parti o servizi pubblicitari
-        che raccolgono informazioni personali. I tuoi dati restano tuoi.
-      </p>
+      <p>Smemorandum <strong>non raccoglie, trasmette o condivide</strong> alcun dato personale con terze parti. Tutti gli eventi, promemoria e categorie sono archiviati <strong>esclusivamente in locale</strong> sul dispositivo dell'utente tramite storage crittografato.</p>
+      <br/>
+      <p>Ai sensi del GDPR (Reg. UE 2016/679), l'utente ha diritto di accesso, rettifica e cancellazione dei propri dati, esercitabili direttamente dall'app o contattando il titolare. Ultimo aggiornamento: aprile 2026.</p>
     </div>
 
     <!-- Cookie Policy -->
     <div class="section" id="cookie">
       <h2>🍪 Cookie Policy</h2>
-      <p>
-        Smemorandum è un'applicazione mobile nativa e <strong>non utilizza cookie</strong>
-        o tecnologie di tracciamento simili. Nessun dato di navigazione viene raccolto o memorizzato.
-      </p>
+      <p>Smemorandum è un'applicazione mobile nativa e <strong>non utilizza cookie</strong> o tecnologie di tracciamento. Nessun dato di navigazione viene raccolto o memorizzato.</p>
       <br/>
-      <p>
-        Questo sito web informativo non utilizza cookie di profilazione. Non viene tracciata
-        alcuna attività dell'utente.
-      </p>
+      <p>Questo sito informativo non utilizza cookie di profilazione. Qualora in futuro venissero integrati servizi pubblicitari, la presente policy verrà aggiornata con adeguata informativa. Ultimo aggiornamento: aprile 2026.</p>
+    </div>
+
+    <!-- Terms of Service -->
+    <div class="section" id="terms">
+      <h2>📄 Termini di Servizio</h2>
+      <p>Utilizzando Smemorandum accetti i seguenti termini:</p>
+      <br/>
+      <ul>
+        <li>L'app è fornita "così com'è" senza garanzie di alcun tipo</li>
+        <li>L'utente è responsabile del backup dei propri dati</li>
+        <li>Il titolare non è responsabile per perdita di dati</li>
+        <li>L'app può essere aggiornata o discontinuata senza preavviso</li>
+        <li>Per controversie si applica la legge italiana, foro competente: Italia</li>
+      </ul>
+      <br/>
+      <p>Per qualsiasi questione: <a href="mailto:giampietro.leonoro@gmail.com">giampietro.leonoro@gmail.com</a></p>
     </div>
 
     <!-- Owner -->
     <div class="section" id="owner">
-      <h2>👤 Proprietario</h2>
+      <h2>👤 Proprietario e Sviluppatore</h2>
       <div class="owner-card">
-        <div class="owner-avatar">S</div>
+        <div class="owner-avatar">GL</div>
         <div class="owner-info">
-          <p class="name">Il Tuo Nome</p>
-          <p class="email">tuaemail@esempio.com</p>
-          <p style="margin-top:4px;">Questa app è di proprietà e sviluppata dal suo autore. Per qualsiasi domanda o richiesta, contattare l'indirizzo email indicato.</p>
+          <p class="name">Giampietro Leonoro</p>
+          <p class="email"><a href="mailto:giampietro.leonoro@gmail.com">giampietro.leonoro@gmail.com</a></p>
+          <p style="margin-top:6px;color:var(--text-secondary);font-size:0.9em;">Sviluppatore indipendente. Per supporto, segnalazioni o richieste GDPR contattare l'indirizzo email indicato.</p>
         </div>
       </div>
     </div>
+
   </div>
 
   <footer>
-    <p>&copy; 2025 Smemorandum. Tutti i diritti riservati.</p>
+    <p>&copy; 2026 Smemorandum – Giampietro Leonoro. Tutti i diritti riservati.</p>
     <p style="margin-top:8px;">
-      <a href="#privacy">Privacy</a> · <a href="#cookie">Cookie</a> · <a href="https://github.com/gpleoo/Smemorandum">GitHub</a>
+      <a href="#privacy">Privacy Policy</a> ·
+      <a href="#cookie">Cookie Policy</a> ·
+      <a href="#terms">Termini di Servizio</a> ·
+      <a href="mailto:giampietro.leonoro@gmail.com">Contatti</a>
     </p>
   </footer>
 </body>
