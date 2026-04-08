@@ -29,7 +29,10 @@
     "delete": "Löschen",
     "cancel": "Abbrechen",
     "edit": "Bearbeiten",
-    "share": "Teilen"
+    "share": "Teilen",
+    "sendWishes": "Glückwünsche per WhatsApp senden",
+    "wishesMessage": "Herzlichen Glückwunsch zum Geburtstag, {{name}}! 🎂🎉 Ich hoffe, du hast einen wunderschönen Tag!",
+    "whatsappNotInstalled": "WhatsApp ist auf diesem Gerät nicht installiert."
   },
   "eventForm": {
     "createTitle": "Neues Ereignis",
