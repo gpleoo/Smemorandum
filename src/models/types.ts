@@ -44,6 +44,7 @@ export interface AppSettings {
   hasSeenOnboarding: boolean;
   hasSeenTutorial: boolean;
   adsConsent: boolean | null; // null = not asked yet
+  weeklyDigestEnabled: boolean;
 }
 
 export type RootStackParamList = {

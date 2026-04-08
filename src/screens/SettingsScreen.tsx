@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Alert,
+  Switch,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { Ionicons } from '@expo/vector-icons';
@@ -21,6 +22,7 @@ import { useTutorial } from '../context/TutorialContext';
 import { useEventContext } from '../context/EventContext';
 import { shareBackup, pickAndRestoreBackup } from '../services/backupService';
 import { setAdsConsent } from '../services/adService';
+import { scheduleWeeklyDigest } from '../services/notificationService';
 
 type Nav = NativeStackNavigationProp<SettingsStackParamList, 'Settings'>;
 
@@ -29,7 +31,7 @@ export function SettingsScreen() {
   const { colors, typography: typo, spacing, borderRadius, setThemeMode } = useTheme();
   const navigation = useNavigation<Nav>();
   const { showTutorial } = useTutorial();
-  const { refreshData } = useEventContext();
+  const { events, refreshData } = useEventContext();
   const [settings, setSettings] = useState<AppSettings | null>(null);
 
   useEffect(() => {
@@ -46,6 +48,12 @@ export function SettingsScreen() {
     await setAdsConsent(value);
     const updated = await updateSetting('adsConsent', value);
     setSettings(updated);
+  };
+
+  const handleWeeklyDigestChange = async (value: boolean) => {
+    const updated = await updateSetting('weeklyDigestEnabled', value);
+    setSettings(updated);
+    scheduleWeeklyDigest(events, value, updated.language).catch(() => {});
   };
 
   const handleThemeChange = async (theme: ThemeMode) => {
@@ -209,6 +217,39 @@ export function SettingsScreen() {
           </View>
           <Ionicons name="chevron-forward" size={20} color={colors.textTertiary} />
         </TouchableOpacity>
+
+        {/* Notifications */}
+        <SectionHeader title={t('settings.notifications')} colors={colors} typo={typo} spacing={spacing} />
+
+        <View
+          style={[
+            styles.settingsRow,
+            {
+              backgroundColor: colors.surface,
+              borderRadius: borderRadius.lg,
+              padding: spacing.md,
+              marginBottom: spacing.sm,
+            },
+          ]}
+        >
+          <View style={styles.settingsRowLeft}>
+            <Ionicons name="calendar" size={20} color={colors.primary} />
+            <View style={{ marginLeft: spacing.sm, flex: 1 }}>
+              <Text style={[typo.body, { color: colors.text }]}>
+                {t('settings.weeklyDigest')}
+              </Text>
+              <Text style={[typo.bodySmall, { color: colors.textSecondary }]}>
+                {t('settings.weeklyDigestDesc')}
+              </Text>
+            </View>
+          </View>
+          <Switch
+            value={settings?.weeklyDigestEnabled ?? true}
+            onValueChange={handleWeeklyDigestChange}
+            trackColor={{ false: colors.surfaceVariant, true: colors.primary + '80' }}
+            thumbColor={settings?.weeklyDigestEnabled ? colors.primary : colors.textTertiary}
+          />
+        </View>
 
         {/* Categories */}
         <SectionHeader title={t('settings.categories')} colors={colors} typo={typo} spacing={spacing} />

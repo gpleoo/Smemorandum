@@ -29,6 +29,7 @@ export const DEFAULT_SETTINGS: AppSettings = {
   hasSeenOnboarding: false,
   hasSeenTutorial: false,
   adsConsent: null,
+  weeklyDigestEnabled: true,
 };
 
 export const FREE_PLAN_LIMITS = {
