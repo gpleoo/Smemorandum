@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Platform } from 'react-native';
+import { Platform, Linking } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
@@ -26,9 +26,20 @@ function AppContent() {
   useEffect(() => {
     if (Platform.OS === 'web') return;
 
-    // Handle notification tap when app is in foreground/background
+    // Handle notification tap / quick actions
     const subscription = Notifications.addNotificationResponseReceivedListener((response) => {
-      const eventId = response.notification.request.content.data?.eventId as string;
+      const data = response.notification.request.content.data ?? {};
+      const actionId = response.actionIdentifier;
+      const phone = data.contactPhone as string | null;
+
+      // "Chiama" quick action (iOS category button / Android action)
+      if (actionId === 'call' && phone) {
+        Linking.openURL(`tel:${phone}`).catch(() => {});
+        return;
+      }
+
+      // Default tap → navigate to event detail
+      const eventId = data.eventId as string;
       if (eventId && navigationRef.isReady()) {
         (navigationRef as any).navigate('MainTabs', {
           screen: 'HomeTab',

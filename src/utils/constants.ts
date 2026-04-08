@@ -25,6 +25,7 @@ export const SOUNDS = [
 export const DEFAULT_SETTINGS: AppSettings = {
   language: 'it',
   theme: 'auto',
+  colorTheme: 'purple',
   defaultSoundId: 'gentle-bell',
   hasSeenOnboarding: false,
   hasSeenTutorial: false,

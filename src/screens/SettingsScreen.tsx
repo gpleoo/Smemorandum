@@ -14,9 +14,10 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { useTheme } from '../theme/ThemeContext';
-import { AppSettings, SettingsStackParamList, TabParamList, ThemeMode } from '../models/types';
+import { AppSettings, SettingsStackParamList, TabParamList, ThemeMode, ColorTheme } from '../models/types';
 import { getSettings, updateSetting } from '../storage/settingsStorage';
 import { SUPPORTED_LANGUAGES } from '../utils/constants';
+import { COLOR_PALETTES } from '../theme/colors';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useTutorial } from '../context/TutorialContext';
 import { useEventContext } from '../context/EventContext';
@@ -28,14 +29,17 @@ type Nav = NativeStackNavigationProp<SettingsStackParamList, 'Settings'>;
 
 export function SettingsScreen() {
   const { t, i18n } = useTranslation();
-  const { colors, typography: typo, spacing, borderRadius, setThemeMode } = useTheme();
+  const { colors, typography: typo, spacing, borderRadius, setThemeMode, setColorTheme } = useTheme();
   const navigation = useNavigation<Nav>();
   const { showTutorial } = useTutorial();
   const { events, refreshData } = useEventContext();
   const [settings, setSettings] = useState<AppSettings | null>(null);
 
   useEffect(() => {
-    getSettings().then(setSettings);
+    getSettings().then((s) => {
+      setSettings(s);
+      if (s.colorTheme) setColorTheme(s.colorTheme);
+    });
   }, []);
 
   const handleLanguageChange = async (code: string) => {
@@ -59,6 +63,12 @@ export function SettingsScreen() {
   const handleThemeChange = async (theme: ThemeMode) => {
     setThemeMode(theme);
     const updated = await updateSetting('theme', theme);
+    setSettings(updated);
+  };
+
+  const handleColorThemeChange = async (theme: ColorTheme) => {
+    setColorTheme(theme);
+    const updated = await updateSetting('colorTheme', theme);
     setSettings(updated);
   };
 
@@ -191,6 +201,62 @@ export function SettingsScreen() {
             </TouchableOpacity>
           ))}
         </View>
+
+        {/* Color Theme */}
+        <Text style={[typo.label, { color: colors.textSecondary, marginTop: spacing.lg, marginBottom: spacing.xs }]}>
+          {t('settings.colorTheme')}
+        </Text>
+        <View style={[styles.chipRow, { flexWrap: 'wrap' }]}>
+          {(Object.entries(COLOR_PALETTES) as [ColorTheme, typeof COLOR_PALETTES[ColorTheme]][]).map(([key, palette]) => {
+            const isActive = (settings?.colorTheme ?? 'purple') === key;
+            return (
+              <TouchableOpacity
+                key={key}
+                style={[
+                  styles.colorSwatch,
+                  {
+                    backgroundColor: palette.swatch,
+                    borderRadius: borderRadius.full,
+                    width: 36,
+                    height: 36,
+                    marginRight: spacing.sm,
+                    marginBottom: spacing.xs,
+                    borderWidth: isActive ? 3 : 0,
+                    borderColor: colors.text,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  },
+                ]}
+                onPress={() => handleColorThemeChange(key)}
+              >
+                {isActive && <Ionicons name="checkmark" size={18} color="#FFF" />}
+              </TouchableOpacity>
+            );
+          })}
+        </View>
+
+        {/* Statistics */}
+        <TouchableOpacity
+          style={[
+            styles.settingsRow,
+            {
+              backgroundColor: colors.surface,
+              borderRadius: borderRadius.lg,
+              padding: spacing.md,
+              marginBottom: spacing.sm,
+              marginTop: spacing.md,
+            },
+          ]}
+          onPress={() => navigation.navigate('Stats')}
+        >
+          <View style={styles.settingsRowLeft}>
+            <Ionicons name="bar-chart" size={20} color={colors.primary} />
+            <Text style={[typo.body, { color: colors.text, marginLeft: spacing.sm }]}>
+              {t('stats.title')}
+            </Text>
+          </View>
+          <Ionicons name="chevron-forward" size={20} color={colors.textTertiary} />
+        </TouchableOpacity>
 
         {/* Replay Tutorial */}
         <TouchableOpacity
@@ -554,6 +620,7 @@ const styles = StyleSheet.create({
   header: {},
   chipRow: { flexDirection: 'row', flexWrap: 'wrap' },
   chip: { flexDirection: 'row', alignItems: 'center' },
+  colorSwatch: { elevation: 2, shadowColor: '#000', shadowOffset: { width: 0, height: 1 }, shadowOpacity: 0.2, shadowRadius: 2 },
   settingsRow: {
     flexDirection: 'row',
     alignItems: 'center',

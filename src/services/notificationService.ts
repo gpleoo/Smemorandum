@@ -67,6 +67,17 @@ export function initializeNotifications() {
       sound: 'default',
     });
   }
+
+  // Register iOS notification category with "Call" quick action
+  if (Platform.OS === 'ios') {
+    Notifications.setNotificationCategoryAsync('reminder-with-call', [
+      {
+        identifier: 'call',
+        buttonTitle: '📞 Chiama',
+        options: { opensAppToForeground: false },
+      },
+    ]);
+  }
 }
 
 /**
@@ -126,12 +137,14 @@ export async function scheduleAllEventNotifications(events: SEvent[]): Promise<v
           ? `Domani: ${item.event.title}`
           : `Tra ${item.daysBefore} giorni: ${item.event.title}`;
 
+      const hasPhone = !!item.event.contactPhone;
       await Notifications.scheduleNotificationAsync({
         content: {
           title: item.event.title,
           body,
           sound: soundFile ?? 'default',
-          data: { eventId: item.event.id },
+          data: { eventId: item.event.id, contactPhone: item.event.contactPhone ?? null },
+          ...(Platform.OS === 'ios' && hasPhone && { categoryIdentifier: 'reminder-with-call' }),
           ...(Platform.OS === 'android' && { channelId: 'smemorandum-reminders' }),
         },
         trigger: {

@@ -6,6 +6,7 @@ export interface ContactBirthday {
   name: string;
   birthday: string; // ISO "YYYY-MM-DD"
   phoneContactId: string;
+  phone?: string; // First phone number, used for "Call" quick action
 }
 
 /**
@@ -24,7 +25,7 @@ export async function requestContactsPermission(): Promise<boolean> {
  */
 export async function getContactsWithBirthdays(): Promise<ContactBirthday[]> {
   const { data } = await Contacts.getContactsAsync({
-    fields: [Contacts.Fields.Birthday, Contacts.Fields.Name],
+    fields: [Contacts.Fields.Birthday, Contacts.Fields.Name, Contacts.Fields.PhoneNumbers],
   });
 
   const results: ContactBirthday[] = [];
@@ -38,10 +39,15 @@ export async function getContactsWithBirthdays(): Promise<ContactBirthday[]> {
     const d = String(day ?? 1).padStart(2, '0');
     const y = year ?? 2000; // Default year if not set
 
+    // Grab first phone number, stripping spaces/dashes for tel: URI
+    const rawPhone = contact.phoneNumbers?.[0]?.number;
+    const phone = rawPhone ? rawPhone.replace(/[\s\-().]/g, '') : undefined;
+
     results.push({
       name: contact.name,
       birthday: `${y}-${m}-${d}`,
       phoneContactId: contact.id ?? uuidv4(),
+      phone,
     });
   }
 
@@ -76,6 +82,7 @@ export function contactsToEvents(
       reminders: [reminder],
       soundId,
       sourceContactId: contact.phoneContactId,
+      contactPhone: contact.phone,
       createdAt: now,
       updatedAt: now,
     };

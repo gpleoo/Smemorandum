@@ -28,7 +28,8 @@
     "deleteConfirm": "¿Estás seguro de que quieres eliminar este evento?",
     "delete": "Eliminar",
     "cancel": "Cancelar",
-    "edit": "Editar"
+    "edit": "Editar",
+    "share": "Compartir"
   },
   "eventForm": {
     "createTitle": "Nuevo evento",
@@ -116,7 +117,8 @@
     "data": "Datos",
     "importContacts": "Importar cumpleaños desde contactos",
     "exportBackup": "Exportar copia de seguridad",
-    "importBackup": "Restaurar copia de seguridad"
+    "importBackup": "Restaurar copia de seguridad",
+    "colorTheme": "Color del tema"
   },
   "backup": {
     "importConfirm": "Restaurar copia",
@@ -213,9 +215,20 @@
     "success": "Éxito",
     "loading": "Cargando...",
     "retry": "Reintentar",
+    "sharedVia": "Enviado con",
     "premiumFeature": "Función Premium",
     "upgradeToPremium": "Pasa a Premium para desbloquear esta función",
     "eventLimitReached": "Has alcanzado el límite de {{max}} eventos del plan gratuito. Pasa a Premium para añadir más.",
     "categoryLimitReached": "Has alcanzado el límite de {{max}} categorías del plan gratuito. Pasa a Premium para añadir más."
+  },
+  "stats": {
+    "title": "Estadísticas",
+    "totalEvents": "eventos en total",
+    "totalCategories": "categorías",
+    "nextEvent": "Próximo evento",
+    "byMonth": "Distribución mensual",
+    "byCategory": "Por categoría",
+    "busiestMonth": "{{month}} es tu mes más ocupado",
+    "empty": "Añade eventos para ver las estadísticas"
   }
 }

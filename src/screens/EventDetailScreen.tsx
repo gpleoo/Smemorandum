@@ -20,6 +20,7 @@ import { CategoryBadge } from '../components/CategoryBadge';
 import { formatDate, formatRelativeDate, daysUntil } from '../utils/dateUtils';
 import { getNextOccurrence, describeRecurrence } from '../utils/recurrenceEngine';
 import { SOUNDS } from '../utils/constants';
+import { Share } from 'react-native';
 
 type DetailRoute = RouteProp<HomeStackParamList, 'EventDetail'>;
 type Nav = NativeStackNavigationProp<HomeStackParamList, 'EventDetail'>;
@@ -68,6 +69,15 @@ export function EventDetailScreen() {
         },
       },
     ]);
+  };
+
+  const handleShare = async () => {
+    const dateStr = nextDate ? formatDate(nextDate, 'dd MMMM yyyy', i18n.language) : event.date;
+    const daysStr = days !== null && days >= 0
+      ? (days === 0 ? t('home.todayLabel') : days === 1 ? t('home.tomorrow') : t('home.daysLeft', { count: days }))
+      : '';
+    const msg = `📅 ${event.title} — ${dateStr}${daysStr ? ` (${daysStr})` : ''}\n\n${t('common.sharedVia')} Smemorandum`;
+    Share.share({ message: msg, title: event.title }).catch(() => {});
   };
 
   const getReminderLabel = (daysBefore: number): string => {
@@ -260,6 +270,26 @@ export function EventDetailScreen() {
             </Text>
           </TouchableOpacity>
         </View>
+
+        {/* Share */}
+        <TouchableOpacity
+          style={[
+            styles.actionButton,
+            {
+              backgroundColor: colors.surfaceVariant,
+              borderRadius: borderRadius.lg,
+              paddingVertical: spacing.sm,
+              marginTop: spacing.sm,
+              justifyContent: 'center',
+            },
+          ]}
+          onPress={handleShare}
+        >
+          <Ionicons name="share-social-outline" size={20} color={colors.primary} />
+          <Text style={[typo.body, { color: colors.primary, marginLeft: spacing.xs, fontWeight: '600' }]}>
+            {t('events.share')}
+          </Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );

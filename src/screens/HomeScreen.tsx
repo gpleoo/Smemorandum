@@ -7,6 +7,21 @@ import {
   StyleSheet,
   ActivityIndicator,
 } from 'react-native';
+
+function CountBadge({ count, colors, typo }: { count: number; colors: any; typo: any }) {
+  return (
+    <View style={{
+      backgroundColor: colors.primary + '20',
+      borderRadius: 12,
+      paddingHorizontal: 8,
+      paddingVertical: 2,
+      minWidth: 24,
+      alignItems: 'center',
+    }}>
+      <Text style={[typo.caption, { color: colors.primary, fontWeight: '700' }]}>{count}</Text>
+    </View>
+  );
+}
 import { useTranslation } from 'react-i18next';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
@@ -69,7 +84,10 @@ export function HomeScreen() {
           ListHeaderComponent={
             <>
               {todayEvents.length > 0 && (
-                <CollapsibleSection title={t('home.today')}>
+                <CollapsibleSection
+                  title={t('home.today')}
+                  rightElement={<CountBadge count={todayEvents.length} colors={colors} typo={typo} />}
+                >
                   {todayEvents.map((item) => (
                     <EventCard
                       key={item.event.id}
@@ -81,7 +99,10 @@ export function HomeScreen() {
               )}
 
               {weekEvents.length > 0 && (
-                <CollapsibleSection title={t('home.thisWeek')}>
+                <CollapsibleSection
+                  title={t('home.thisWeek')}
+                  rightElement={<CountBadge count={weekEvents.length} colors={colors} typo={typo} />}
+                >
                   {weekEvents.map((item) => (
                     <EventCard
                       key={item.event.id}
@@ -93,7 +114,10 @@ export function HomeScreen() {
               )}
 
               {monthEvents.length > 0 && (
-                <CollapsibleSection title={t('home.thisMonth')}>
+                <CollapsibleSection
+                  title={t('home.thisMonth')}
+                  rightElement={<CountBadge count={monthEvents.length} colors={colors} typo={typo} />}
+                >
                   {monthEvents.map((item) => (
                     <EventCard
                       key={item.event.id}

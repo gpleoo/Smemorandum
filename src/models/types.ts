@@ -24,6 +24,7 @@ export interface SEvent {
   reminders: Reminder[];
   soundId: string;
   sourceContactId?: string; // Phone contact ID, used to detect duplicates on re-import
+  contactPhone?: string;    // Phone number for "Call" quick action on notifications
   createdAt: string;
   updatedAt: string;
 }
@@ -36,10 +37,12 @@ export interface Category {
 }
 
 export type ThemeMode = 'light' | 'dark' | 'auto';
+export type ColorTheme = 'purple' | 'blue' | 'green' | 'orange' | 'rose';
 
 export interface AppSettings {
   language: string;
   theme: ThemeMode;
+  colorTheme: ColorTheme;
   defaultSoundId: string;
   hasSeenOnboarding: boolean;
   hasSeenTutorial: boolean;
@@ -83,4 +86,5 @@ export type SettingsStackParamList = {
   Premium: undefined;
   ManageCategories: undefined;
   ImportContacts: undefined;
+  Stats: undefined;
 };
