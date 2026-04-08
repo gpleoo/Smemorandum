@@ -213,6 +213,7 @@
     "retry": "Erneut versuchen",
     "premiumFeature": "Premium-Funktion",
     "upgradeToPremium": "Werden Sie Premium, um diese Funktion freizuschalten",
-    "eventLimitReached": "Du hast das Limit von {{max}} Ereignissen im kostenlosen Plan erreicht. Werde Premium, um weitere hinzuzufügen."
+    "eventLimitReached": "Du hast das Limit von {{max}} Ereignissen im kostenlosen Plan erreicht. Werde Premium, um weitere hinzuzufügen.",
+    "categoryLimitReached": "Du hast das Limit von {{max}} Kategorien im kostenlosen Plan erreicht. Werde Premium, um weitere hinzuzufügen."
   }
 }
