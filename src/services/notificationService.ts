@@ -4,8 +4,38 @@ import { SEvent } from '../models/types';
 import { SOUNDS } from '../utils/constants';
 import { getNextOccurrence } from '../utils/recurrenceEngine';
 import { subDays, setHours, setMinutes, isAfter } from 'date-fns';
+import { getSettings } from '../storage/settingsStorage';
 
-const MAX_SCHEDULED_NOTIFICATIONS = 60; // iOS limit is 64, keep margin
+const MAX_SCHEDULED_NOTIFICATIONS = 54; // iOS limit is 64; leave room for 8 weekly digests
+
+// ---------------------------------------------------------------------------
+// Weekly digest helpers
+// ---------------------------------------------------------------------------
+const DIGEST_TITLES: Record<string, string> = {
+  it: 'Questa settimana',
+  en: 'This week',
+  fr: 'Cette semaine',
+  de: 'Diese Woche',
+  es: 'Esta semana',
+};
+
+const DAY_NAMES: Record<string, string[]> = {
+  it: ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'],
+  en: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+  fr: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+  de: ['So',  'Mo',  'Di',  'Mi',  'Do',  'Fr',  'Sa'],
+  es: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
+};
+
+/** Returns the next Monday after `from`, offset by `weeksAhead` weeks. */
+function getNextMonday(from: Date, weeksAhead: number): Date {
+  const d = new Date(from);
+  const day = d.getDay(); // 0=Sun, 1=Mon…6=Sat
+  const daysToMonday = (8 - day) % 7 || 7;
+  d.setDate(d.getDate() + daysToMonday + weeksAhead * 7);
+  d.setHours(9, 0, 0, 0);
+  return d;
+}
 
 /**
  * Initialize notification handler and Android channel.
@@ -31,6 +61,22 @@ export function initializeNotifications() {
       sound: 'default',
       vibrationPattern: [0, 250, 250, 250],
     });
+    Notifications.setNotificationChannelAsync('smemorandum-digest', {
+      name: 'Riepilogo settimanale',
+      importance: Notifications.AndroidImportance.DEFAULT,
+      sound: 'default',
+    });
+  }
+
+  // Register iOS notification category with "Call" quick action
+  if (Platform.OS === 'ios') {
+    Notifications.setNotificationCategoryAsync('reminder-with-call', [
+      {
+        identifier: 'call',
+        buttonTitle: '📞 Chiama',
+        options: { opensAppToForeground: false },
+      },
+    ]);
   }
 }
 
@@ -91,12 +137,14 @@ export async function scheduleAllEventNotifications(events: SEvent[]): Promise<v
           ? `Domani: ${item.event.title}`
           : `Tra ${item.daysBefore} giorni: ${item.event.title}`;
 
+      const hasPhone = !!item.event.contactPhone;
       await Notifications.scheduleNotificationAsync({
         content: {
           title: item.event.title,
           body,
           sound: soundFile ?? 'default',
-          data: { eventId: item.event.id },
+          data: { eventId: item.event.id, contactPhone: item.event.contactPhone ?? null },
+          ...(Platform.OS === 'ios' && hasPhone && { categoryIdentifier: 'reminder-with-call' }),
           ...(Platform.OS === 'android' && { channelId: 'smemorandum-reminders' }),
         },
         trigger: {
@@ -107,5 +155,71 @@ export async function scheduleAllEventNotifications(events: SEvent[]): Promise<v
     } catch (error) {
       console.error(`Failed to schedule notification for event ${item.event.id}:`, error);
     }
+  }
+
+  // Schedule weekly digest notifications
+  try {
+    const settings = await getSettings();
+    await scheduleWeeklyDigest(events, settings.weeklyDigestEnabled ?? true, settings.language ?? 'it');
+  } catch {}
+}
+
+// ---------------------------------------------------------------------------
+// Weekly digest
+// ---------------------------------------------------------------------------
+export async function scheduleWeeklyDigest(
+  events: SEvent[],
+  enabled: boolean,
+  language: string,
+): Promise<void> {
+  if (Platform.OS === 'web') return;
+
+  // Cancel any previously scheduled digest notifications
+  const scheduled = await Notifications.getAllScheduledNotificationsAsync();
+  await Promise.all(
+    scheduled
+      .filter((n) => n.content.data?.isDigest === true)
+      .map((n) => Notifications.cancelScheduledNotificationAsync(n.identifier)),
+  );
+
+  if (!enabled || events.length === 0) return;
+
+  const now = new Date();
+  const days  = DAY_NAMES[language]    ?? DAY_NAMES.en;
+  const title = DIGEST_TITLES[language] ?? DIGEST_TITLES.en;
+
+  for (let i = 0; i < 8; i++) {
+    const monday = getNextMonday(now, i);
+    if (monday <= now) continue;
+
+    const sunday = new Date(monday);
+    sunday.setDate(sunday.getDate() + 6);
+    sunday.setHours(23, 59, 59, 999);
+
+    const weekItems: { title: string; dayName: string }[] = [];
+    for (const event of events) {
+      const next = getNextOccurrence(event, monday);
+      if (!next || next > sunday) continue;
+      weekItems.push({ title: event.title, dayName: days[next.getDay()] });
+    }
+    if (weekItems.length === 0) continue;
+
+    const first3 = weekItems.slice(0, 3).map((e) => `${e.title} (${e.dayName})`).join(', ');
+    const extra  = weekItems.length > 3 ? ` +${weekItems.length - 3}` : '';
+
+    try {
+      await Notifications.scheduleNotificationAsync({
+        content: {
+          title,
+          body: first3 + extra,
+          data: { isDigest: true },
+          ...(Platform.OS === 'android' && { channelId: 'smemorandum-digest' }),
+        },
+        trigger: {
+          type: Notifications.SchedulableTriggerInputTypes.DATE,
+          date: monday,
+        },
+      });
+    } catch {}
   }
 }

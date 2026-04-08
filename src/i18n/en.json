@@ -28,7 +28,8 @@
     "deleteConfirm": "Are you sure you want to delete this event?",
     "delete": "Delete",
     "cancel": "Cancel",
-    "edit": "Edit"
+    "edit": "Edit",
+    "share": "Share"
   },
   "eventForm": {
     "createTitle": "New event",
@@ -84,6 +85,9 @@
     "themeDark": "Dark",
     "themeAuto": "Auto",
     "defaultSound": "Default sound",
+    "notifications": "Notifications",
+    "weeklyDigest": "Weekly summary",
+    "weeklyDigestDesc": "Every Monday morning, a recap of the week's events",
     "categories": "Categories",
     "manageCategories": "Manage categories",
     "premium": "Premium",
@@ -113,7 +117,8 @@
     "data": "Data",
     "importContacts": "Import birthdays from contacts",
     "exportBackup": "Export backup",
-    "importBackup": "Restore backup"
+    "importBackup": "Restore backup",
+    "colorTheme": "Theme color"
   },
   "backup": {
     "importConfirm": "Restore backup",
@@ -136,12 +141,11 @@
   },
   "premium": {
     "title": "Smemorandum Premium",
-    "subtitle": "Unlock all features",
-    "unlimitedEvents": "Unlimited events (free: max 10)",
+    "subtitle": "Ad-free experience + extra features",
     "unlimitedCategories": "Unlimited categories (free: max 3)",
     "multipleReminders": "Multiple reminders per event",
     "allSounds": "All notification sounds",
-    "noAds": "No advertisements",
+    "noAds": "Zero ads, forever",
     "backup": "Unlimited backup & restore",
     "monthlyPrice": "{{price}}/month",
     "yearlyPrice": "{{price}}/year",
@@ -211,9 +215,20 @@
     "success": "Success",
     "loading": "Loading...",
     "retry": "Retry",
+    "sharedVia": "Sent with",
     "premiumFeature": "Premium Feature",
     "upgradeToPremium": "Upgrade to Premium to unlock this feature",
     "eventLimitReached": "You've reached the {{max}}-event limit on the free plan. Upgrade to Premium to add more.",
     "categoryLimitReached": "You've reached the {{max}}-category limit on the free plan. Upgrade to Premium to add more."
+  },
+  "stats": {
+    "title": "Statistics",
+    "totalEvents": "total events",
+    "totalCategories": "categories",
+    "nextEvent": "Next event",
+    "byMonth": "Monthly distribution",
+    "byCategory": "By category",
+    "busiestMonth": "{{month}} is your busiest month",
+    "empty": "Add events to see statistics"
   }
 }

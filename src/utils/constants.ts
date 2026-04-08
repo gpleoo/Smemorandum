@@ -25,14 +25,15 @@ export const SOUNDS = [
 export const DEFAULT_SETTINGS: AppSettings = {
   language: 'it',
   theme: 'auto',
+  colorTheme: 'purple',
   defaultSoundId: 'gentle-bell',
   hasSeenOnboarding: false,
   hasSeenTutorial: false,
   adsConsent: null,
+  weeklyDigestEnabled: true,
 };
 
 export const FREE_PLAN_LIMITS = {
-  MAX_EVENTS: 10,
   MAX_CATEGORIES: 3,
   MAX_REMINDERS_PER_EVENT: 1,
 } as const;

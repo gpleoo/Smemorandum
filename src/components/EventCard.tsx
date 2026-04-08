@@ -14,6 +14,12 @@ interface EventCardProps {
   onPress: () => void;
 }
 
+function initials(title: string): string {
+  const parts = title.trim().split(/\s+/);
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+}
+
 export function EventCard({ event, onPress }: EventCardProps) {
   const { colors, spacing, borderRadius, typography: typo } = useTheme();
   const { getCategoryById } = useCategories();
@@ -21,6 +27,7 @@ export function EventCard({ event, onPress }: EventCardProps) {
   const category = getCategoryById(event.categoryId);
   const nextDate = getNextOccurrence(event, new Date());
   const days = nextDate ? daysUntil(nextDate) : null;
+  const avatarColor = category?.color ?? colors.primary;
 
   return (
     <TouchableOpacity
@@ -29,7 +36,7 @@ export function EventCard({ event, onPress }: EventCardProps) {
         {
           backgroundColor: colors.surface,
           borderRadius: borderRadius.lg,
-          borderLeftColor: category?.color ?? colors.primary,
+          borderLeftColor: avatarColor,
           padding: spacing.md,
           marginBottom: spacing.sm,
         },
@@ -38,6 +45,12 @@ export function EventCard({ event, onPress }: EventCardProps) {
       activeOpacity={0.7}
     >
       <View style={styles.row}>
+        {/* Avatar iniziali */}
+        <View style={[styles.avatar, { backgroundColor: avatarColor + '25', marginRight: spacing.sm }]}>
+          <Text style={[typo.bodySmall, { color: avatarColor, fontWeight: '700' }]}>
+            {initials(event.title)}
+          </Text>
+        </View>
         <View style={styles.content}>
           <Text style={[typo.h3, { color: colors.text }]} numberOfLines={1}>
             {event.title}
@@ -94,6 +107,13 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.1,
     shadowRadius: 3,
+  },
+  avatar: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   row: {
     flexDirection: 'row',

@@ -1,6 +1,6 @@
-import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
+import React, { createContext, useContext, useState, useMemo } from 'react';
 import { useColorScheme } from 'react-native';
-import { lightColors, darkColors, ColorScheme } from './colors';
+import { lightColors, darkColors, ColorScheme, ColorTheme, COLOR_PALETTES } from './colors';
 import { spacing, borderRadius } from './spacing';
 import { typography } from './typography';
 import { ThemeMode } from '../models/types';
@@ -12,7 +12,9 @@ interface ThemeContextType {
   typography: typeof typography;
   isDark: boolean;
   themeMode: ThemeMode;
+  colorTheme: ColorTheme;
   setThemeMode: (mode: ThemeMode) => void;
+  setColorTheme: (theme: ColorTheme) => void;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -20,13 +22,19 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const systemScheme = useColorScheme();
   const [themeMode, setThemeMode] = useState<ThemeMode>('auto');
+  const [colorTheme, setColorTheme] = useState<ColorTheme>('purple');
 
   const isDark = useMemo(() => {
     if (themeMode === 'auto') return systemScheme === 'dark';
     return themeMode === 'dark';
   }, [themeMode, systemScheme]);
 
-  const colors = isDark ? darkColors : lightColors;
+  const colors = useMemo<ColorScheme>(() => {
+    const base = isDark ? { ...darkColors } : { ...lightColors };
+    const palette = COLOR_PALETTES[colorTheme];
+    const overrides = isDark ? palette.dark : palette.light;
+    return { ...base, ...overrides };
+  }, [isDark, colorTheme]);
 
   const value = useMemo(
     () => ({
@@ -36,9 +44,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       typography,
       isDark,
       themeMode,
+      colorTheme,
       setThemeMode,
+      setColorTheme,
     }),
-    [colors, isDark, themeMode]
+    [colors, isDark, themeMode, colorTheme]
   );
 
   return (
