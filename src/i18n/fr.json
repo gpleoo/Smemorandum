@@ -31,8 +31,14 @@
     "edit": "Modifier",
     "share": "Partager",
     "sendWishes": "Envoyer des vœux sur WhatsApp",
-    "wishesMessage": "Joyeux anniversaire {{name}} ! 🎂🎉 J'espère que tu passes une merveilleuse journée !",
-    "whatsappNotInstalled": "WhatsApp n'est pas installé sur cet appareil."
+    "whatsappNotInstalled": "WhatsApp n'est pas installé sur cet appareil.",
+    "chooseWishTemplate": "Choisir un message",
+    "chooseWishTemplateDesc": "Sélectionne le message à envoyer à {{name}}",
+    "wishTemplate1": "Joyeux anniversaire {{name}} ! 🎂🎉 J'espère que tu passes une merveilleuse journée !",
+    "wishTemplate2": "Bon anniversaire {{name}} ! 🎁✨ Que tous tes rêves se réalisent !",
+    "wishTemplate3": "Joyeux anniversaire {{name}} ! 🥳 Tous mes vœux !",
+    "wishTemplate4": "{{name}}, que ce jour spécial soit le début d'une année merveilleuse ! 🌟 Bon anniversaire du fond du cœur !",
+    "wishTemplate5": "Une année de plus, une année en mieux ! 😄 Bon anniversaire {{name}} ! 🎂🎉 Tu es le/la meilleur(e) !"
   },
   "eventForm": {
     "createTitle": "Nouvel événement",
@@ -150,6 +156,7 @@
     "allSounds": "Tous les sons de notification",
     "noAds": "Zéro publicité, pour toujours",
     "backup": "Sauvegarde et restauration illimitées",
+    "allHolidayPacks": "Tous les packs de fêtes (pays + religions)",
     "monthlyPrice": "{{price}}/mois",
     "yearlyPrice": "{{price}}/an",
     "yearlyBadge": "Économisez 44 % par rapport au mensuel",
@@ -223,6 +230,26 @@
     "upgradeToPremium": "Passez à Premium pour débloquer cette fonctionnalité",
     "eventLimitReached": "Vous avez atteint la limite de {{max}} événements du plan gratuit. Passez à Premium pour en ajouter davantage.",
     "categoryLimitReached": "Vous avez atteint la limite de {{max}} catégories du plan gratuit. Passez à Premium pour en ajouter davantage."
+  },
+  "templates": {
+    "title": "Jours fériés préchargés",
+    "holidays": "Jours fériés",
+    "browseHolidays": "Parcourir les fêtes",
+    "browseHolidaysDesc": "Ajoutez les fêtes de votre pays en un seul tap",
+    "filterCountry": "Pays",
+    "filterTradition": "Tradition",
+    "secular": "Laïques",
+    "catholic": "Catholique",
+    "protestant": "Protestant",
+    "jewish": "Juif",
+    "islamic": "Islamique",
+    "addedSuccess": "{{name}} ajouté à vos événements !",
+    "removeConfirm": "Supprimer ce jour férié de vos événements ?",
+    "approximate": "Date approximative — change chaque année",
+    "premiumCountries": "Passez à Premium pour débloquer tous les pays.",
+    "premiumTraditions": "Passez à Premium pour débloquer les traditions religieuses.",
+    "premiumBanner": "Débloquez tous les pays et traditions religieuses avec Premium ✨",
+    "noResults": "Aucun jour férié ne correspond aux filtres sélectionnés."
   },
   "stats": {
     "title": "Statistiques",

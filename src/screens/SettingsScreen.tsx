@@ -317,6 +317,35 @@ export function SettingsScreen() {
           />
         </View>
 
+        {/* Festività */}
+        <SectionHeader title={t('templates.holidays')} colors={colors} typo={typo} spacing={spacing} />
+
+        <TouchableOpacity
+          style={[
+            styles.settingsRow,
+            {
+              backgroundColor: colors.surface,
+              borderRadius: borderRadius.lg,
+              padding: spacing.md,
+              marginBottom: spacing.sm,
+            },
+          ]}
+          onPress={() => navigation.navigate('HolidayTemplates')}
+        >
+          <View style={styles.settingsRowLeft}>
+            <Ionicons name="globe" size={20} color={colors.primary} />
+            <View style={{ marginLeft: spacing.sm }}>
+              <Text style={[typo.body, { color: colors.text }]}>
+                {t('templates.browseHolidays')}
+              </Text>
+              <Text style={[typo.bodySmall, { color: colors.textSecondary }]}>
+                {t('templates.browseHolidaysDesc')}
+              </Text>
+            </View>
+          </View>
+          <Ionicons name="chevron-forward" size={20} color={colors.textTertiary} />
+        </TouchableOpacity>
+
         {/* Categories */}
         <SectionHeader title={t('settings.categories')} colors={colors} typo={typo} spacing={spacing} />
 

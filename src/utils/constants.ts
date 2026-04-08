@@ -31,6 +31,24 @@ export const DEFAULT_SETTINGS: AppSettings = {
   hasSeenTutorial: false,
   adsConsent: null,
   weeklyDigestEnabled: true,
+  holidayCountries: [],        // empty = auto-detect from device locale
+  holidayTraditions: ['secular'],
+};
+
+export const HOLIDAY_COUNTRIES = [
+  { code: 'IT', flag: '🇮🇹', name: 'Italia' },
+  { code: 'US', flag: '🇺🇸', name: 'USA' },
+  { code: 'ES', flag: '🇪🇸', name: 'España' },
+  { code: 'FR', flag: '🇫🇷', name: 'France' },
+  { code: 'DE', flag: '🇩🇪', name: 'Deutschland' },
+] as const;
+
+export const LANGUAGE_TO_COUNTRY: Record<string, string> = {
+  it: 'IT',
+  en: 'US',
+  es: 'ES',
+  fr: 'FR',
+  de: 'DE',
 };
 
 export const FREE_PLAN_LIMITS = {

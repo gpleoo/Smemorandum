@@ -31,8 +31,14 @@
     "edit": "Editar",
     "share": "Compartir",
     "sendWishes": "Enviar felicitación por WhatsApp",
-    "wishesMessage": "¡Feliz cumpleaños {{name}}! 🎂🎉 ¡Espero que tengas un día maravilloso!",
-    "whatsappNotInstalled": "WhatsApp no está instalado en este dispositivo."
+    "whatsappNotInstalled": "WhatsApp no está instalado en este dispositivo.",
+    "chooseWishTemplate": "Elige un mensaje",
+    "chooseWishTemplateDesc": "Selecciona el mensaje para enviar a {{name}}",
+    "wishTemplate1": "¡Feliz cumpleaños {{name}}! 🎂🎉 ¡Espero que tengas un día maravilloso!",
+    "wishTemplate2": "¡Muchas felicidades {{name}}! 🎁✨ ¡Que todos tus sueños se hagan realidad!",
+    "wishTemplate3": "¡Feliz cumpleaños {{name}}! 🥳 ¡Muchos años más!",
+    "wishTemplate4": "{{name}}, ¡que este día especial sea el inicio de un año maravilloso! 🌟 ¡Feliz cumpleaños de todo corazón!",
+    "wishTemplate5": "¡Un año más, un año mejor! 😄 ¡Feliz cumpleaños {{name}}! 🎂🎉 ¡Eres el/la mejor!"
   },
   "eventForm": {
     "createTitle": "Nuevo evento",
@@ -150,6 +156,7 @@
     "allSounds": "Todos los sonidos de notificación",
     "noAds": "Cero anuncios, para siempre",
     "backup": "Copia de seguridad y restauración ilimitadas",
+    "allHolidayPacks": "Todos los paquetes de festivos (países + religiones)",
     "monthlyPrice": "{{price}}/mes",
     "yearlyPrice": "{{price}}/año",
     "yearlyBadge": "Ahorra un 44% respecto al mensual",
@@ -223,6 +230,26 @@
     "upgradeToPremium": "Pasa a Premium para desbloquear esta función",
     "eventLimitReached": "Has alcanzado el límite de {{max}} eventos del plan gratuito. Pasa a Premium para añadir más.",
     "categoryLimitReached": "Has alcanzado el límite de {{max}} categorías del plan gratuito. Pasa a Premium para añadir más."
+  },
+  "templates": {
+    "title": "Festivos precargados",
+    "holidays": "Festivos",
+    "browseHolidays": "Ver festivos",
+    "browseHolidaysDesc": "Añade los días festivos de tu país en un toque",
+    "filterCountry": "País",
+    "filterTradition": "Tradición",
+    "secular": "Laicos",
+    "catholic": "Católico",
+    "protestant": "Protestante",
+    "jewish": "Judío",
+    "islamic": "Islámico",
+    "addedSuccess": "¡{{name}} añadido a tus eventos!",
+    "removeConfirm": "¿Quieres eliminar este festivo de tus eventos?",
+    "approximate": "Fecha aproximada — cambia cada año",
+    "premiumCountries": "Hazte Premium para desbloquear todos los países.",
+    "premiumTraditions": "Hazte Premium para desbloquear las tradiciones religiosas.",
+    "premiumBanner": "Desbloquea todos los países y tradiciones con Premium ✨",
+    "noResults": "Ningún festivo coincide con los filtros seleccionados."
   },
   "stats": {
     "title": "Estadísticas",

@@ -31,8 +31,14 @@
     "edit": "Bearbeiten",
     "share": "Teilen",
     "sendWishes": "Glückwünsche per WhatsApp senden",
-    "wishesMessage": "Herzlichen Glückwunsch zum Geburtstag, {{name}}! 🎂🎉 Ich hoffe, du hast einen wunderschönen Tag!",
-    "whatsappNotInstalled": "WhatsApp ist auf diesem Gerät nicht installiert."
+    "whatsappNotInstalled": "WhatsApp ist auf diesem Gerät nicht installiert.",
+    "chooseWishTemplate": "Nachricht auswählen",
+    "chooseWishTemplateDesc": "Wähle die Nachricht, die du an {{name}} senden möchtest",
+    "wishTemplate1": "Herzlichen Glückwunsch zum Geburtstag, {{name}}! 🎂🎉 Ich hoffe, du hast einen wunderschönen Tag!",
+    "wishTemplate2": "Alles Gute zum Geburtstag, {{name}}! 🎁✨ Mögen alle deine Träume wahr werden!",
+    "wishTemplate3": "Alles Gute zum Geburtstag, {{name}}! 🥳 Herzlichste Glückwünsche!",
+    "wishTemplate4": "{{name}}, möge dieser besondere Tag der Beginn eines wundervollen Jahres sein! 🌟 Herzlichen Glückwunsch von Herzen!",
+    "wishTemplate5": "Ein Jahr älter, ein Jahr besser! 😄 Alles Gute zum Geburtstag, {{name}}! 🎂🎉 Du bist der/die Beste!"
   },
   "eventForm": {
     "createTitle": "Neues Ereignis",
@@ -150,6 +156,7 @@
     "allSounds": "Alle Benachrichtigungstöne",
     "noAds": "Null Werbung, für immer",
     "backup": "Unbegrenzte Sicherung & Wiederherstellung",
+    "allHolidayPacks": "Alle Feiertags-Pakete (Länder + Religionen)",
     "monthlyPrice": "{{price}}/Monat",
     "yearlyPrice": "{{price}}/Jahr",
     "yearlyBadge": "44 % günstiger als monatlich",
@@ -223,6 +230,26 @@
     "upgradeToPremium": "Werden Sie Premium, um diese Funktion freizuschalten",
     "eventLimitReached": "Du hast das Limit von {{max}} Ereignissen im kostenlosen Plan erreicht. Werde Premium, um weitere hinzuzufügen.",
     "categoryLimitReached": "Du hast das Limit von {{max}} Kategorien im kostenlosen Plan erreicht. Werde Premium, um weitere hinzuzufügen."
+  },
+  "templates": {
+    "title": "Vorgeladene Feiertage",
+    "holidays": "Feiertage",
+    "browseHolidays": "Feiertage durchsuchen",
+    "browseHolidaysDesc": "Füge die Feiertage deines Landes mit einem Tap hinzu",
+    "filterCountry": "Land",
+    "filterTradition": "Tradition",
+    "secular": "Weltlich",
+    "catholic": "Katholisch",
+    "protestant": "Protestantisch",
+    "jewish": "Jüdisch",
+    "islamic": "Islamisch",
+    "addedSuccess": "{{name}} zu deinen Ereignissen hinzugefügt!",
+    "removeConfirm": "Diesen Feiertag aus deinen Ereignissen entfernen?",
+    "approximate": "Ungefähres Datum — ändert sich jedes Jahr",
+    "premiumCountries": "Wechsle zu Premium, um alle Länder freizuschalten.",
+    "premiumTraditions": "Wechsle zu Premium, um religiöse Traditionen freizuschalten.",
+    "premiumBanner": "Alle Länder und religiöse Traditionen mit Premium freischalten ✨",
+    "noResults": "Keine Feiertage entsprechen den ausgewählten Filtern."
   },
   "stats": {
     "title": "Statistiken",
