@@ -7,6 +7,8 @@ import {
   StyleSheet,
   Alert,
   Platform,
+  Linking,
+  Share,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { Ionicons } from '@expo/vector-icons';
@@ -20,7 +22,6 @@ import { CategoryBadge } from '../components/CategoryBadge';
 import { formatDate, formatRelativeDate, daysUntil } from '../utils/dateUtils';
 import { getNextOccurrence, describeRecurrence } from '../utils/recurrenceEngine';
 import { SOUNDS } from '../utils/constants';
-import { Share } from 'react-native';
 
 type DetailRoute = RouteProp<HomeStackParamList, 'EventDetail'>;
 type Nav = NativeStackNavigationProp<HomeStackParamList, 'EventDetail'>;
@@ -69,6 +70,20 @@ export function EventDetailScreen() {
         },
       },
     ]);
+  };
+
+  const handleSendWishes = async () => {
+    const name = event.title;
+    const message = encodeURIComponent(t('events.wishesMessage', { name }));
+    const url = `whatsapp://send?text=${message}`;
+    const canOpen = await Linking.canOpenURL(url).catch(() => false);
+    if (!canOpen) {
+      Alert.alert('WhatsApp', t('events.whatsappNotInstalled'));
+      return;
+    }
+    Linking.openURL(url).catch(() => {
+      Alert.alert('WhatsApp', t('events.whatsappNotInstalled'));
+    });
   };
 
   const handleShare = async () => {
@@ -290,6 +305,28 @@ export function EventDetailScreen() {
             {t('events.share')}
           </Text>
         </TouchableOpacity>
+
+        {/* WhatsApp wishes — only for recurring events (birthdays/anniversaries) */}
+        {event.eventType === 'ricorrenza' && (
+          <TouchableOpacity
+            style={[
+              styles.actionButton,
+              {
+                backgroundColor: '#25D366',
+                borderRadius: borderRadius.lg,
+                paddingVertical: spacing.sm,
+                marginTop: spacing.sm,
+                justifyContent: 'center',
+              },
+            ]}
+            onPress={handleSendWishes}
+          >
+            <Ionicons name="logo-whatsapp" size={20} color="#FFF" />
+            <Text style={[typo.body, { color: '#FFF', marginLeft: spacing.xs, fontWeight: '600' }]}>
+              {t('events.sendWishes')}
+            </Text>
+          </TouchableOpacity>
+        )}
       </View>
     </ScrollView>
   );

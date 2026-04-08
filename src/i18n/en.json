@@ -29,7 +29,10 @@
     "delete": "Delete",
     "cancel": "Cancel",
     "edit": "Edit",
-    "share": "Share"
+    "share": "Share",
+    "sendWishes": "Send wishes on WhatsApp",
+    "wishesMessage": "Happy birthday {{name}}! 🎂🎉 Hope you're having a wonderful day!",
+    "whatsappNotInstalled": "WhatsApp is not installed on this device."
   },
   "eventForm": {
     "createTitle": "New event",

@@ -29,7 +29,10 @@
     "delete": "Supprimer",
     "cancel": "Annuler",
     "edit": "Modifier",
-    "share": "Partager"
+    "share": "Partager",
+    "sendWishes": "Envoyer des vœux sur WhatsApp",
+    "wishesMessage": "Joyeux anniversaire {{name}} ! 🎂🎉 J'espère que tu passes une merveilleuse journée !",
+    "whatsappNotInstalled": "WhatsApp n'est pas installé sur cet appareil."
   },
   "eventForm": {
     "createTitle": "Nouvel événement",
