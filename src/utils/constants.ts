@@ -32,7 +32,6 @@ export const DEFAULT_SETTINGS: AppSettings = {
 };
 
 export const FREE_PLAN_LIMITS = {
-  MAX_EVENTS: 10,
   MAX_CATEGORIES: 3,
   MAX_REMINDERS_PER_EVENT: 1,
 } as const;

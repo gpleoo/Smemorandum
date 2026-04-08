@@ -17,11 +17,10 @@ import { getOfferings } from '../services/purchaseService';
 import { PRODUCT_IDS } from '../services/purchaseService';
 
 const FEATURES = [
-  { icon: 'infinite',      key: 'unlimitedEvents' },
+  { icon: 'ban',           key: 'noAds' },
   { icon: 'color-palette', key: 'unlimitedCategories' },
   { icon: 'notifications', key: 'multipleReminders' },
   { icon: 'musical-notes', key: 'allSounds' },
-  { icon: 'ban',           key: 'noAds' },
   { icon: 'cloud-upload',  key: 'backup' },
 ];
 
