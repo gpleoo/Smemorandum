@@ -213,6 +213,7 @@
     "retry": "Retry",
     "premiumFeature": "Premium Feature",
     "upgradeToPremium": "Upgrade to Premium to unlock this feature",
-    "eventLimitReached": "You've reached the {{max}}-event limit on the free plan. Upgrade to Premium to add more."
+    "eventLimitReached": "You've reached the {{max}}-event limit on the free plan. Upgrade to Premium to add more.",
+    "categoryLimitReached": "You've reached the {{max}}-category limit on the free plan. Upgrade to Premium to add more."
   }
 }

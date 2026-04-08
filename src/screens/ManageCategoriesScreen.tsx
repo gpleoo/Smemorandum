@@ -12,7 +12,8 @@ import { useTranslation } from 'react-i18next';
 import { Ionicons } from '@expo/vector-icons';
 import { useTheme } from '../theme/ThemeContext';
 import { useCategories } from '../hooks/useCategories';
-import { CATEGORY_COLORS } from '../utils/constants';
+import { usePremium } from '../context/PremiumContext';
+import { CATEGORY_COLORS, FREE_PLAN_LIMITS } from '../utils/constants';
 import { Category } from '../models/types';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -32,6 +33,7 @@ export function ManageCategoriesScreen() {
   const { t } = useTranslation();
   const { colors, typography: typo, spacing, borderRadius } = useTheme();
   const { categories, addCategory, updateCategory, deleteCategory } = useCategories();
+  const { isPremium } = usePremium();
 
   const [editing, setEditing] = useState<Category | null>(null);
   const [isAdding, setIsAdding] = useState(false);
@@ -62,6 +64,10 @@ export function ManageCategoriesScreen() {
     if (editing) {
       await updateCategory({ ...editing, name: trimmed, color: selectedColor, icon: selectedIcon });
     } else {
+      if (!isPremium && categories.length >= FREE_PLAN_LIMITS.MAX_CATEGORIES) {
+        Alert.alert(t('common.premiumFeature'), t('common.categoryLimitReached', { max: FREE_PLAN_LIMITS.MAX_CATEGORIES }));
+        return;
+      }
       const newCat: Category = {
         id: `cat-${Date.now()}`,
         name: trimmed,

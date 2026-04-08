@@ -131,17 +131,15 @@ export function EventFormScreen() {
       await updateEvent(event);
     } else {
       await addEvent(event);
-      // Non-blocking: interstitial ad + review prompt after creating a new event
-      showInterstitialIfDue().catch(() => {});
+      // Non-blocking: interstitial ad (free users only) + review prompt
+      if (!isPremium) showInterstitialIfDue().catch(() => {});
       trackEventSavedAndMaybePrompt().catch(() => {});
     }
 
     navigation.goBack();
   };
 
-  // TODO: restore premium filter before production release
-  // const freeSounds = SOUNDS.filter((s) => !s.premium);
-  const freeSounds = SOUNDS; // DEV: all sounds unlocked for testing
+  const freeSounds = isPremium ? SOUNDS : SOUNDS.filter((s) => !s.premium);
 
   return (
     <ScrollView
@@ -361,7 +359,7 @@ export function EventFormScreen() {
       <ReminderPicker
         reminders={reminders}
         onChange={setReminders}
-        maxReminders={FREE_PLAN_LIMITS.MAX_REMINDERS_PER_EVENT}
+        maxReminders={isPremium ? 999 : FREE_PLAN_LIMITS.MAX_REMINDERS_PER_EVENT}
       />
 
       {/* Sound */}
