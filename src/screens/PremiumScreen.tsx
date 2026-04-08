@@ -21,6 +21,7 @@ const FEATURES = [
   { icon: 'color-palette', key: 'unlimitedCategories' },
   { icon: 'notifications', key: 'multipleReminders' },
   { icon: 'musical-notes', key: 'allSounds' },
+  { icon: 'globe',         key: 'allHolidayPacks' },
   { icon: 'cloud-upload',  key: 'backup' },
 ];
 

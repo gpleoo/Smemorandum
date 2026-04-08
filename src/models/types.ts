@@ -23,8 +23,9 @@ export interface SEvent {
   categoryId: string;
   reminders: Reminder[];
   soundId: string;
-  sourceContactId?: string; // Phone contact ID, used to detect duplicates on re-import
-  contactPhone?: string;    // Phone number for "Call" quick action on notifications
+  sourceContactId?: string;  // Phone contact ID, used to detect duplicates on re-import
+  contactPhone?: string;     // Phone number for "Call" quick action on notifications
+  sourceTemplateId?: string; // Holiday template ID, tracks which preset was used
   createdAt: string;
   updatedAt: string;
 }
@@ -38,6 +39,7 @@ export interface Category {
 
 export type ThemeMode = 'light' | 'dark' | 'auto';
 export type ColorTheme = 'purple' | 'blue' | 'green' | 'orange' | 'rose';
+export type HolidayTradition = 'secular' | 'catholic' | 'protestant' | 'jewish' | 'islamic';
 
 export interface AppSettings {
   language: string;
@@ -48,6 +50,8 @@ export interface AppSettings {
   hasSeenTutorial: boolean;
   adsConsent: boolean | null; // null = not asked yet
   weeklyDigestEnabled: boolean;
+  holidayCountries: string[];          // ISO-3166 codes, e.g. ['IT']
+  holidayTraditions: HolidayTradition[]; // e.g. ['secular','catholic']
 }
 
 export type RootStackParamList = {
@@ -87,4 +91,5 @@ export type SettingsStackParamList = {
   ManageCategories: undefined;
   ImportContacts: undefined;
   Stats: undefined;
+  HolidayTemplates: undefined;
 };
