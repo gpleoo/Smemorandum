@@ -95,7 +95,8 @@
       }],
       "@bacons/apple-targets",
       "./plugins/withAppGroup",
-      "./plugins/withAppGroupBridge"
+      "./plugins/withAppGroupBridge",
+      "react-native-purchases"
     ],
     "extra": {
       "eas": {
