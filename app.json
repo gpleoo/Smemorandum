@@ -7,6 +7,9 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
+    "primaryColor": "#6C63FF",
+    "privacy": "unlisted",
+    "platforms": ["ios", "android", "web"],
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
@@ -16,10 +19,13 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.smemorandum.app",
       "buildNumber": "1",
+      "requireFullScreen": false,
       "infoPlist": {
         "NSCalendarsUsageDescription": "Smemorandum needs calendar access to sync your events.",
         "NSContactsUsageDescription": "Smemorandum uses your contacts to import birthdays as reminders.",
-        "UIBackgroundModes": ["remote-notification"]
+        "UIBackgroundModes": ["remote-notification"],
+        "CFBundleLocalizations": ["it", "en", "fr", "de", "es"],
+        "CFBundleDevelopmentRegion": "it"
       }
     },
     "android": {
@@ -32,12 +38,39 @@
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
       "permissions": ["NOTIFICATIONS", "VIBRATE", "RECEIVE_BOOT_COMPLETED", "READ_CONTACTS"],
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "allowBackup": false
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "name": "Smemorandum",
+      "shortName": "Smemorandum",
+      "lang": "it",
+      "themeColor": "#6C63FF",
+      "backgroundColor": "#F8F9FA",
+      "description": "App gratuita per promemoria compleanni, anniversari e scadenze."
+    },
+    "locales": {
+      "it": "./src/i18n/it.json",
+      "en": "./src/i18n/en.json",
+      "fr": "./src/i18n/fr.json",
+      "de": "./src/i18n/de.json",
+      "es": "./src/i18n/es.json"
     },
     "plugins": [
+      [
+        "react-native-google-mobile-ads",
+        {
+          "androidAppId": "ca-app-pub-3940256099942544~3347511713",
+          "iosAppId": "ca-app-pub-3940256099942544~1458002511",
+          "skAdNetworkItems": [
+            { "skAdNetworkIdentifier": "cstr6suwn9.skadnetwork" },
+            { "skAdNetworkIdentifier": "4fzdc2evr5.skadnetwork" },
+            { "skAdNetworkIdentifier": "2fnua5tdw4.skadnetwork" }
+          ],
+          "userTrackingUsageDescription": "Questo identificatore viene usato per mostrare annunci pertinenti. Puoi disabilitarlo nelle impostazioni."
+        }
+      ],
       "expo-notifications",
       "expo-localization",
       "expo-secure-store",

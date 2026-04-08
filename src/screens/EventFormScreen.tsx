@@ -25,6 +25,7 @@ import {
   Reminder,
 } from '../models/types';
 import { SOUNDS, FREE_PLAN_LIMITS } from '../utils/constants';
+import { showInterstitialIfDue } from '../services/adService';
 import { toISODateString, formatDate } from '../utils/dateUtils';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -121,6 +122,8 @@ export function EventFormScreen() {
       await updateEvent(event);
     } else {
       await addEvent(event);
+      // Show interstitial ad after creating a new event (frequency capped, non-blocking)
+      showInterstitialIfDue().catch(() => {});
     }
 
     navigation.goBack();
