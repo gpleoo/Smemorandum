@@ -26,6 +26,7 @@ import {
 } from '../models/types';
 import { SOUNDS, FREE_PLAN_LIMITS } from '../utils/constants';
 import { showInterstitialIfDue } from '../services/adService';
+import { usePremium } from '../context/PremiumContext';
 import { toISODateString, formatDate } from '../utils/dateUtils';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -36,8 +37,9 @@ export function EventFormScreen() {
   const { colors, typography: typo, spacing, borderRadius } = useTheme();
   const navigation = useNavigation();
   const route = useRoute<FormRoute>();
-  const { getEventById, addEvent, updateEvent } = useEvents();
+  const { getEventById, addEvent, updateEvent, events } = useEvents();
   const { categories } = useCategories();
+  const { isPremium } = usePremium();
   const editId = route.params?.eventId;
   const existingEvent = editId ? getEventById(editId) : undefined;
 
@@ -100,6 +102,12 @@ export function EventFormScreen() {
       setTitleError(true);
       scrollViewRef.current?.scrollTo({ y: 0, animated: true });
       setTimeout(() => titleInputRef.current?.focus(), 300);
+      return;
+    }
+
+    // Enforce free plan limits on new events
+    if (!isEditing && !isPremium && events.length >= FREE_PLAN_LIMITS.MAX_EVENTS) {
+      Alert.alert(t('common.premiumFeature'), t('common.eventLimitReached', { max: FREE_PLAN_LIMITS.MAX_EVENTS }));
       return;
     }
 

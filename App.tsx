@@ -6,6 +6,7 @@ import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import * as Notifications from 'expo-notifications';
 import { ThemeProvider, useTheme } from './src/theme/ThemeContext';
 import { EventProvider } from './src/context/EventContext';
+import { PremiumProvider } from './src/context/PremiumContext';
 import { AppNavigator, navigationRef } from './src/navigation/AppNavigator';
 import { initializeNotifications } from './src/services/notificationService';
 import { initializeAdMob } from './src/services/adService';
@@ -72,9 +73,11 @@ function AppContent() {
 export default function App() {
   return (
     <ThemeProvider>
-      <EventProvider>
-        <AppContent />
-      </EventProvider>
+      <PremiumProvider>
+        <EventProvider>
+          <AppContent />
+        </EventProvider>
+      </PremiumProvider>
     </ThemeProvider>
   );
 }

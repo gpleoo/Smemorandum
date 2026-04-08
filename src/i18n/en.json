@@ -137,18 +137,24 @@
   "premium": {
     "title": "Smemorandum Premium",
     "subtitle": "Unlock all features",
-    "unlimitedEvents": "Unlimited events",
-    "unlimitedCategories": "Customizable categories",
-    "multipleReminders": "Multiple reminders",
-    "allSounds": "All sounds",
-    "noAds": "No ads",
-    "backup": "Backup and restore",
+    "unlimitedEvents": "Unlimited events (free: max 10)",
+    "unlimitedCategories": "Unlimited categories (free: max 3)",
+    "multipleReminders": "Multiple reminders per event",
+    "allSounds": "All notification sounds",
+    "noAds": "No advertisements",
+    "backup": "Unlimited backup & restore",
     "monthlyPrice": "{{price}}/month",
     "yearlyPrice": "{{price}}/year",
+    "yearlyBadge": "Save 44% compared to monthly",
     "subscribe": "Subscribe",
     "restore": "Restore purchases",
-    "alreadyPremium": "You're already Premium!",
-    "comingSoon": "Premium subscription will be available soon!"
+    "alreadyPremium": "You're already Premium! Thank you for your support.",
+    "purchaseSuccess": "Welcome to Premium! All features are now unlocked.",
+    "purchaseError": "Purchase failed. Please try again later.",
+    "restoreSuccess": "Purchases restored successfully!",
+    "restoreNotFound": "No previous purchases found.",
+    "webNotSupported": "Purchases are only available in the mobile app.",
+    "legalNote": "Subscription renews automatically. Cancel anytime via App Store / Google Play settings. Prices include applicable taxes."
   },
   "onboarding": {
     "slide1Title": "Welcome to Smemorandum",
@@ -206,6 +212,7 @@
     "loading": "Loading...",
     "retry": "Retry",
     "premiumFeature": "Premium Feature",
-    "upgradeToPremium": "Upgrade to Premium to unlock this feature"
+    "upgradeToPremium": "Upgrade to Premium to unlock this feature",
+    "eventLimitReached": "You've reached the {{max}}-event limit on the free plan. Upgrade to Premium to add more."
   }
 }
