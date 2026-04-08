@@ -137,18 +137,24 @@
   "premium": {
     "title": "Smemorandum Premium",
     "subtitle": "Alle Funktionen freischalten",
-    "unlimitedEvents": "Unbegrenzte Ereignisse",
-    "unlimitedCategories": "Anpassbare Kategorien",
-    "multipleReminders": "Mehrere Erinnerungen",
-    "allSounds": "Alle Töne",
+    "unlimitedEvents": "Unbegrenzte Ereignisse (kostenlos: max. 10)",
+    "unlimitedCategories": "Unbegrenzte Kategorien (kostenlos: max. 3)",
+    "multipleReminders": "Mehrere Erinnerungen pro Ereignis",
+    "allSounds": "Alle Benachrichtigungstöne",
     "noAds": "Keine Werbung",
-    "backup": "Sicherung und Wiederherstellung",
+    "backup": "Unbegrenzte Sicherung & Wiederherstellung",
     "monthlyPrice": "{{price}}/Monat",
     "yearlyPrice": "{{price}}/Jahr",
+    "yearlyBadge": "44 % günstiger als monatlich",
     "subscribe": "Abonnieren",
     "restore": "Käufe wiederherstellen",
-    "alreadyPremium": "Sie sind bereits Premium!",
-    "comingSoon": "Das Premium-Abonnement wird in Kürze verfügbar sein!"
+    "alreadyPremium": "Du bist bereits Premium! Danke für deine Unterstützung.",
+    "purchaseSuccess": "Willkommen bei Premium! Alle Funktionen sind freigeschaltet.",
+    "purchaseError": "Kauf fehlgeschlagen. Bitte versuche es später erneut.",
+    "restoreSuccess": "Käufe erfolgreich wiederhergestellt!",
+    "restoreNotFound": "Keine früheren Käufe gefunden.",
+    "webNotSupported": "Käufe sind nur in der mobilen App verfügbar.",
+    "legalNote": "Das Abonnement verlängert sich automatisch. Jederzeit über die App Store / Google Play Einstellungen kündbar. Preise inkl. MwSt."
   },
   "onboarding": {
     "slide1Title": "Willkommen bei Smemorandum",
@@ -206,6 +212,7 @@
     "loading": "Laden...",
     "retry": "Erneut versuchen",
     "premiumFeature": "Premium-Funktion",
-    "upgradeToPremium": "Werden Sie Premium, um diese Funktion freizuschalten"
+    "upgradeToPremium": "Werden Sie Premium, um diese Funktion freizuschalten",
+    "eventLimitReached": "Du hast das Limit von {{max}} Ereignissen im kostenlosen Plan erreicht. Werde Premium, um weitere hinzuzufügen."
   }
 }

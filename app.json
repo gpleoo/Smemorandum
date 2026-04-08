@@ -13,7 +13,7 @@
     "splash": {
       "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#6C63FF"
+      "backgroundColor": "#FFFFFF"
     },
     "ios": {
       "supportsTablet": true,
@@ -92,7 +92,11 @@
             "updatePeriodMillis": 1800000
           }
         ]
-      }]
+      }],
+      "@bacons/apple-targets",
+      "./plugins/withAppGroup",
+      "./plugins/withAppGroupBridge",
+      "react-native-purchases"
     ],
     "extra": {
       "eas": {

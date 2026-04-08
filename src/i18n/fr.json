@@ -137,18 +137,24 @@
   "premium": {
     "title": "Smemorandum Premium",
     "subtitle": "Débloquez toutes les fonctionnalités",
-    "unlimitedEvents": "Événements illimités",
-    "unlimitedCategories": "Catégories personnalisables",
-    "multipleReminders": "Rappels multiples",
-    "allSounds": "Tous les sons",
+    "unlimitedEvents": "Événements illimités (gratuit : max 10)",
+    "unlimitedCategories": "Catégories illimitées (gratuit : max 3)",
+    "multipleReminders": "Rappels multiples par événement",
+    "allSounds": "Tous les sons de notification",
     "noAds": "Sans publicité",
-    "backup": "Sauvegarde et restauration",
+    "backup": "Sauvegarde et restauration illimitées",
     "monthlyPrice": "{{price}}/mois",
     "yearlyPrice": "{{price}}/an",
+    "yearlyBadge": "Économisez 44 % par rapport au mensuel",
     "subscribe": "S'abonner",
     "restore": "Restaurer les achats",
-    "alreadyPremium": "Vous êtes déjà Premium !",
-    "comingSoon": "L'abonnement Premium sera bientôt disponible !"
+    "alreadyPremium": "Vous êtes déjà Premium ! Merci pour votre soutien.",
+    "purchaseSuccess": "Bienvenue dans Premium ! Toutes les fonctionnalités sont débloquées.",
+    "purchaseError": "Achat échoué. Réessayez plus tard.",
+    "restoreSuccess": "Achats restaurés avec succès !",
+    "restoreNotFound": "Aucun achat précédent trouvé.",
+    "webNotSupported": "Les achats sont disponibles uniquement dans l'application mobile.",
+    "legalNote": "L'abonnement se renouvelle automatiquement. Annulez à tout moment via les paramètres de l'App Store / Google Play. Prix TTC."
   },
   "onboarding": {
     "slide1Title": "Bienvenue dans Smemorandum",
@@ -206,6 +212,7 @@
     "loading": "Chargement...",
     "retry": "Réessayer",
     "premiumFeature": "Fonctionnalité Premium",
-    "upgradeToPremium": "Passez à Premium pour débloquer cette fonctionnalité"
+    "upgradeToPremium": "Passez à Premium pour débloquer cette fonctionnalité",
+    "eventLimitReached": "Vous avez atteint la limite de {{max}} événements du plan gratuit. Passez à Premium pour en ajouter davantage."
   }
 }

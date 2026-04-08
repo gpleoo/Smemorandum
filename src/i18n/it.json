@@ -137,18 +137,24 @@
   "premium": {
     "title": "Smemorandum Premium",
     "subtitle": "Sblocca tutte le funzionalità",
-    "unlimitedEvents": "Eventi illimitati",
-    "unlimitedCategories": "Categorie personalizzabili",
-    "multipleReminders": "Promemoria multipli",
-    "allSounds": "Tutti i suoni",
+    "unlimitedEvents": "Eventi illimitati (gratis: max 10)",
+    "unlimitedCategories": "Categorie illimitate (gratis: max 3)",
+    "multipleReminders": "Promemoria multipli per evento",
+    "allSounds": "Tutti i suoni di notifica",
     "noAds": "Nessuna pubblicità",
-    "backup": "Backup e ripristino",
+    "backup": "Backup e ripristino illimitati",
     "monthlyPrice": "{{price}}/mese",
     "yearlyPrice": "{{price}}/anno",
+    "yearlyBadge": "Risparmia il 44% rispetto al mensile",
     "subscribe": "Abbonati",
     "restore": "Ripristina acquisti",
-    "alreadyPremium": "Sei già Premium!",
-    "comingSoon": "L'abbonamento Premium sarà disponibile a breve!"
+    "alreadyPremium": "Sei già Premium! Grazie per il supporto.",
+    "purchaseSuccess": "Benvenuto in Premium! Tutte le funzionalità sono sbloccate.",
+    "purchaseError": "Acquisto non riuscito. Riprova più tardi.",
+    "restoreSuccess": "Acquisti ripristinati con successo!",
+    "restoreNotFound": "Nessun acquisto precedente trovato.",
+    "webNotSupported": "Gli acquisti sono disponibili solo sull'app mobile.",
+    "legalNote": "L'abbonamento si rinnova automaticamente. Puoi annullarlo in qualsiasi momento dalle impostazioni dell'App Store / Google Play. Prezzi inclusi tasse applicabili."
   },
   "onboarding": {
     "slide1Title": "Benvenuto in Smemorandum",
@@ -206,6 +212,7 @@
     "loading": "Caricamento...",
     "retry": "Riprova",
     "premiumFeature": "Funzionalità Premium",
-    "upgradeToPremium": "Passa a Premium per sbloccare questa funzionalità"
+    "upgradeToPremium": "Passa a Premium per sbloccare questa funzionalità",
+    "eventLimitReached": "Hai raggiunto il limite di {{max}} eventi del piano gratuito. Passa a Premium per aggiungerne altri."
   }
 }

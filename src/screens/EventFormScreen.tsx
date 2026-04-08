@@ -26,6 +26,8 @@ import {
 } from '../models/types';
 import { SOUNDS, FREE_PLAN_LIMITS } from '../utils/constants';
 import { showInterstitialIfDue } from '../services/adService';
+import { usePremium } from '../context/PremiumContext';
+import { trackEventSavedAndMaybePrompt } from '../services/reviewService';
 import { toISODateString, formatDate } from '../utils/dateUtils';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -36,8 +38,9 @@ export function EventFormScreen() {
   const { colors, typography: typo, spacing, borderRadius } = useTheme();
   const navigation = useNavigation();
   const route = useRoute<FormRoute>();
-  const { getEventById, addEvent, updateEvent } = useEvents();
+  const { getEventById, addEvent, updateEvent, events } = useEvents();
   const { categories } = useCategories();
+  const { isPremium } = usePremium();
   const editId = route.params?.eventId;
   const existingEvent = editId ? getEventById(editId) : undefined;
 
@@ -103,6 +106,12 @@ export function EventFormScreen() {
       return;
     }
 
+    // Enforce free plan limits on new events
+    if (!isEditing && !isPremium && events.length >= FREE_PLAN_LIMITS.MAX_EVENTS) {
+      Alert.alert(t('common.premiumFeature'), t('common.eventLimitReached', { max: FREE_PLAN_LIMITS.MAX_EVENTS }));
+      return;
+    }
+
     const now = new Date().toISOString();
     const event: SEvent = {
       id: existingEvent?.id ?? uuidv4(),
@@ -122,8 +131,9 @@ export function EventFormScreen() {
       await updateEvent(event);
     } else {
       await addEvent(event);
-      // Show interstitial ad after creating a new event (frequency capped, non-blocking)
+      // Non-blocking: interstitial ad + review prompt after creating a new event
       showInterstitialIfDue().catch(() => {});
+      trackEventSavedAndMaybePrompt().catch(() => {});
     }
 
     navigation.goBack();

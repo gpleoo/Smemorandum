@@ -137,18 +137,24 @@
   "premium": {
     "title": "Smemorandum Premium",
     "subtitle": "Desbloquea todas las funciones",
-    "unlimitedEvents": "Eventos ilimitados",
-    "unlimitedCategories": "Categorías personalizables",
-    "multipleReminders": "Recordatorios múltiples",
-    "allSounds": "Todos los sonidos",
+    "unlimitedEvents": "Eventos ilimitados (gratis: máx. 10)",
+    "unlimitedCategories": "Categorías ilimitadas (gratis: máx. 3)",
+    "multipleReminders": "Recordatorios múltiples por evento",
+    "allSounds": "Todos los sonidos de notificación",
     "noAds": "Sin publicidad",
-    "backup": "Copia de seguridad y restauración",
+    "backup": "Copia de seguridad y restauración ilimitadas",
     "monthlyPrice": "{{price}}/mes",
     "yearlyPrice": "{{price}}/año",
+    "yearlyBadge": "Ahorra un 44% respecto al mensual",
     "subscribe": "Suscribirse",
     "restore": "Restaurar compras",
-    "alreadyPremium": "¡Ya eres Premium!",
-    "comingSoon": "¡La suscripción Premium estará disponible próximamente!"
+    "alreadyPremium": "¡Ya eres Premium! Gracias por tu apoyo.",
+    "purchaseSuccess": "¡Bienvenido a Premium! Todas las funciones están desbloqueadas.",
+    "purchaseError": "Compra fallida. Inténtalo de nuevo más tarde.",
+    "restoreSuccess": "¡Compras restauradas con éxito!",
+    "restoreNotFound": "No se encontraron compras anteriores.",
+    "webNotSupported": "Las compras solo están disponibles en la app móvil.",
+    "legalNote": "La suscripción se renueva automáticamente. Cancela cuando quieras desde los ajustes de la App Store / Google Play. Precios con impuestos incluidos."
   },
   "onboarding": {
     "slide1Title": "Bienvenido a Smemorandum",
@@ -206,6 +212,7 @@
     "loading": "Cargando...",
     "retry": "Reintentar",
     "premiumFeature": "Función Premium",
-    "upgradeToPremium": "Pasa a Premium para desbloquear esta función"
+    "upgradeToPremium": "Pasa a Premium para desbloquear esta función",
+    "eventLimitReached": "Has alcanzado el límite de {{max}} eventos del plan gratuito. Pasa a Premium para añadir más."
   }
 }
