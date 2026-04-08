@@ -31,8 +31,14 @@
     "edit": "Bearbeiten",
     "share": "Teilen",
     "sendWishes": "Glückwünsche per WhatsApp senden",
-    "wishesMessage": "Herzlichen Glückwunsch zum Geburtstag, {{name}}! 🎂🎉 Ich hoffe, du hast einen wunderschönen Tag!",
-    "whatsappNotInstalled": "WhatsApp ist auf diesem Gerät nicht installiert."
+    "whatsappNotInstalled": "WhatsApp ist auf diesem Gerät nicht installiert.",
+    "chooseWishTemplate": "Nachricht auswählen",
+    "chooseWishTemplateDesc": "Wähle die Nachricht, die du an {{name}} senden möchtest",
+    "wishTemplate1": "Herzlichen Glückwunsch zum Geburtstag, {{name}}! 🎂🎉 Ich hoffe, du hast einen wunderschönen Tag!",
+    "wishTemplate2": "Alles Gute zum Geburtstag, {{name}}! 🎁✨ Mögen alle deine Träume wahr werden!",
+    "wishTemplate3": "Alles Gute zum Geburtstag, {{name}}! 🥳 Herzlichste Glückwünsche!",
+    "wishTemplate4": "{{name}}, möge dieser besondere Tag der Beginn eines wundervollen Jahres sein! 🌟 Herzlichen Glückwunsch von Herzen!",
+    "wishTemplate5": "Ein Jahr älter, ein Jahr besser! 😄 Alles Gute zum Geburtstag, {{name}}! 🎂🎉 Du bist der/die Beste!"
   },
   "eventForm": {
     "createTitle": "Neues Ereignis",

@@ -31,8 +31,14 @@
     "edit": "Modifica",
     "share": "Condividi",
     "sendWishes": "Manda gli auguri su WhatsApp",
-    "wishesMessage": "Tanti auguri {{name}}! 🎂🎉 Spero che tu stia passando una splendida giornata!",
-    "whatsappNotInstalled": "WhatsApp non è installato su questo dispositivo."
+    "whatsappNotInstalled": "WhatsApp non è installato su questo dispositivo.",
+    "chooseWishTemplate": "Scegli il messaggio",
+    "chooseWishTemplateDesc": "Seleziona il messaggio da inviare a {{name}}",
+    "wishTemplate1": "Tanti auguri {{name}}! 🎂🎉 Spero che tu stia passando una splendida giornata!",
+    "wishTemplate2": "Auguri {{name}}! 🎁✨ Che questo compleanno ti porti tanta gioia e felicità! Ti voglio bene!",
+    "wishTemplate3": "Buon compleanno {{name}}! 🥳 Tantissimi auguri!",
+    "wishTemplate4": "{{name}}, che questo giorno speciale sia l'inizio di un anno meraviglioso! 🌟 Tanti auguri di cuore!",
+    "wishTemplate5": "Un anno in più, un anno in meglio! 😄 Auguri {{name}}! 🎂🎉 Sei sempre il/la migliore!"
   },
   "eventForm": {
     "createTitle": "Nuovo evento",

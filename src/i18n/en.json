@@ -31,8 +31,14 @@
     "edit": "Edit",
     "share": "Share",
     "sendWishes": "Send wishes on WhatsApp",
-    "wishesMessage": "Happy birthday {{name}}! 🎂🎉 Hope you're having a wonderful day!",
-    "whatsappNotInstalled": "WhatsApp is not installed on this device."
+    "whatsappNotInstalled": "WhatsApp is not installed on this device.",
+    "chooseWishTemplate": "Choose a message",
+    "chooseWishTemplateDesc": "Select the message to send to {{name}}",
+    "wishTemplate1": "Happy birthday {{name}}! 🎂🎉 Hope you're having a wonderful day!",
+    "wishTemplate2": "Wishing you an amazing birthday {{name}}! 🎁✨ May all your dreams come true!",
+    "wishTemplate3": "Happy birthday {{name}}! 🥳 Best wishes!",
+    "wishTemplate4": "{{name}}, may this special day be the beginning of a wonderful year! 🌟 Happy birthday with all my heart!",
+    "wishTemplate5": "Another year older, another year better! 😄 Happy birthday {{name}}! 🎂🎉 You're the best!"
   },
   "eventForm": {
     "createTitle": "New event",

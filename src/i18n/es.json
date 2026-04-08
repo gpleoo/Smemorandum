@@ -31,8 +31,14 @@
     "edit": "Editar",
     "share": "Compartir",
     "sendWishes": "Enviar felicitación por WhatsApp",
-    "wishesMessage": "¡Feliz cumpleaños {{name}}! 🎂🎉 ¡Espero que tengas un día maravilloso!",
-    "whatsappNotInstalled": "WhatsApp no está instalado en este dispositivo."
+    "whatsappNotInstalled": "WhatsApp no está instalado en este dispositivo.",
+    "chooseWishTemplate": "Elige un mensaje",
+    "chooseWishTemplateDesc": "Selecciona el mensaje para enviar a {{name}}",
+    "wishTemplate1": "¡Feliz cumpleaños {{name}}! 🎂🎉 ¡Espero que tengas un día maravilloso!",
+    "wishTemplate2": "¡Muchas felicidades {{name}}! 🎁✨ ¡Que todos tus sueños se hagan realidad!",
+    "wishTemplate3": "¡Feliz cumpleaños {{name}}! 🥳 ¡Muchos años más!",
+    "wishTemplate4": "{{name}}, ¡que este día especial sea el inicio de un año maravilloso! 🌟 ¡Feliz cumpleaños de todo corazón!",
+    "wishTemplate5": "¡Un año más, un año mejor! 😄 ¡Feliz cumpleaños {{name}}! 🎂🎉 ¡Eres el/la mejor!"
   },
   "eventForm": {
     "createTitle": "Nuevo evento",

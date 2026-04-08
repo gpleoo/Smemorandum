@@ -31,8 +31,14 @@
     "edit": "Modifier",
     "share": "Partager",
     "sendWishes": "Envoyer des vœux sur WhatsApp",
-    "wishesMessage": "Joyeux anniversaire {{name}} ! 🎂🎉 J'espère que tu passes une merveilleuse journée !",
-    "whatsappNotInstalled": "WhatsApp n'est pas installé sur cet appareil."
+    "whatsappNotInstalled": "WhatsApp n'est pas installé sur cet appareil.",
+    "chooseWishTemplate": "Choisir un message",
+    "chooseWishTemplateDesc": "Sélectionne le message à envoyer à {{name}}",
+    "wishTemplate1": "Joyeux anniversaire {{name}} ! 🎂🎉 J'espère que tu passes une merveilleuse journée !",
+    "wishTemplate2": "Bon anniversaire {{name}} ! 🎁✨ Que tous tes rêves se réalisent !",
+    "wishTemplate3": "Joyeux anniversaire {{name}} ! 🥳 Tous mes vœux !",
+    "wishTemplate4": "{{name}}, que ce jour spécial soit le début d'une année merveilleuse ! 🌟 Bon anniversaire du fond du cœur !",
+    "wishTemplate5": "Une année de plus, une année en mieux ! 😄 Bon anniversaire {{name}} ! 🎂🎉 Tu es le/la meilleur(e) !"
   },
   "eventForm": {
     "createTitle": "Nouvel événement",
