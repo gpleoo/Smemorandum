@@ -92,7 +92,10 @@
             "updatePeriodMillis": 1800000
           }
         ]
-      }]
+      }],
+      "@bacons/apple-targets",
+      "./plugins/withAppGroup",
+      "./plugins/withAppGroupBridge"
     ],
     "extra": {
       "eas": {
