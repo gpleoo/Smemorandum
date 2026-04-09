@@ -8,6 +8,7 @@ import { formatRelativeDate, daysUntil } from '../utils/dateUtils';
 import { getNextOccurrence } from '../utils/recurrenceEngine';
 import { useTranslation } from 'react-i18next';
 import { CategoryBadge } from './CategoryBadge';
+import { nextAge, isMilestone } from '../services/nameDayService';
 
 interface EventCardProps {
   event: SEvent;
@@ -28,6 +29,10 @@ export function EventCard({ event, onPress }: EventCardProps) {
   const nextDate = getNextOccurrence(event, new Date());
   const days = nextDate ? daysUntil(nextDate) : null;
   const avatarColor = category?.color ?? colors.primary;
+  const age = event.eventType === 'ricorrenza' && event.recurrence.type === 'yearly'
+    ? nextAge(event.date)
+    : null;
+  const milestone = age !== null ? isMilestone(age) : false;
 
   return (
     <TouchableOpacity
@@ -52,9 +57,17 @@ export function EventCard({ event, onPress }: EventCardProps) {
           </Text>
         </View>
         <View style={styles.content}>
-          <Text style={[typo.h3, { color: colors.text }]} numberOfLines={1}>
-            {event.title}
-          </Text>
+          <View style={styles.titleRow}>
+            <Text style={[typo.h3, { color: colors.text, flex: 1 }]} numberOfLines={1}>
+              {event.title}
+            </Text>
+            {milestone && <Text style={styles.milestoneIcon}>🏆</Text>}
+          </View>
+          {age !== null && (
+            <Text style={[typo.caption, { color: colors.primary, fontWeight: '700' }]}>
+              {t('eventForm.ageLabel', { age })}
+            </Text>
+          )}
           <View style={[styles.meta, { marginTop: spacing.xs }]}>
             <Ionicons
               name={event.eventType === 'ricorrenza' ? 'repeat' : 'time'}
@@ -123,6 +136,14 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     marginRight: 12,
+  },
+  titleRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  milestoneIcon: {
+    fontSize: 16,
+    marginLeft: 4,
   },
   meta: {
     flexDirection: 'row',

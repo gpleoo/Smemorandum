@@ -67,7 +67,15 @@
     "description": "Notes",
     "descriptionPlaceholder": "Ajouter des notes optionnelles...",
     "save": "Enregistrer",
-    "requiredField": "Champ obligatoire"
+    "requiredField": "Champ obligatoire",
+    "timeCapsula": "Capsule temporelle",
+    "timeCapsulaPlaceholder": "Écris une note privée qui apparaîtra le jour de l'événement... (ex. l'an dernier tu lui as offert un livre)",
+    "nameDaySuggestion": "💐 La fête de {{name}} est le {{date}}",
+    "nameDayAdd": "Ajouter un rappel",
+    "nameDayAdded": "Fête de {{name}} ajoutée !",
+    "ageLabel": "Fêtera ses {{age}} ans",
+    "milestoneLabel": "🎉 Année spéciale !",
+    "birthdayToday": "🎂 Anniversaire aujourd'hui !"
   },
   "eventDetail": {
     "details": "Détails",

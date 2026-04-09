@@ -67,7 +67,15 @@
     "description": "Notas",
     "descriptionPlaceholder": "Añade notas opcionales...",
     "save": "Guardar",
-    "requiredField": "Campo obligatorio"
+    "requiredField": "Campo obligatorio",
+    "timeCapsula": "Cápsula del tiempo",
+    "timeCapsulaPlaceholder": "Escribe una nota privada que aparecerá el día del evento... (ej. el año pasado le regalaste un libro)",
+    "nameDaySuggestion": "💐 {{name}} celebra su santo el {{date}}",
+    "nameDayAdd": "Añadir recordatorio",
+    "nameDayAdded": "¡Santo de {{name}} añadido!",
+    "ageLabel": "Cumplirá {{age}} años",
+    "milestoneLabel": "🎉 ¡Año especial!",
+    "birthdayToday": "🎂 ¡Cumpleaños hoy!"
   },
   "eventDetail": {
     "details": "Detalles",

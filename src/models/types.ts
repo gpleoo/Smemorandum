@@ -26,6 +26,7 @@ export interface SEvent {
   sourceContactId?: string;  // Phone contact ID, used to detect duplicates on re-import
   contactPhone?: string;     // Phone number for "Call" quick action on notifications
   sourceTemplateId?: string; // Holiday template ID, tracks which preset was used
+  timeCapsula?: string;      // Private note revealed on the event day ("capsula del tempo")
   createdAt: string;
   updatedAt: string;
 }

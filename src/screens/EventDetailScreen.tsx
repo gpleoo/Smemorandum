@@ -23,6 +23,7 @@ import { CategoryBadge } from '../components/CategoryBadge';
 import { formatDate, daysUntil } from '../utils/dateUtils';
 import { getNextOccurrence, describeRecurrence } from '../utils/recurrenceEngine';
 import { SOUNDS } from '../utils/constants';
+import { nextAge, isMilestone } from '../services/nameDayService';
 
 type DetailRoute = RouteProp<HomeStackParamList, 'EventDetail'>;
 type Nav = NativeStackNavigationProp<HomeStackParamList, 'EventDetail'>;
@@ -64,6 +65,13 @@ export function EventDetailScreen() {
   const nextDate = getNextOccurrence(event, new Date());
   const days = nextDate ? daysUntil(nextDate) : null;
   const sound = SOUNDS.find((s) => s.id === event.soundId);
+
+  // Age & milestone (only for yearly ricorrenza with a year in the date)
+  const age = event.eventType === 'ricorrenza' && event.recurrence.type === 'yearly'
+    ? nextAge(event.date)
+    : null;
+  const milestone = age !== null ? isMilestone(age) : false;
+  const isToday = days === 0;
 
   const handleDelete = async () => {
     if (Platform.OS === 'web') {
@@ -175,12 +183,29 @@ export function EventDetailScreen() {
               </Text>
               {days !== null && days >= 0 && (
                 <Text style={[typo.bodySmall, { color: colors.textSecondary, marginTop: 2 }]}>
-                  {days === 0
-                    ? t('home.todayLabel')
+                  {isToday
+                    ? t('eventForm.birthdayToday')
                     : days === 1
                     ? t('home.tomorrow')
                     : t('home.daysLeft', { count: days })}
                 </Text>
+              )}
+              {/* Age label */}
+              {age !== null && (
+                <View style={[styles.badgeRow, { marginTop: spacing.sm }]}>
+                  <View style={[styles.ageBadge, { backgroundColor: colors.primary + '20', borderRadius: borderRadius.full, paddingHorizontal: spacing.sm, paddingVertical: 2 }]}>
+                    <Text style={[typo.bodySmall, { color: colors.primary, fontWeight: '700' }]}>
+                      {t('eventForm.ageLabel', { age })}
+                    </Text>
+                  </View>
+                  {milestone && (
+                    <View style={[styles.ageBadge, { backgroundColor: '#FFD700' + '30', borderRadius: borderRadius.full, paddingHorizontal: spacing.sm, paddingVertical: 2, marginLeft: spacing.xs }]}>
+                      <Text style={[typo.bodySmall, { color: '#B8860B', fontWeight: '700' }]}>
+                        {t('eventForm.milestoneLabel')}
+                      </Text>
+                    </View>
+                  )}
+                </View>
               )}
             </View>
           )}
@@ -250,6 +275,32 @@ export function EventDetailScreen() {
                 {t('eventDetail.notes')}
               </Text>
               <Text style={[typo.body, { color: colors.textSecondary }]}>{event.description}</Text>
+            </View>
+          )}
+
+          {/* Capsula del tempo — revealed only on the event day */}
+          {event.timeCapsula && isToday && (
+            <View style={[
+              styles.section,
+              {
+                marginTop: spacing.md,
+                backgroundColor: colors.primary + '10',
+                borderRadius: borderRadius.md,
+                padding: spacing.md,
+                borderWidth: 1,
+                borderColor: colors.primary + '30',
+                borderStyle: 'dashed',
+              },
+            ]}>
+              <View style={[styles.badgeRow, { marginBottom: spacing.xs }]}>
+                <Text style={{ fontSize: 20 }}>💌</Text>
+                <Text style={[typo.h3, { color: colors.primary, marginLeft: spacing.xs }]}>
+                  {t('eventForm.timeCapsula')}
+                </Text>
+              </View>
+              <Text style={[typo.body, { color: colors.text, fontStyle: 'italic' }]}>
+                {event.timeCapsula}
+              </Text>
             </View>
           )}
 
@@ -492,4 +543,6 @@ const styles = StyleSheet.create({
   templateIcon: {
     fontSize: 22,
   },
+  badgeRow: { flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap' },
+  ageBadge: {},
 });

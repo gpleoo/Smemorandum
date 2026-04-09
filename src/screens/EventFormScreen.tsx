@@ -30,6 +30,7 @@ import { usePremium } from '../context/PremiumContext';
 import { trackEventSavedAndMaybePrompt } from '../services/reviewService';
 import { toISODateString, formatDate } from '../utils/dateUtils';
 import { v4 as uuidv4 } from 'uuid';
+import { findNameDaysFromTitle, nameDayToISO, formatNameDay } from '../services/nameDayService';
 
 type FormRoute = RouteProp<HomeStackParamList, 'EventForm'>;
 
@@ -59,7 +60,9 @@ export function EventFormScreen() {
   );
   const [reminders, setReminders] = useState<Reminder[]>(existingEvent?.reminders ?? []);
   const [soundId, setSoundId] = useState(existingEvent?.soundId ?? 'gentle-bell');
+  const [timeCapsula, setTimeCapsula] = useState(existingEvent?.timeCapsula ?? '');
   const [titleError, setTitleError] = useState(false);
+  const [nameDaySuggestion, setNameDaySuggestion] = useState<{ name: string; dateStr: string; iso: string } | null>(null);
   const titleInputRef = useRef<TextInput>(null);
   const scrollViewRef = useRef<ScrollView>(null);
 
@@ -117,6 +120,7 @@ export function EventFormScreen() {
       categoryId,
       reminders,
       soundId,
+      timeCapsula: timeCapsula.trim() || undefined,
       createdAt: existingEvent?.createdAt ?? now,
       updatedAt: now,
     };
@@ -166,6 +170,22 @@ export function EventFormScreen() {
         onChangeText={(text) => {
           setTitle(text);
           if (text.trim()) setTitleError(false);
+          // Name day suggestion
+          if (eventType === 'ricorrenza' && text.length > 2) {
+            const matches = findNameDaysFromTitle(text);
+            if (matches.length > 0) {
+              const { name, nameDay } = matches[0];
+              setNameDaySuggestion({
+                name,
+                dateStr: formatNameDay(nameDay, i18n.language),
+                iso: nameDayToISO(nameDay),
+              });
+            } else {
+              setNameDaySuggestion(null);
+            }
+          } else {
+            setNameDaySuggestion(null);
+          }
         }}
       />
       {titleError && (
@@ -397,6 +417,43 @@ export function EventFormScreen() {
         ))}
       </View>
 
+      {/* Name day suggestion banner */}
+      {nameDaySuggestion && eventType === 'ricorrenza' && (
+        <View style={[
+          styles.nameDayBanner,
+          { backgroundColor: colors.primary + '15', borderRadius: borderRadius.md, padding: spacing.md, marginTop: spacing.md, borderWidth: 1, borderColor: colors.primary + '40' },
+        ]}>
+          <Text style={[typo.bodySmall, { color: colors.primary, flex: 1 }]}>
+            {t('eventForm.nameDaySuggestion', { name: nameDaySuggestion.name, date: nameDaySuggestion.dateStr })}
+          </Text>
+          <TouchableOpacity
+            style={[{ backgroundColor: colors.primary, borderRadius: borderRadius.md, paddingHorizontal: spacing.md, paddingVertical: spacing.xs, marginLeft: spacing.sm }]}
+            onPress={async () => {
+              const nameDayEvent: SEvent = {
+                id: uuidv4(),
+                title: `Onomastico di ${nameDaySuggestion.name}`,
+                description: '',
+                eventType: 'ricorrenza',
+                date: nameDaySuggestion.iso,
+                recurrence: { type: 'yearly' },
+                categoryId,
+                reminders: [],
+                soundId,
+                createdAt: new Date().toISOString(),
+                updatedAt: new Date().toISOString(),
+              };
+              await addEvent(nameDayEvent);
+              setNameDaySuggestion(null);
+              Alert.alert('💐', t('eventForm.nameDayAdded', { name: nameDaySuggestion.name }));
+            }}
+          >
+            <Text style={[typo.bodySmall, { color: '#FFF', fontWeight: '700' }]}>
+              {t('eventForm.nameDayAdd')}
+            </Text>
+          </TouchableOpacity>
+        </View>
+      )}
+
       {/* Description */}
       <Text style={[typo.label, { color: colors.textSecondary, marginTop: spacing.lg, marginBottom: spacing.xs }]}>
         {t('eventForm.description')}
@@ -421,6 +478,38 @@ export function EventFormScreen() {
         multiline
         numberOfLines={3}
       />
+
+      {/* Capsula del tempo — only for ricorrenza */}
+      {eventType === 'ricorrenza' && (
+        <>
+          <Text style={[typo.label, { color: colors.textSecondary, marginTop: spacing.lg, marginBottom: spacing.xs }]}>
+            💌 {t('eventForm.timeCapsula')}
+          </Text>
+          <TextInput
+            style={[
+              styles.input,
+              typo.bodySmall,
+              {
+                color: colors.text,
+                backgroundColor: colors.surfaceVariant,
+                borderRadius: borderRadius.md,
+                padding: spacing.md,
+                minHeight: 80,
+                textAlignVertical: 'top',
+                borderStyle: 'dashed',
+                borderWidth: 1,
+                borderColor: colors.primary + '50',
+              },
+            ]}
+            placeholder={t('eventForm.timeCapsulaPlaceholder')}
+            placeholderTextColor={colors.textTertiary}
+            value={timeCapsula}
+            onChangeText={setTimeCapsula}
+            multiline
+            numberOfLines={3}
+          />
+        </>
+      )}
 
       {/* Save Button */}
       <TouchableOpacity
@@ -458,4 +547,5 @@ const styles = StyleSheet.create({
   soundRow: { flexDirection: 'row', flexWrap: 'wrap' },
   soundChip: { flexDirection: 'row', alignItems: 'center' },
   saveButton: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center' },
+  nameDayBanner: { flexDirection: 'row', alignItems: 'center' },
 });

@@ -34,6 +34,7 @@ import { HomeStackParamList } from '../models/types';
 import { daysUntil } from '../utils/dateUtils';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { AdBanner } from '../components/AdBanner';
+import { Confetti } from '../components/Confetti';
 
 type Nav = NativeStackNavigationProp<HomeStackParamList, 'Home'>;
 
@@ -46,6 +47,7 @@ export function HomeScreen() {
   const todayEvents = upcomingEvents.filter(
     (item) => item.nextDate && daysUntil(item.nextDate) === 0
   );
+  const hasTodayBirthday = todayEvents.some((item) => item.event.eventType === 'ricorrenza');
   const weekEvents = upcomingEvents.filter(
     (item) => item.nextDate && daysUntil(item.nextDate) > 0 && daysUntil(item.nextDate) <= 7
   );
@@ -132,6 +134,7 @@ export function HomeScreen() {
         />
       )}
 
+      <Confetti visible={hasTodayBirthday} />
       <AdBanner style={{ marginBottom: 4 }} />
 
       <TouchableOpacity
