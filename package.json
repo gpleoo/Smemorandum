@@ -35,7 +35,6 @@
     "react-native-android-widget": "^0.20.1",
     "react-native-google-mobile-ads": "^13.5.0",
     "react-native-purchases": "^8.0.0",
-    "@bacons/apple-targets": "^0.3.3",
     "react-native-calendars": "^1.1314.0",
     "react-native-gesture-handler": "~2.20.2",
     "react-native-reanimated": "~3.16.2",

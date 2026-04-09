@@ -93,7 +93,6 @@
           }
         ]
       }],
-      "@bacons/apple-targets",
       "./plugins/withAppGroup",
       "./plugins/withAppGroupBridge",
       "react-native-purchases"
