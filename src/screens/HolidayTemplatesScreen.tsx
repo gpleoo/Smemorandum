@@ -27,7 +27,6 @@ import {
 } from '../services/templatesService';
 import { getSettings, updateSetting } from '../storage/settingsStorage';
 import { HOLIDAY_COUNTRIES } from '../utils/constants';
-import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 
 type Nav = NativeStackNavigationProp<SettingsStackParamList, 'HolidayTemplates'>;
