@@ -67,7 +67,15 @@
     "description": "Notizen",
     "descriptionPlaceholder": "Optionale Notizen hinzufügen...",
     "save": "Speichern",
-    "requiredField": "Pflichtfeld"
+    "requiredField": "Pflichtfeld",
+    "timeCapsula": "Zeitkapsel",
+    "timeCapsulaPlaceholder": "Schreib eine private Notiz, die am Ereignistag erscheint... (z. B. letztes Jahr hast du ihm ein Buch geschenkt)",
+    "nameDaySuggestion": "💐 {{name}} feiert seinen Namenstag am {{date}}",
+    "nameDayAdd": "Erinnerung hinzufügen",
+    "nameDayAdded": "Namenstag von {{name}} hinzugefügt!",
+    "ageLabel": "Wird {{age}} Jahre alt",
+    "milestoneLabel": "🎉 Besonderes Jahr!",
+    "birthdayToday": "🎂 Heute Geburtstag!"
   },
   "eventDetail": {
     "details": "Details",

@@ -67,7 +67,15 @@
     "description": "Note",
     "descriptionPlaceholder": "Aggiungi note opzionali...",
     "save": "Salva",
-    "requiredField": "Campo obbligatorio"
+    "requiredField": "Campo obbligatorio",
+    "timeCapsula": "Capsula del tempo",
+    "timeCapsulaPlaceholder": "Scrivi una nota privata che apparirà il giorno della ricorrenza... (es. l'anno scorso gli hai regalato un libro)",
+    "nameDaySuggestion": "💐 {{name}} festeggia il suo onomastico il {{date}}",
+    "nameDayAdd": "Aggiungi promemoria",
+    "nameDayAdded": "Onomastico di {{name}} aggiunto!",
+    "ageLabel": "Compirà {{age}} anni",
+    "milestoneLabel": "🎉 Anno speciale!",
+    "birthdayToday": "🎂 Compleanno oggi!"
   },
   "eventDetail": {
     "details": "Dettagli",

@@ -67,7 +67,15 @@
     "description": "Notes",
     "descriptionPlaceholder": "Add optional notes...",
     "save": "Save",
-    "requiredField": "Required field"
+    "requiredField": "Required field",
+    "timeCapsula": "Time capsule",
+    "timeCapsulaPlaceholder": "Write a private note that will appear on the event day... (e.g. last year you gave them a book)",
+    "nameDaySuggestion": "💐 {{name}}'s name day is on {{date}}",
+    "nameDayAdd": "Add reminder",
+    "nameDayAdded": "{{name}}'s name day added!",
+    "ageLabel": "Turning {{age}}",
+    "milestoneLabel": "🎉 Special year!",
+    "birthdayToday": "🎂 Birthday today!"
   },
   "eventDetail": {
     "details": "Details",
