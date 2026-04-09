@@ -58,44 +58,11 @@
       "es": "./src/i18n/es.json"
     },
     "plugins": [
-      [
-        "react-native-google-mobile-ads",
-        {
-          "androidAppId": "ca-app-pub-3940256099942544~3347511713",
-          "iosAppId": "ca-app-pub-3940256099942544~1458002511",
-          "skAdNetworkItems": [
-            { "skAdNetworkIdentifier": "cstr6suwn9.skadnetwork" },
-            { "skAdNetworkIdentifier": "4fzdc2evr5.skadnetwork" },
-            { "skAdNetworkIdentifier": "2fnua5tdw4.skadnetwork" }
-          ],
-          "userTrackingUsageDescription": "Questo identificatore viene usato per mostrare annunci pertinenti. Puoi disabilitarlo nelle impostazioni."
-        }
-      ],
       "expo-notifications",
       "expo-localization",
       "expo-secure-store",
       "expo-contacts",
       "expo-document-picker",
-      ["react-native-android-widget", {
-        "widgets": [
-          {
-            "name": "UpcomingEvents",
-            "label": "Smemorandum",
-            "description": "Prossimi eventi e compleanni",
-            "minWidth": "256dp",
-            "minHeight": "120dp",
-            "targetCellWidth": 4,
-            "targetCellHeight": 2,
-            "maxResizeWidth": "400dp",
-            "maxResizeHeight": "300dp",
-            "resizeMode": "horizontal|vertical",
-            "updatePeriodMillis": 1800000
-          }
-        ]
-      }],
-      "./plugins/withAppGroup",
-      "./plugins/withAppGroupBridge",
-      "react-native-purchases"
     ],
     "extra": {
       "eas": {
