@@ -25,7 +25,7 @@ const PremiumContext = createContext<PremiumContextType>({
 });
 
 export function PremiumProvider({ children }: { children: React.ReactNode }) {
-  const [isPremium, setIsPremium] = useState(false);
+  const [isPremium, setIsPremium] = useState(true); // DEV: premium sbloccato per test
   const [isLoadingPremium, setIsLoadingPremium] = useState(true);
 
   const refresh = useCallback(async () => {
