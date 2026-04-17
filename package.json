@@ -52,6 +52,6 @@
   "codegenConfig": {
     "name": "SmemorandumSpec",
     "type": "all",
-    "jsSrcsDir": "."
+    "jsSrcsDir": "./specs"
   }
 }
