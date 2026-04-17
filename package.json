@@ -44,5 +44,10 @@
     "@types/uuid": "^10.0.0",
     "typescript": "~5.8.3"
   },
-  "private": true
+  "private": true,
+  "overrides": {
+    "metro": "~0.80.9",
+    "metro-runtime": "~0.80.9",
+    "metro-config": "~0.80.9"
+  }
 }
