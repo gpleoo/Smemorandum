@@ -45,5 +45,10 @@
     "@types/uuid": "^10.0.0",
     "typescript": "~5.8.3"
   },
-  "private": true
+  "private": true,
+  "codegenConfig": {
+    "name": "SmemorandumSpec",
+    "type": "all",
+    "jsSrcsDir": "./specs"
+  }
 }
