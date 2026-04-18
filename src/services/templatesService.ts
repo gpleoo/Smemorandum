@@ -1,7 +1,7 @@
-import { HolidayTemplate, HolidayRule } from '../data/holidayTemplates';
-import { HolidayTradition } from '../models/types';
-import { SEvent } from '../models/types';
+import { HolidayTemplate, HolidayRule, HOLIDAY_TEMPLATES } from '../data/holidayTemplates';
+import { AppSettings, HolidayTradition, SEvent } from '../models/types';
 import { LANGUAGE_TO_COUNTRY } from '../utils/constants';
+import { v4 as uuidv4 } from 'uuid';
 
 // ─── Easter calculation (Anonymous Gregorian algorithm) ──────────────────────
 function computeEaster(year: number): Date {
@@ -98,6 +98,48 @@ export function getTemplateName(template: HolidayTemplate, language: string): st
 /** Check if a template is already added to the user's events */
 export function isTemplateAdded(template: HolidayTemplate, events: SEvent[]): boolean {
   return events.some((e) => e.sourceTemplateId === template.id);
+}
+
+/**
+ * Build the SEvents that should be auto-added to match the user's current
+ * country/tradition filter. Templates already present (tracked by
+ * sourceTemplateId) are skipped. Nothing is removed here — users keep control
+ * over deletions via the holiday templates screen.
+ */
+export function computeHolidaysToAdd(
+  events: SEvent[],
+  settings: AppSettings,
+  language: string,
+): SEvent[] {
+  const countries = getEffectiveCountries(settings.holidayCountries, language);
+  const traditions =
+    settings.holidayTraditions && settings.holidayTraditions.length > 0
+      ? settings.holidayTraditions
+      : ['secular'];
+  const targetTemplates = filterTemplates(HOLIDAY_TEMPLATES, countries, traditions);
+  const existingTemplateIds = new Set(
+    events.filter((e) => e.sourceTemplateId).map((e) => e.sourceTemplateId!),
+  );
+
+  const year = new Date().getFullYear();
+  const now = new Date().toISOString();
+
+  return targetTemplates
+    .filter((t) => !existingTemplateIds.has(t.id))
+    .map((template) => ({
+      id: uuidv4(),
+      title: getTemplateName(template, language),
+      description: '',
+      eventType: 'ricorrenza' as const,
+      date: dateToISO(resolveHolidayDate(template.rule, year)),
+      recurrence: { type: 'yearly' as const },
+      categoryId: 'cat-family',
+      reminders: [],
+      soundId: 'gentle-bell',
+      sourceTemplateId: template.id,
+      createdAt: now,
+      updatedAt: now,
+    }));
 }
 
 /** Format rule description for display (month/day or "mobile date") */

@@ -43,7 +43,7 @@ export function HolidayTemplatesScreen() {
   const { t, i18n } = useTranslation();
   const { colors, typography: typo, spacing, borderRadius } = useTheme();
   const navigation = useNavigation<Nav>();
-  const { events, addEvent, deleteEvent } = useEventContext();
+  const { events, addEvent, deleteEvent, syncHolidays } = useEventContext();
   const { isPremium } = usePremium();
 
   const [selectedCountries, setSelectedCountries] = useState<string[]>([]);
@@ -104,6 +104,7 @@ export function HolidayTemplatesScreen() {
     setSelectedCountries(next);
     const stored = next.includes(autoCountry) && next.length === 1 ? [] : next;
     await updateSetting('holidayCountries', stored);
+    syncHolidays().catch(() => {});
   };
 
   const toggleTradition = async (key: HolidayTradition) => {
@@ -126,6 +127,7 @@ export function HolidayTemplatesScreen() {
 
     setSelectedTraditions(next);
     await updateSetting('holidayTraditions', next);
+    syncHolidays().catch(() => {});
   };
 
   const handleAdd = async (templateId: string) => {

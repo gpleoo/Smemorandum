@@ -3,6 +3,9 @@ import { SEvent, Category } from '../models/types';
 import * as eventStorage from '../storage/eventStorage';
 import { requestPermissions, scheduleAllEventNotifications } from '../services/notificationService';
 import { updateWidget } from '../services/widgetService';
+import { getSettings } from '../storage/settingsStorage';
+import { computeHolidaysToAdd } from '../services/templatesService';
+import i18n from '../i18n';
 
 interface EventState {
   events: SEvent[];
@@ -23,6 +26,7 @@ interface EventContextType extends EventState {
   updateCategory: (category: Category) => Promise<void>;
   deleteCategory: (categoryId: string) => Promise<void>;
   refreshData: () => Promise<void>;
+  syncHolidays: () => Promise<number>;
 }
 
 const EventContext = createContext<EventContextType | undefined>(undefined);
@@ -47,6 +51,21 @@ export function EventProvider({ children }: { children: React.ReactNode }) {
     isLoading: true,
   });
 
+  const syncHolidays = useCallback(async (): Promise<number> => {
+    const [currentEvents, settings] = await Promise.all([
+      eventStorage.getEvents(),
+      getSettings(),
+    ]);
+    const toAdd = computeHolidaysToAdd(currentEvents, settings, i18n.language);
+    if (toAdd.length === 0) return 0;
+    const merged = [...currentEvents, ...toAdd];
+    await eventStorage.saveEvents(merged);
+    dispatch({ type: 'SET_EVENTS', payload: merged });
+    scheduleAllEventNotifications(merged).catch(() => {});
+    updateWidget(merged).catch(() => {});
+    return toAdd.length;
+  }, []);
+
   const refreshData = useCallback(async () => {
     dispatch({ type: 'SET_LOADING', payload: true });
     const [events, categories] = await Promise.all([
@@ -58,7 +77,8 @@ export function EventProvider({ children }: { children: React.ReactNode }) {
     dispatch({ type: 'SET_LOADING', payload: false });
     scheduleAllEventNotifications(events).catch(() => {});
     updateWidget(events).catch(() => {});
-  }, []);
+    syncHolidays().catch(() => {});
+  }, [syncHolidays]);
 
   useEffect(() => {
     refreshData();
@@ -112,6 +132,7 @@ export function EventProvider({ children }: { children: React.ReactNode }) {
         updateCategory,
         deleteCategory,
         refreshData,
+        syncHolidays,
       }}
     >
       {children}
