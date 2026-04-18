@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, StyleProp, ViewStyle } from 'react-native';
 import { BannerAd, BannerAdSize } from 'react-native-google-mobile-ads';
-import { getBannerAdUnitId } from '../services/adService';
+import { getBannerAdUnitId, initializeAdMob } from '../services/adService';
 import { usePremium } from '../context/PremiumContext';
 
 interface Props {
@@ -10,9 +10,19 @@ interface Props {
 
 export function AdBanner({ style }: Props) {
   const { isPremium } = usePremium();
+  const [ready, setReady] = useState(false);
 
-  // Premium users see no ads
-  if (isPremium) return null;
+  useEffect(() => {
+    let cancelled = false;
+    initializeAdMob().then(() => {
+      if (!cancelled) setReady(true);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  if (isPremium || !ready) return null;
 
   return (
     <View style={[{ alignItems: 'center', width: '100%' }, style]}>

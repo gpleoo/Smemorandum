@@ -24,16 +24,27 @@ const PremiumContext = createContext<PremiumContextType>({
   refresh: async () => {},
 });
 
+// Dev bypass: any non-production build (development/preview) gets premium for free.
+// EXPO_PUBLIC_APP_ENV is set per-profile in eas.json and inlined by Metro at build time.
+const APP_ENV = process.env.EXPO_PUBLIC_APP_ENV;
+const DEV_PREMIUM_BYPASS = APP_ENV === 'development' || APP_ENV === 'preview' || __DEV__;
+
 export function PremiumProvider({ children }: { children: React.ReactNode }) {
-  const [isPremium, setIsPremium] = useState(false);
-  const [isLoadingPremium, setIsLoadingPremium] = useState(true);
+  const [isPremium, setIsPremium] = useState(DEV_PREMIUM_BYPASS);
+  const [isLoadingPremium, setIsLoadingPremium] = useState(!DEV_PREMIUM_BYPASS);
 
   const refresh = useCallback(async () => {
+    if (DEV_PREMIUM_BYPASS) {
+      setIsPremium(true);
+      return;
+    }
     const premium = await isPremiumUser();
     setIsPremium(premium);
   }, []);
 
   useEffect(() => {
+    if (DEV_PREMIUM_BYPASS) return;
+
     let unsub: (() => void) | undefined;
 
     (async () => {

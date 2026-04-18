@@ -8,20 +8,20 @@
       "distribution": "internal",
       "ios": { "simulator": false },
       "android": { "buildType": "apk" },
-      "env": { "APP_ENV": "development" }
+      "env": { "EXPO_PUBLIC_APP_ENV": "development" }
     },
     "preview": {
       "distribution": "internal",
       "channel": "preview",
       "ios": { "simulator": false },
       "android": { "buildType": "apk" },
-      "env": { "APP_ENV": "preview" }
+      "env": { "EXPO_PUBLIC_APP_ENV": "preview" }
     },
     "production": {
       "autoIncrement": true,
       "channel": "production",
       "android": { "buildType": "app-bundle" },
-      "env": { "APP_ENV": "production" }
+      "env": { "EXPO_PUBLIC_APP_ENV": "production" }
     }
   },
   "submit": {

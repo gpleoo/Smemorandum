@@ -41,14 +41,18 @@ export function getInterstitialAdUnitId(): string {
 }
 
 // ---------------------------------------------------------------------------
-// Initialization
+// Initialization — cached promise so callers can safely await readiness
 // ---------------------------------------------------------------------------
-export async function initializeAdMob(): Promise<void> {
-  try {
-    await MobileAds().initialize();
-  } catch {
-    // Silently fail — ads won't show but the app keeps working
+let initPromise: Promise<void> | null = null;
+
+export function initializeAdMob(): Promise<void> {
+  if (!initPromise) {
+    initPromise = MobileAds()
+      .initialize()
+      .then(() => undefined)
+      .catch(() => undefined);
   }
+  return initPromise;
 }
 
 // ---------------------------------------------------------------------------
@@ -63,6 +67,7 @@ export async function showInterstitialIfDue(): Promise<void> {
   actionsSinceLastAd = 0;
 
   try {
+    await initializeAdMob();
     const settings = await getSettings();
     const nonPersonalized = settings.adsConsent !== true;
 

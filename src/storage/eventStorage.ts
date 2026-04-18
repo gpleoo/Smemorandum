@@ -6,7 +6,13 @@ import { STORAGE_KEYS, DEFAULT_CATEGORIES } from '../utils/constants';
 
 export async function getEvents(): Promise<SEvent[]> {
   const json = await AsyncStorage.getItem(STORAGE_KEYS.EVENTS);
-  return json ? JSON.parse(json) : [];
+  if (!json) return [];
+  try {
+    const parsed = JSON.parse(json);
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
 }
 
 export async function saveEvents(events: SEvent[]): Promise<void> {
@@ -41,8 +47,15 @@ export async function deleteEvent(eventId: string): Promise<SEvent[]> {
 
 export async function getCategories(): Promise<Category[]> {
   const json = await AsyncStorage.getItem(STORAGE_KEYS.CATEGORIES);
-  if (json) return JSON.parse(json);
-  // Initialize with defaults on first load
+  if (json) {
+    try {
+      const parsed = JSON.parse(json);
+      if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+    } catch {
+      // Fall through to defaults
+    }
+  }
+  // Initialize with defaults on first load (or after corruption)
   await saveCategories(DEFAULT_CATEGORIES);
   return DEFAULT_CATEGORIES;
 }
