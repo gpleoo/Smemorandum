@@ -1,7 +1,6 @@
 import * as Notifications from 'expo-notifications';
 import { Platform } from 'react-native';
 import { SEvent } from '../models/types';
-import { SOUNDS } from '../utils/constants';
 import { getNextOccurrence } from '../utils/recurrenceEngine';
 import { subDays, setHours, setMinutes, isAfter } from 'date-fns';
 import { getSettings } from '../storage/settingsStorage';
@@ -130,7 +129,10 @@ export async function scheduleAllEventNotifications(events: SEvent[]): Promise<v
 
   for (const item of limited) {
     try {
-      const soundFile = SOUNDS.find((s) => s.id === item.event.soundId)?.file;
+      // Custom sound files are not yet bundled; use the system default.
+      // The user's soundId selection is still persisted on the event so it
+      // will activate automatically once the mp3 assets + expo-notifications
+      // plugin config are added.
       const body = item.daysBefore === 0
         ? `Oggi: ${item.event.title}`
         : item.daysBefore === 1
@@ -142,7 +144,7 @@ export async function scheduleAllEventNotifications(events: SEvent[]): Promise<v
         content: {
           title: item.event.title,
           body,
-          sound: soundFile ?? 'default',
+          sound: 'default',
           data: { eventId: item.event.id, contactPhone: item.event.contactPhone ?? null },
           ...(Platform.OS === 'ios' && hasPhone && { categoryIdentifier: 'reminder-with-call' }),
           ...(Platform.OS === 'android' && { channelId: 'smemorandum-reminders' }),
