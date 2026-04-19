@@ -19,6 +19,7 @@ import { PremiumProvider } from './src/context/PremiumContext';
 import { AppNavigator, navigationRef } from './src/navigation/AppNavigator';
 import { initializeNotifications } from './src/services/notificationService';
 import { initializeAdMob } from './src/services/adService';
+import { getSettings } from './src/storage/settingsStorage';
 import './src/i18n';
 
 // Initialize notifications at module load (before any component renders)
@@ -38,6 +39,28 @@ function AppContent() {
   useEffect(() => {
     // Initialize AdMob (no-op on web)
     initializeAdMob().catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    // Show onboarding the first time the app boots. Settings persist via
+    // AsyncStorage, so on subsequent launches `hasSeenOnboarding` is true
+    // and the modal stays closed.
+    let cancelled = false;
+    getSettings().then((s) => {
+      if (cancelled || s.hasSeenOnboarding) return;
+      const tryNavigate = () => {
+        if (cancelled) return;
+        if (navigationRef.isReady()) {
+          (navigationRef as any).navigate('Onboarding');
+        } else {
+          setTimeout(tryNavigate, 100);
+        }
+      };
+      tryNavigate();
+    });
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   useEffect(() => {

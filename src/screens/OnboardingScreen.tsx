@@ -11,6 +11,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { useTheme } from '../theme/ThemeContext';
 import { updateSetting } from '../storage/settingsStorage';
 import { useTutorial } from '../context/TutorialContext';
@@ -83,14 +84,14 @@ export function OnboardingScreen() {
 
   const renderSlide = ({ item }: { item: Slide }) => (
     <View style={[styles.slide, { width }]}>
-      <View
-        style={[
-          styles.iconCircle,
-          { backgroundColor: item.color + '20' },
-        ]}
+      <LinearGradient
+        colors={[item.color, item.color + '88']}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        style={styles.iconCircle}
       >
-        <Ionicons name={item.icon as any} size={64} color={item.color} />
-      </View>
+        <Ionicons name={item.icon as any} size={64} color="#FFF" />
+      </LinearGradient>
       <Text style={[typo.h1, { color: colors.text, textAlign: 'center', marginTop: spacing.xl }]}>
         {t(item.titleKey)}
       </Text>
