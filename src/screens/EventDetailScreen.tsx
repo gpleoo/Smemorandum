@@ -184,7 +184,9 @@ export function EventDetailScreen() {
               {days !== null && days >= 0 && (
                 <Text style={[typo.bodySmall, { color: colors.textSecondary, marginTop: 2 }]}>
                   {isToday
-                    ? t('eventForm.birthdayToday')
+                    ? age !== null
+                      ? t('eventForm.birthdayToday')
+                      : t('home.todayLabel')
                     : days === 1
                     ? t('home.tomorrow')
                     : t('home.daysLeft', { count: days })}

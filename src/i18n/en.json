@@ -91,7 +91,10 @@
   "calendar": {
     "title": "Calendar",
     "eventsForDay": "Events for this day",
-    "noEvents": "No events for this day"
+    "noEvents": "No events for this day",
+    "legendMine": "My events",
+    "legendHoliday": "Holidays",
+    "holidayBadge": "🎉 Holiday"
   },
   "settings": {
     "title": "Settings",

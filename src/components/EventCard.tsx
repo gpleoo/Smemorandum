@@ -33,6 +33,7 @@ export function EventCard({ event, onPress }: EventCardProps) {
     ? nextAge(event.date)
     : null;
   const milestone = age !== null ? isMilestone(age) : false;
+  const isHoliday = !!event.sourceTemplateId;
 
   return (
     <TouchableOpacity
@@ -63,6 +64,24 @@ export function EventCard({ event, onPress }: EventCardProps) {
             </Text>
             {milestone && <Text style={styles.milestoneIcon}>🏆</Text>}
           </View>
+          {isHoliday && (
+            <View
+              style={[
+                styles.holidayPill,
+                {
+                  backgroundColor: colors.warning + '25',
+                  borderRadius: borderRadius.full,
+                  paddingHorizontal: spacing.sm,
+                  paddingVertical: 2,
+                  marginTop: 2,
+                },
+              ]}
+            >
+              <Text style={[typo.caption, { color: colors.warning, fontWeight: '700' }]}>
+                {t('calendar.holidayBadge')}
+              </Text>
+            </View>
+          )}
           {age !== null && (
             <Text style={[typo.caption, { color: colors.primary, fontWeight: '700' }]}>
               {t('eventForm.ageLabel', { age })}
@@ -144,6 +163,9 @@ const styles = StyleSheet.create({
   milestoneIcon: {
     fontSize: 16,
     marginLeft: 4,
+  },
+  holidayPill: {
+    alignSelf: 'flex-start',
   },
   meta: {
     flexDirection: 'row',

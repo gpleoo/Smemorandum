@@ -24,33 +24,38 @@ export function CalendarScreen() {
   const [selectedDate, setSelectedDate] = useState(toISODateString(new Date()));
 
   const markedDates = useMemo(() => {
-    const marks: Record<string, { marked: boolean; dotColor: string; selected?: boolean; selectedColor?: string }> = {};
+    type Dot = { key: string; color: string };
+    const marks: Record<
+      string,
+      { dots: Dot[]; selected?: boolean; selectedColor?: string }
+    > = {};
     const start = new Date();
     const end = addMonths(start, 6);
 
     for (const event of events) {
+      const isHoliday = !!event.sourceTemplateId;
+      const dotKey = isHoliday ? 'holiday' : 'user';
+      const dotColor = isHoliday ? colors.warning : colors.primary;
       const occurrences = getOccurrencesInRange(event, start, end);
       for (const date of occurrences) {
         const key = toISODateString(date);
-        marks[key] = {
-          marked: true,
-          dotColor: colors.primary,
-        };
+        if (!marks[key]) marks[key] = { dots: [] };
+        if (!marks[key].dots.some((d) => d.key === dotKey)) {
+          marks[key].dots.push({ key: dotKey, color: dotColor });
+        }
       }
     }
 
     if (selectedDate) {
       marks[selectedDate] = {
-        ...marks[selectedDate],
-        marked: marks[selectedDate]?.marked ?? false,
-        dotColor: marks[selectedDate]?.dotColor ?? colors.primary,
+        ...(marks[selectedDate] ?? { dots: [] }),
         selected: true,
         selectedColor: colors.primary,
       };
     }
 
     return marks;
-  }, [events, selectedDate, colors.primary]);
+  }, [events, selectedDate, colors.primary, colors.warning]);
 
   const eventsForDay = useMemo(() => {
     if (!selectedDate) return [];
@@ -79,6 +84,7 @@ export function CalendarScreen() {
         current={selectedDate}
         onDayPress={(day: DateData) => setSelectedDate(day.dateString)}
         markedDates={markedDates}
+        markingType="multi-dot"
         firstDay={1}
         theme={{
           backgroundColor: colors.background,
@@ -108,6 +114,21 @@ export function CalendarScreen() {
           shadowRadius: 3,
         }}
       />
+
+      <View style={[styles.legend, { paddingHorizontal: spacing.md, paddingTop: spacing.sm }]}>
+        <View style={styles.legendItem}>
+          <View style={[styles.legendDot, { backgroundColor: colors.primary }]} />
+          <Text style={[typo.caption, { color: colors.textSecondary, marginLeft: 4 }]}>
+            {t('calendar.legendMine')}
+          </Text>
+        </View>
+        <View style={[styles.legendItem, { marginLeft: spacing.md }]}>
+          <View style={[styles.legendDot, { backgroundColor: colors.warning }]} />
+          <Text style={[typo.caption, { color: colors.textSecondary, marginLeft: 4 }]}>
+            {t('calendar.legendHoliday')}
+          </Text>
+        </View>
+      </View>
 
       <View style={{ paddingHorizontal: spacing.md, paddingTop: spacing.md }}>
         <Text style={[typo.h3, { color: colors.text, marginBottom: spacing.sm }]}>
@@ -144,4 +165,7 @@ const styles = StyleSheet.create({
   center: { flex: 1, justifyContent: 'center', alignItems: 'center' },
   header: {},
   emptyDay: { alignItems: 'center' },
+  legend: { flexDirection: 'row', alignItems: 'center' },
+  legendItem: { flexDirection: 'row', alignItems: 'center' },
+  legendDot: { width: 8, height: 8, borderRadius: 4 },
 });
