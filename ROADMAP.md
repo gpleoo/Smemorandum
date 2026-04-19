@@ -10,11 +10,11 @@ spostare nella sezione "✅ Completato" in fondo.
 - [ ] 1. Icona app finale 1024×1024 + varianti
 - [ ] 2. Screenshot App Store 6.7" e 6.5" (5 foto: home, dettaglio, calendario, festività, importa contatti)
 - [ ] 3. Privacy policy online (GitHub Pages o Notion pubblica)
-- [ ] 4. Descrizione Store IT + EN con keyword ASO
+- [x] 4. Descrizione Store IT + EN con keyword ASO → vedi `APP_STORE.md`
 - [ ] 5. Email supporto attiva
 - [ ] 6. Test reale su iPhone fisico (primo avvio, importa contatti, festività, notifiche, tap-to-call)
 - [x] 7. Fix titolo navigator "Settings ImportContacts" → tradotto
-- [ ] 8. Categoria App Store: Produttività + Stile di vita
+- [x] 8. Categoria App Store: Produttività + Stile di vita → Primary: Produttività / Secondary: Stile di vita (vedi `APP_STORE.md`)
 
 ## 🚀 Fase 2 — Da fare prima del lancio (sprint 1–2 settimane)
 
@@ -69,3 +69,4 @@ spostare nella sezione "✅ Completato" in fondo.
 - 2026-04-19 — #12 Empty state Home con halo gradient + monogramma sparkle + CTA "Aggiungi il primo evento"
 - 2026-04-19 — #16 Revisione i18n 5 locali: plurali i18next v4 su daysLeft/summaryToday/summaryNext/headlineSoon + fix stile IT/ES/DE (commit 03c578f)
 - 2026-04-19 — #13 Scaffolding crash reporting: ErrorBoundary globale + crashReporting service + trigger debug (5 tap su versione in Impostazioni). Manca solo collegare SDK Sentry + DSN.
+- 2026-04-19 — #4 + #8 Bozza App Store completa (`APP_STORE.md`): categoria, name/subtitle, keywords, descrizioni IT/EN, promo, release notes, checklist screenshot, privacy form, TestFlight welcome
