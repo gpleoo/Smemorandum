@@ -102,10 +102,20 @@ export function HomeScreen() {
         end={{ x: 1, y: 1 }}
         style={[styles.header, { paddingHorizontal: spacing.lg, paddingTop: spacing.md, paddingBottom: spacing.md }]}
       >
-        <Text style={[typo.caption, { color: colors.primary, fontWeight: '700', letterSpacing: 0.5 }]}>
-          {t('home.title').toUpperCase()}
-        </Text>
-        <Text style={[typo.h1, { color: colors.text, marginTop: 2 }]}>{greeting}</Text>
+        <View style={styles.brandRow}>
+          <LinearGradient
+            colors={[colors.primary, colors.secondary]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={styles.monogram}
+          >
+            <Text style={styles.monogramLetter}>S</Text>
+          </LinearGradient>
+          <Text style={[typo.h3, { color: colors.text, marginLeft: spacing.sm, fontWeight: '600', letterSpacing: -0.2 }]}>
+            {t('home.title')}
+          </Text>
+        </View>
+        <Text style={[typo.h1, { color: colors.text, marginTop: spacing.sm }]}>{greeting}</Text>
         <Text style={[typo.bodySmall, { color: colors.textSecondary, marginTop: 4 }]} numberOfLines={2}>
           {summary}
         </Text>
@@ -211,6 +221,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   header: {},
+  brandRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  monogram: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  monogramLetter: {
+    color: '#FFF',
+    fontSize: 18,
+    fontWeight: '800',
+    fontFamily: 'Inter_800ExtraBold',
+    lineHeight: 20,
+  },
   fab: {
     position: 'absolute',
     right: 20,
