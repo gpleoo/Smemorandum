@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Platform } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Platform, Modal } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import { useTheme } from '../theme/ThemeContext';
@@ -24,26 +24,46 @@ export function ReminderPicker({ reminders, onChange, maxReminders = 5 }: Remind
   const { t } = useTranslation();
   const [editingReminderId, setEditingReminderId] = useState<string | null>(null);
   const [showTimePicker, setShowTimePicker] = useState(false);
+  const [tempTime, setTempTime] = useState<Date | null>(null);
 
-  const handleTimeChange = (_event: DateTimePickerEvent, selectedDate?: Date) => {
-    setShowTimePicker(Platform.OS === 'ios');
-    if (selectedDate && editingReminderId) {
-      const hours = String(selectedDate.getHours()).padStart(2, '0');
-      const minutes = String(selectedDate.getMinutes()).padStart(2, '0');
+  const openTimePicker = (reminderId: string) => {
+    const reminder = reminders.find((r) => r.id === reminderId);
+    const [h, m] = (reminder?.time ?? '09:00').split(':').map(Number);
+    const d = new Date();
+    d.setHours(h, m, 0, 0);
+    setTempTime(d);
+    setEditingReminderId(reminderId);
+    setShowTimePicker(true);
+  };
+
+  const closeTimePicker = () => {
+    setShowTimePicker(false);
+    setEditingReminderId(null);
+    setTempTime(null);
+  };
+
+  const commitTimePicker = (date: Date | null) => {
+    if (date && editingReminderId) {
+      const hours = String(date.getHours()).padStart(2, '0');
+      const minutes = String(date.getMinutes()).padStart(2, '0');
       const newTime = `${hours}:${minutes}`;
       onChange(reminders.map((r) => (r.id === editingReminderId ? { ...r, time: newTime } : r)));
     }
-    if (Platform.OS === 'android') {
-      setEditingReminderId(null);
-    }
+    closeTimePicker();
   };
 
-  const getTimePickerValue = (): Date => {
-    const editing = reminders.find((r) => r.id === editingReminderId);
-    const [h, m] = (editing?.time ?? '09:00').split(':').map(Number);
-    const d = new Date();
-    d.setHours(h, m, 0, 0);
-    return d;
+  // iOS spinner: only update temp state, commit on OK.
+  // Android dialog: value returned by onChange when user taps OK; dismissed → no change.
+  const handleTimeChange = (event: DateTimePickerEvent, selectedDate?: Date) => {
+    if (Platform.OS === 'android') {
+      if (event.type === 'set' && selectedDate) {
+        commitTimePicker(selectedDate);
+      } else {
+        closeTimePicker();
+      }
+      return;
+    }
+    if (selectedDate) setTempTime(selectedDate);
   };
 
   const addReminder = (daysBefore: number) => {
@@ -113,10 +133,7 @@ export function ReminderPicker({ reminders, onChange, maxReminders = 5 }: Remind
             </View>
           ) : (
             <TouchableOpacity
-              onPress={() => {
-                setEditingReminderId(reminder.id);
-                setShowTimePicker(true);
-              }}
+              onPress={() => openTimePicker(reminder.id)}
               style={[
                 styles.timeBadge,
                 {
@@ -168,14 +185,87 @@ export function ReminderPicker({ reminders, onChange, maxReminders = 5 }: Remind
         </View>
       )}
 
-      {showTimePicker && Platform.OS !== 'web' && (
+      {showTimePicker && Platform.OS === 'android' && tempTime && (
         <DateTimePicker
-          value={getTimePickerValue()}
+          value={tempTime}
           mode="time"
           is24Hour
-          display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+          display="default"
           onChange={handleTimeChange}
         />
+      )}
+
+      {Platform.OS === 'ios' && (
+        <Modal
+          visible={showTimePicker}
+          transparent
+          animationType="fade"
+          onRequestClose={closeTimePicker}
+        >
+          <TouchableOpacity
+            style={styles.modalBackdrop}
+            activeOpacity={1}
+            onPress={closeTimePicker}
+          >
+            <TouchableOpacity
+              activeOpacity={1}
+              style={[
+                styles.modalSheet,
+                {
+                  backgroundColor: colors.surface,
+                  borderRadius: borderRadius.lg,
+                  padding: spacing.md,
+                },
+              ]}
+            >
+              {tempTime && (
+                <DateTimePicker
+                  value={tempTime}
+                  mode="time"
+                  is24Hour
+                  display="spinner"
+                  onChange={handleTimeChange}
+                  textColor={colors.text}
+                />
+              )}
+              <View style={[styles.modalActions, { marginTop: spacing.sm }]}>
+                <TouchableOpacity
+                  onPress={closeTimePicker}
+                  style={[
+                    styles.modalButton,
+                    {
+                      borderRadius: borderRadius.md,
+                      paddingVertical: spacing.sm,
+                      paddingHorizontal: spacing.lg,
+                      backgroundColor: colors.surfaceVariant,
+                    },
+                  ]}
+                >
+                  <Text style={[typo.body, { color: colors.text, fontWeight: '600' }]}>
+                    {t('common.cancel')}
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  onPress={() => commitTimePicker(tempTime)}
+                  style={[
+                    styles.modalButton,
+                    {
+                      borderRadius: borderRadius.md,
+                      paddingVertical: spacing.sm,
+                      paddingHorizontal: spacing.lg,
+                      backgroundColor: colors.primary,
+                      marginLeft: spacing.sm,
+                    },
+                  ]}
+                >
+                  <Text style={[typo.body, { color: '#FFF', fontWeight: '700' }]}>
+                    {t('common.ok')}
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            </TouchableOpacity>
+          </TouchableOpacity>
+        </Modal>
       )}
     </View>
   );
@@ -201,5 +291,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 6,
     paddingVertical: 2,
+  },
+  modalBackdrop: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.4)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 16,
+  },
+  modalSheet: {
+    width: '100%',
+    maxWidth: 360,
+  },
+  modalActions: {
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+  },
+  modalButton: {
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
