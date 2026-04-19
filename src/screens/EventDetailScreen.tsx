@@ -24,6 +24,8 @@ import { formatDate, daysUntil } from '../utils/dateUtils';
 import { getNextOccurrence, describeRecurrence } from '../utils/recurrenceEngine';
 import { SOUNDS } from '../utils/constants';
 import { nextAge, isMilestone } from '../services/nameDayService';
+import { getEventKind, getEventAccent } from '../theme/eventColors';
+import { HOLIDAY_TEMPLATES } from '../data/holidayTemplates';
 
 type DetailRoute = RouteProp<HomeStackParamList, 'EventDetail'>;
 type Nav = NativeStackNavigationProp<HomeStackParamList, 'EventDetail'>;
@@ -65,6 +67,11 @@ export function EventDetailScreen() {
   const nextDate = getNextOccurrence(event, new Date());
   const days = nextDate ? daysUntil(nextDate) : null;
   const sound = SOUNDS.find((s) => s.id === event.soundId);
+  const kind = getEventKind(event);
+  const accent = getEventAccent(kind, colors);
+  const holidayTemplate = kind === 'holiday'
+    ? HOLIDAY_TEMPLATES.find((h) => h.id === event.sourceTemplateId)
+    : undefined;
 
   // Age & milestone (only for yearly ricorrenza with a year in the date)
   const age = event.eventType === 'ricorrenza' && event.recurrence.type === 'yearly'
@@ -141,25 +148,54 @@ export function EventDetailScreen() {
             {
               backgroundColor: colors.surface,
               padding: spacing.lg,
-              borderBottomLeftRadius: borderRadius.lg,
-              borderBottomRightRadius: borderRadius.lg,
+              borderBottomLeftRadius: borderRadius.xl,
+              borderBottomRightRadius: borderRadius.xl,
             },
           ]}
         >
           <View style={styles.titleRow}>
-            <Ionicons
-              name={event.eventType === 'ricorrenza' ? 'repeat' : 'time'}
-              size={24}
-              color={colors.primary}
-            />
-            <Text style={[typo.h1, { color: colors.text, marginLeft: spacing.sm, flex: 1 }]}>
+            <View
+              style={[
+                styles.titleIconBubble,
+                { backgroundColor: accent + '25', marginRight: spacing.sm },
+              ]}
+            >
+              {holidayTemplate ? (
+                <Text style={styles.titleEmoji}>{holidayTemplate.icon}</Text>
+              ) : (
+                <Ionicons
+                  name={event.eventType === 'ricorrenza' ? 'repeat' : 'time'}
+                  size={22}
+                  color={accent}
+                />
+              )}
+            </View>
+            <Text style={[typo.h1, { color: colors.text, flex: 1 }]}>
               {event.title}
             </Text>
           </View>
 
-          {category && (
-            <View style={{ marginTop: spacing.sm }}>
-              <CategoryBadge category={category} size="medium" />
+          {(category || kind === 'holiday') && (
+            <View style={[styles.badgeRow, { marginTop: spacing.sm }]}>
+              {kind === 'holiday' && (
+                <View
+                  style={[
+                    styles.holidayChip,
+                    {
+                      backgroundColor: colors.warning + '25',
+                      borderRadius: borderRadius.full,
+                      paddingHorizontal: spacing.sm,
+                      paddingVertical: 2,
+                      marginRight: spacing.xs,
+                    },
+                  ]}
+                >
+                  <Text style={[typo.caption, { color: colors.warning, fontWeight: '700' }]}>
+                    {t('calendar.holidayBadge')}
+                  </Text>
+                </View>
+              )}
+              {category && <CategoryBadge category={category} size="medium" />}
             </View>
           )}
 
@@ -168,35 +204,59 @@ export function EventDetailScreen() {
               style={[
                 styles.nextDateBox,
                 {
-                  backgroundColor: colors.primaryLight + '20',
-                  borderRadius: borderRadius.md,
+                  backgroundColor: accent + '15',
+                  borderRadius: borderRadius.lg,
                   padding: spacing.md,
                   marginTop: spacing.md,
+                  borderWidth: 1,
+                  borderColor: accent + '30',
                 },
               ]}
             >
-              <Text style={[typo.label, { color: colors.textSecondary }]}>
-                {t('eventDetail.nextOccurrence')}
-              </Text>
-              <Text style={[typo.h2, { color: colors.primary, marginTop: 2 }]}>
-                {formatDate(nextDate, 'EEEE dd MMMM yyyy', i18n.language)}
-              </Text>
-              {days !== null && days >= 0 && (
-                <Text style={[typo.bodySmall, { color: colors.textSecondary, marginTop: 2 }]}>
-                  {isToday
-                    ? age !== null
-                      ? t('eventForm.birthdayToday')
-                      : t('home.todayLabel')
-                    : days === 1
-                    ? t('home.tomorrow')
-                    : t('home.daysLeft', { count: days })}
-                </Text>
-              )}
-              {/* Age label */}
+              <View style={styles.nextDateRow}>
+                <View style={{ flex: 1 }}>
+                  <Text style={[typo.label, { color: colors.textSecondary, textTransform: 'uppercase', letterSpacing: 0.5 }]}>
+                    {t('eventDetail.nextOccurrence')}
+                  </Text>
+                  <Text style={[typo.h2, { color: accent, marginTop: 4, fontWeight: '800' }]}>
+                    {formatDate(nextDate, 'EEEE dd MMMM yyyy', i18n.language)}
+                  </Text>
+                  {days !== null && days >= 0 && (
+                    <Text style={[typo.bodySmall, { color: colors.textSecondary, marginTop: 4 }]}>
+                      {isToday
+                        ? age !== null
+                          ? t('eventForm.birthdayToday')
+                          : t('home.todayLabel')
+                        : days === 1
+                        ? t('home.tomorrow')
+                        : t('home.daysLeft', { count: days })}
+                    </Text>
+                  )}
+                </View>
+                {days !== null && days >= 0 && !isToday && (
+                  <View
+                    style={[
+                      styles.daysBadge,
+                      {
+                        backgroundColor: accent,
+                        borderRadius: borderRadius.lg,
+                        marginLeft: spacing.sm,
+                      },
+                    ]}
+                  >
+                    <Text style={styles.daysNumber}>{days}</Text>
+                    <Text style={styles.daysUnit}>
+                      {days === 1 ? 'g' : 'gg'}
+                    </Text>
+                  </View>
+                )}
+              </View>
+
+              {/* Age & milestone badges */}
               {age !== null && (
                 <View style={[styles.badgeRow, { marginTop: spacing.sm }]}>
-                  <View style={[styles.ageBadge, { backgroundColor: colors.primary + '20', borderRadius: borderRadius.full, paddingHorizontal: spacing.sm, paddingVertical: 2 }]}>
-                    <Text style={[typo.bodySmall, { color: colors.primary, fontWeight: '700' }]}>
+                  <View style={[styles.ageBadge, { backgroundColor: accent + '20', borderRadius: borderRadius.full, paddingHorizontal: spacing.sm, paddingVertical: 2 }]}>
+                    <Text style={[typo.bodySmall, { color: accent, fontWeight: '700' }]}>
                       {t('eventForm.ageLabel', { age })}
                     </Text>
                   </View>
@@ -215,32 +275,46 @@ export function EventDetailScreen() {
 
         {/* Details section */}
         <View style={{ paddingHorizontal: spacing.md, marginTop: spacing.md }}>
-          <DetailRow
-            icon="calendar-outline"
-            label={t('eventForm.date')}
-            value={formatDate(event.date, 'dd MMMM yyyy', i18n.language)}
-            colors={colors}
-            typo={typo}
-            spacing={spacing}
-          />
-          <DetailRow
-            icon="repeat"
-            label={t('eventDetail.recurrence')}
-            value={describeRecurrence(event.recurrence, t)}
-            colors={colors}
-            typo={typo}
-            spacing={spacing}
-          />
-          {sound && (
+          <View
+            style={[
+              styles.detailCard,
+              {
+                backgroundColor: colors.surface,
+                borderRadius: borderRadius.lg,
+                paddingHorizontal: spacing.md,
+                paddingVertical: spacing.xs,
+              },
+            ]}
+          >
             <DetailRow
-              icon="musical-note"
-              label={t('eventDetail.sound')}
-              value={sound.name}
+              icon="calendar-outline"
+              label={t('eventForm.date')}
+              value={formatDate(event.date, 'dd MMMM yyyy', i18n.language)}
               colors={colors}
               typo={typo}
               spacing={spacing}
+              showDivider
             />
-          )}
+            <DetailRow
+              icon="repeat"
+              label={t('eventDetail.recurrence')}
+              value={describeRecurrence(event.recurrence, t)}
+              colors={colors}
+              typo={typo}
+              spacing={spacing}
+              showDivider={!!sound}
+            />
+            {sound && (
+              <DetailRow
+                icon="musical-note"
+                label={t('eventDetail.sound')}
+                value={sound.name}
+                colors={colors}
+                typo={typo}
+                spacing={spacing}
+              />
+            )}
+          </View>
 
           {/* Reminders */}
           {event.reminders.length > 0 && (
@@ -482,6 +556,7 @@ function DetailRow({
   colors,
   typo,
   spacing,
+  showDivider,
 }: {
   icon: string;
   label: string;
@@ -489,13 +564,23 @@ function DetailRow({
   colors: any;
   typo: any;
   spacing: any;
+  showDivider?: boolean;
 }) {
   return (
-    <View style={[detailStyles.row, { marginBottom: spacing.sm }]}>
+    <View
+      style={[
+        detailStyles.row,
+        {
+          paddingVertical: spacing.sm,
+          borderBottomWidth: showDivider ? StyleSheet.hairlineWidth : 0,
+          borderBottomColor: colors.border,
+        },
+      ]}
+    >
       <Ionicons name={icon as any} size={18} color={colors.textSecondary} />
-      <View style={{ marginLeft: spacing.sm }}>
+      <View style={{ marginLeft: spacing.sm, flex: 1 }}>
         <Text style={[typo.caption, { color: colors.textTertiary }]}>{label}</Text>
-        <Text style={[typo.body, { color: colors.text }]}>{value}</Text>
+        <Text style={[typo.body, { color: colors.text, marginTop: 2 }]}>{value}</Text>
       </View>
     </View>
   );
@@ -509,14 +594,51 @@ const styles = StyleSheet.create({
   container: { flex: 1 },
   center: { flex: 1, justifyContent: 'center', alignItems: 'center' },
   headerCard: {
-    elevation: 2,
+    elevation: 3,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 8,
   },
   titleRow: { flexDirection: 'row', alignItems: 'center' },
+  titleIconBubble: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  titleEmoji: { fontSize: 22 },
+  holidayChip: { alignSelf: 'flex-start' },
   nextDateBox: {},
+  nextDateRow: { flexDirection: 'row', alignItems: 'center' },
+  daysBadge: {
+    minWidth: 68,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+  },
+  daysNumber: {
+    color: '#FFF',
+    fontSize: 28,
+    fontWeight: '800',
+    lineHeight: 30,
+  },
+  daysUnit: {
+    color: '#FFF',
+    fontSize: 11,
+    fontWeight: '700',
+    letterSpacing: 0.5,
+    textTransform: 'uppercase',
+  },
+  detailCard: {
+    elevation: 1,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.06,
+    shadowRadius: 4,
+  },
   section: {},
   reminderRow: { flexDirection: 'row', alignItems: 'center' },
   actions: { flexDirection: 'row' },

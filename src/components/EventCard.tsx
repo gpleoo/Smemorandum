@@ -9,6 +9,8 @@ import { getNextOccurrence } from '../utils/recurrenceEngine';
 import { useTranslation } from 'react-i18next';
 import { CategoryBadge } from './CategoryBadge';
 import { nextAge, isMilestone } from '../services/nameDayService';
+import { getEventKind, getEventAccent } from '../theme/eventColors';
+import { HOLIDAY_TEMPLATES } from '../data/holidayTemplates';
 
 interface EventCardProps {
   event: SEvent;
@@ -28,12 +30,19 @@ export function EventCard({ event, onPress }: EventCardProps) {
   const category = getCategoryById(event.categoryId);
   const nextDate = getNextOccurrence(event, new Date());
   const days = nextDate ? daysUntil(nextDate) : null;
-  const avatarColor = category?.color ?? colors.primary;
+  const kind = getEventKind(event);
+  const accent = getEventAccent(kind, colors);
+  const avatarColor = kind === 'holiday' ? accent : category?.color ?? accent;
   const age = event.eventType === 'ricorrenza' && event.recurrence.type === 'yearly'
     ? nextAge(event.date)
     : null;
   const milestone = age !== null ? isMilestone(age) : false;
-  const isHoliday = !!event.sourceTemplateId;
+  const isHoliday = kind === 'holiday';
+  const holidayTemplate = isHoliday
+    ? HOLIDAY_TEMPLATES.find((h) => h.id === event.sourceTemplateId)
+    : undefined;
+  const countdownBg =
+    days === 0 ? colors.error : days !== null && days <= 3 ? colors.warning : accent;
 
   return (
     <TouchableOpacity
@@ -51,11 +60,15 @@ export function EventCard({ event, onPress }: EventCardProps) {
       activeOpacity={0.7}
     >
       <View style={styles.row}>
-        {/* Avatar iniziali */}
+        {/* Avatar: emoji template per festività, iniziali per il resto */}
         <View style={[styles.avatar, { backgroundColor: avatarColor + '25', marginRight: spacing.sm }]}>
-          <Text style={[typo.bodySmall, { color: avatarColor, fontWeight: '700' }]}>
-            {initials(event.title)}
-          </Text>
+          {holidayTemplate ? (
+            <Text style={styles.avatarEmoji}>{holidayTemplate.icon}</Text>
+          ) : (
+            <Text style={[typo.bodySmall, { color: avatarColor, fontWeight: '700' }]}>
+              {initials(event.title)}
+            </Text>
+          )}
         </View>
         <View style={styles.content}>
           <View style={styles.titleRow}>
@@ -108,16 +121,17 @@ export function EventCard({ event, onPress }: EventCardProps) {
             style={[
               styles.countdown,
               {
-                backgroundColor: days === 0 ? colors.error : days <= 3 ? colors.warning : colors.primaryLight,
-                borderRadius: borderRadius.md,
-                padding: spacing.sm,
+                backgroundColor: countdownBg + '1F',
+                borderRadius: borderRadius.lg,
+                paddingVertical: spacing.sm,
+                paddingHorizontal: spacing.sm,
               },
             ]}
           >
-            <Text style={[typo.h2, { color: '#FFF', textAlign: 'center' }]}>
+            <Text style={[typo.h2, { color: countdownBg, textAlign: 'center', fontWeight: '800' }]}>
               {days}
             </Text>
-            <Text style={[typo.caption, { color: '#FFF', textAlign: 'center' }]}>
+            <Text style={[typo.caption, { color: countdownBg, textAlign: 'center', fontWeight: '600' }]}>
               {days === 0
                 ? t('home.todayLabel')
                 : days === 1
@@ -141,11 +155,14 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
   },
   avatar: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  avatarEmoji: {
+    fontSize: 22,
   },
   row: {
     flexDirection: 'row',

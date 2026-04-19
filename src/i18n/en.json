@@ -12,10 +12,17 @@
     "thisWeek": "This week",
     "thisMonth": "This month",
     "noEvents": "No upcoming events",
+    "noEventsHint": "Tap + below to add your first reminder",
     "upcoming": "Upcoming events",
     "daysLeft": "{{count}} days",
     "tomorrow": "Tomorrow",
-    "todayLabel": "Today"
+    "todayLabel": "Today",
+    "greetingMorning": "Good morning",
+    "greetingAfternoon": "Good afternoon",
+    "greetingEvening": "Good evening",
+    "summaryNone": "Nothing planned, enjoy your day 🎉",
+    "summaryToday": "{{count}} on today's agenda",
+    "summaryNext": "Next: {{title}} in {{days}} days"
   },
   "events": {
     "title": "Events",

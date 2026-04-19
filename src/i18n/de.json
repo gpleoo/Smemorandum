@@ -12,10 +12,17 @@
     "thisWeek": "Diese Woche",
     "thisMonth": "Diesen Monat",
     "noEvents": "Keine bevorstehenden Ereignisse",
+    "noEventsHint": "Tippe unten auf +, um deine erste Erinnerung anzulegen",
     "upcoming": "Kommende Ereignisse",
     "daysLeft": "{{count}} Tage",
     "tomorrow": "Morgen",
-    "todayLabel": "Heute"
+    "todayLabel": "Heute",
+    "greetingMorning": "Guten Morgen",
+    "greetingAfternoon": "Guten Tag",
+    "greetingEvening": "Guten Abend",
+    "summaryNone": "Nichts geplant, genieße den Tag 🎉",
+    "summaryToday": "{{count}} heute auf der Agenda",
+    "summaryNext": "Nächstes: {{title}} in {{days}} Tagen"
   },
   "events": {
     "title": "Ereignisse",
