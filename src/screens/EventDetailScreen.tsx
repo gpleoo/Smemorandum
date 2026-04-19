@@ -75,8 +75,10 @@ export function EventDetailScreen() {
     ? HOLIDAY_TEMPLATES.find((h) => h.id === event.sourceTemplateId)
     : undefined;
 
-  // Age & milestone (only for yearly ricorrenza with a year in the date)
-  const age = event.eventType === 'ricorrenza' && event.recurrence.type === 'yearly'
+  // Age & milestone (only for user-created yearly ricorrenza, never for holidays)
+  const age = event.eventType === 'ricorrenza'
+    && event.recurrence.type === 'yearly'
+    && !event.sourceTemplateId
     ? nextAge(event.date)
     : null;
   const milestone = age !== null ? isMilestone(age) : false;

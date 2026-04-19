@@ -142,6 +142,30 @@ export function computeHolidaysToAdd(
     }));
 }
 
+/**
+ * Return the ids of auto-added holiday events whose template no longer
+ * matches the user's current country/tradition filter. Only events tracked
+ * via `sourceTemplateId` are considered; events the user created by hand
+ * (even starting from a template they later removed) are untouched.
+ */
+export function computeHolidaysToRemove(
+  events: SEvent[],
+  settings: AppSettings,
+  language: string,
+): string[] {
+  const countries = getEffectiveCountries(settings.holidayCountries, language);
+  const traditions =
+    settings.holidayTraditions && settings.holidayTraditions.length > 0
+      ? settings.holidayTraditions
+      : ['secular'];
+  const activeIds = new Set(
+    filterTemplates(HOLIDAY_TEMPLATES, countries, traditions).map((t) => t.id),
+  );
+  return events
+    .filter((e) => e.sourceTemplateId && !activeIds.has(e.sourceTemplateId))
+    .map((e) => e.id);
+}
+
 /** Format rule description for display (month/day or "mobile date") */
 export function describeRule(rule: HolidayRule, language: string): string {
   if (rule.type === 'fixed') {

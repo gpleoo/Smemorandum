@@ -4,7 +4,7 @@ import * as eventStorage from '../storage/eventStorage';
 import { requestPermissions, scheduleAllEventNotifications } from '../services/notificationService';
 import { updateWidget } from '../services/widgetService';
 import { getSettings } from '../storage/settingsStorage';
-import { computeHolidaysToAdd } from '../services/templatesService';
+import { computeHolidaysToAdd, computeHolidaysToRemove } from '../services/templatesService';
 import i18n from '../i18n';
 
 interface EventState {
@@ -57,8 +57,14 @@ export function EventProvider({ children }: { children: React.ReactNode }) {
       getSettings(),
     ]);
     const toAdd = computeHolidaysToAdd(currentEvents, settings, i18n.language);
-    if (toAdd.length === 0) return 0;
-    const merged = [...currentEvents, ...toAdd];
+    const toRemoveIds = new Set(
+      computeHolidaysToRemove(currentEvents, settings, i18n.language),
+    );
+    if (toAdd.length === 0 && toRemoveIds.size === 0) return 0;
+    const merged = [
+      ...currentEvents.filter((e) => !toRemoveIds.has(e.id)),
+      ...toAdd,
+    ];
     await eventStorage.saveEvents(merged);
     dispatch({ type: 'SET_EVENTS', payload: merged });
     scheduleAllEventNotifications(merged).catch(() => {});

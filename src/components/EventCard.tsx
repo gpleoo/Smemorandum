@@ -33,7 +33,9 @@ export function EventCard({ event, onPress }: EventCardProps) {
   const kind = getEventKind(event);
   const accent = getEventAccent(kind, colors);
   const avatarColor = kind === 'holiday' ? accent : category?.color ?? accent;
-  const age = event.eventType === 'ricorrenza' && event.recurrence.type === 'yearly'
+  const age = event.eventType === 'ricorrenza'
+    && event.recurrence.type === 'yearly'
+    && !event.sourceTemplateId
     ? nextAge(event.date)
     : null;
   const milestone = age !== null ? isMilestone(age) : false;
