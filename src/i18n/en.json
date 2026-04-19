@@ -15,15 +15,18 @@
     "noEventsHint": "Tap + below to add your first reminder",
     "addFirstEvent": "Add your first event",
     "upcoming": "Upcoming events",
-    "daysLeft": "{{count}} days",
+    "daysLeft_one": "{{count}} day",
+    "daysLeft_other": "{{count}} days",
     "tomorrow": "Tomorrow",
     "todayLabel": "Today",
     "greetingMorning": "Good morning",
     "greetingAfternoon": "Good afternoon",
     "greetingEvening": "Good evening",
     "summaryNone": "Nothing planned, enjoy your day 🎉",
-    "summaryToday": "{{count}} on today's agenda",
-    "summaryNext": "Next: {{title}} in {{days}} days"
+    "summaryToday_one": "1 event on today's agenda",
+    "summaryToday_other": "{{count}} events on today's agenda",
+    "summaryNext_one": "Next: {{title}} tomorrow",
+    "summaryNext_other": "Next: {{title}} in {{count}} days"
   },
   "events": {
     "title": "Events",
@@ -110,7 +113,8 @@
   "share": {
     "shareCard": "Share birthday card",
     "headlineToday": "Happy birthday!",
-    "headlineSoon": "In {{days}} days",
+    "headlineSoon_one": "In {{count}} day",
+    "headlineSoon_other": "In {{count}} days",
     "ageLine": "Turning {{age}}",
     "footer": "Made with Smemorandum"
   },

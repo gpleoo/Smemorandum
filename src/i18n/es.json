@@ -15,15 +15,18 @@
     "noEventsHint": "Toca + abajo para añadir tu primer recordatorio",
     "addFirstEvent": "Añadir el primer evento",
     "upcoming": "Próximos eventos",
-    "daysLeft": "{{count}} días",
+    "daysLeft_one": "{{count}} día",
+    "daysLeft_other": "{{count}} días",
     "tomorrow": "Mañana",
     "todayLabel": "Hoy",
     "greetingMorning": "Buenos días",
     "greetingAfternoon": "Buenas tardes",
     "greetingEvening": "Buenas noches",
     "summaryNone": "Nada en agenda, disfruta el día 🎉",
-    "summaryToday": "{{count}} en la agenda de hoy",
-    "summaryNext": "Próximo: {{title}} en {{days}} días"
+    "summaryToday_one": "1 evento en la agenda de hoy",
+    "summaryToday_other": "{{count}} eventos en la agenda de hoy",
+    "summaryNext_one": "Próximo: {{title}} mañana",
+    "summaryNext_other": "Próximo: {{title}} en {{count}} días"
   },
   "events": {
     "title": "Eventos",
@@ -110,8 +113,9 @@
   "share": {
     "shareCard": "Compartir tarjeta",
     "headlineToday": "¡Feliz cumpleaños!",
-    "headlineSoon": "En {{days}} días",
-    "ageLine": "Cumple {{age}}",
+    "headlineSoon_one": "En {{count}} día",
+    "headlineSoon_other": "En {{count}} días",
+    "ageLine": "Cumple {{age}} años",
     "footer": "Creado con Smemorandum"
   },
   "settings": {

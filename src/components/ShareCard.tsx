@@ -33,7 +33,7 @@ export const ShareCard = forwardRef<View, ShareCardProps>(({ event, nextDate, da
   const dateStr = formatDate(nextDate, 'd MMMM', i18n.language);
   const headline = daysAway === 0
     ? t('share.headlineToday')
-    : t('share.headlineSoon', { days: daysAway });
+    : t('share.headlineSoon', { count: daysAway });
 
   return (
     <View ref={ref} collapsable={false} style={styles.wrapper}>

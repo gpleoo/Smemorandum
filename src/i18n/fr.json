@@ -15,15 +15,18 @@
     "noEventsHint": "Touchez + ci-dessous pour ajouter votre premier rappel",
     "addFirstEvent": "Ajouter le premier événement",
     "upcoming": "Prochains événements",
-    "daysLeft": "{{count}} jours",
+    "daysLeft_one": "{{count}} jour",
+    "daysLeft_other": "{{count}} jours",
     "tomorrow": "Demain",
     "todayLabel": "Aujourd'hui",
     "greetingMorning": "Bonjour",
     "greetingAfternoon": "Bon après-midi",
     "greetingEvening": "Bonsoir",
     "summaryNone": "Rien de prévu, profitez de votre journée 🎉",
-    "summaryToday": "{{count}} à l'agenda aujourd'hui",
-    "summaryNext": "Prochain : {{title}} dans {{days}} jours"
+    "summaryToday_one": "1 événement à l'agenda aujourd'hui",
+    "summaryToday_other": "{{count}} événements à l'agenda aujourd'hui",
+    "summaryNext_one": "Prochain : {{title}} demain",
+    "summaryNext_other": "Prochain : {{title}} dans {{count}} jours"
   },
   "events": {
     "title": "Événements",
@@ -110,7 +113,8 @@
   "share": {
     "shareCard": "Partager la carte",
     "headlineToday": "Joyeux anniversaire !",
-    "headlineSoon": "Dans {{days}} jours",
+    "headlineSoon_one": "Dans {{count}} jour",
+    "headlineSoon_other": "Dans {{count}} jours",
     "ageLine": "Aura {{age}} ans",
     "footer": "Créé avec Smemorandum"
   },

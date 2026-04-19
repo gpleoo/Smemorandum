@@ -15,15 +15,18 @@
     "noEventsHint": "Tocca il + in basso per aggiungere il tuo primo promemoria",
     "addFirstEvent": "Aggiungi il primo evento",
     "upcoming": "Prossimi eventi",
-    "daysLeft": "{{count}} giorni",
+    "daysLeft_one": "{{count}} giorno",
+    "daysLeft_other": "{{count}} giorni",
     "tomorrow": "Domani",
     "todayLabel": "Oggi",
     "greetingMorning": "Buongiorno",
     "greetingAfternoon": "Buon pomeriggio",
     "greetingEvening": "Buonasera",
     "summaryNone": "Niente in programma, giornata libera 🎉",
-    "summaryToday": "Oggi {{count}} in agenda",
-    "summaryNext": "Prossimo: {{title}} tra {{days}} giorni"
+    "summaryToday_one": "Oggi {{count}} evento in agenda",
+    "summaryToday_other": "Oggi {{count}} eventi in agenda",
+    "summaryNext_one": "Prossimo: {{title}} domani",
+    "summaryNext_other": "Prossimo: {{title}} tra {{count}} giorni"
   },
   "events": {
     "title": "Eventi",
@@ -110,7 +113,8 @@
   "share": {
     "shareCard": "Condividi auguri",
     "headlineToday": "Auguri di buon compleanno!",
-    "headlineSoon": "Tra {{days}} giorni",
+    "headlineSoon_one": "Tra {{count}} giorno",
+    "headlineSoon_other": "Tra {{count}} giorni",
     "ageLine": "Compirà {{age}} anni",
     "footer": "Creato con Smemorandum"
   },
@@ -179,7 +183,7 @@
   },
   "premium": {
     "title": "Smemorandum Premium",
-    "subtitle": "Usa l'app senza pubblicità + funzioni extra",
+    "subtitle": "Senza pubblicità e con funzioni extra",
     "unlimitedCategories": "Categorie illimitate (gratis: max 3)",
     "multipleReminders": "Promemoria multipli per evento",
     "allSounds": "Tutti i suoni di notifica",

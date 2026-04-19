@@ -78,7 +78,7 @@ export function HomeScreen() {
     if (nextEvent && nextEvent.nextDate) {
       return t('home.summaryNext', {
         title: nextEvent.event.title,
-        days: daysUntil(nextEvent.nextDate),
+        count: daysUntil(nextEvent.nextDate),
       });
     }
     return t('home.summaryNone');
