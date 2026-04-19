@@ -41,6 +41,7 @@ const SettingsStack = createNativeStackNavigator<SettingsStackParamList>();
 
 function HomeStackNavigator() {
   const { colors } = useTheme();
+  const { t } = useTranslation();
   return (
     <HomeStack.Navigator
       screenOptions={{
@@ -50,14 +51,15 @@ function HomeStackNavigator() {
       }}
     >
       <HomeStack.Screen name="Home" component={HomeScreen} options={{ headerShown: false }} />
-      <HomeStack.Screen name="EventDetail" component={EventDetailScreen} />
-      <HomeStack.Screen name="EventForm" component={EventFormScreen} />
+      <HomeStack.Screen name="EventDetail" component={EventDetailScreen} options={{ title: t('eventDetail.title') }} />
+      <HomeStack.Screen name="EventForm" component={EventFormScreen} options={{ title: t('eventForm.createTitle') }} />
     </HomeStack.Navigator>
   );
 }
 
 function CalendarStackNavigator() {
   const { colors } = useTheme();
+  const { t } = useTranslation();
   return (
     <CalendarStack.Navigator
       screenOptions={{
@@ -67,14 +69,15 @@ function CalendarStackNavigator() {
       }}
     >
       <CalendarStack.Screen name="Calendar" component={CalendarScreen} options={{ headerShown: false }} />
-      <CalendarStack.Screen name="EventDetail" component={EventDetailScreen} />
-      <CalendarStack.Screen name="EventForm" component={EventFormScreen} />
+      <CalendarStack.Screen name="EventDetail" component={EventDetailScreen} options={{ title: t('eventDetail.title') }} />
+      <CalendarStack.Screen name="EventForm" component={EventFormScreen} options={{ title: t('eventForm.createTitle') }} />
     </CalendarStack.Navigator>
   );
 }
 
 function EventsStackNavigator() {
   const { colors } = useTheme();
+  const { t } = useTranslation();
   return (
     <EventsStack.Navigator
       screenOptions={{
@@ -84,14 +87,15 @@ function EventsStackNavigator() {
       }}
     >
       <EventsStack.Screen name="EventList" component={EventListScreen} options={{ headerShown: false }} />
-      <EventsStack.Screen name="EventDetail" component={EventDetailScreen} />
-      <EventsStack.Screen name="EventForm" component={EventFormScreen} />
+      <EventsStack.Screen name="EventDetail" component={EventDetailScreen} options={{ title: t('eventDetail.title') }} />
+      <EventsStack.Screen name="EventForm" component={EventFormScreen} options={{ title: t('eventForm.createTitle') }} />
     </EventsStack.Navigator>
   );
 }
 
 function SettingsStackNavigator() {
   const { colors } = useTheme();
+  const { t } = useTranslation();
   return (
     <SettingsStack.Navigator
       screenOptions={{
@@ -101,9 +105,9 @@ function SettingsStackNavigator() {
       }}
     >
       <SettingsStack.Screen name="Settings" component={SettingsScreen} options={{ headerShown: false }} />
-      <SettingsStack.Screen name="Premium" component={PremiumScreen} />
-      <SettingsStack.Screen name="ManageCategories" component={ManageCategoriesScreen} />
-      <SettingsStack.Screen name="ImportContacts" component={ImportContactsScreen} />
+      <SettingsStack.Screen name="Premium" component={PremiumScreen} options={{ title: t('premium.title') }} />
+      <SettingsStack.Screen name="ManageCategories" component={ManageCategoriesScreen} options={{ title: t('manageCategories.title') }} />
+      <SettingsStack.Screen name="ImportContacts" component={ImportContactsScreen} options={{ title: t('importContacts.title') }} />
       <SettingsStack.Screen name="Stats" component={StatsScreen} options={{ headerShown: false }} />
       <SettingsStack.Screen name="HolidayTemplates" component={HolidayTemplatesScreen} options={{ headerShown: false }} />
     </SettingsStack.Navigator>

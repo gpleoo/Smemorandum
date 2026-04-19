@@ -123,13 +123,50 @@ export function HomeScreen() {
 
       {!hasEvents ? (
         <View style={styles.center}>
-          <Ionicons name="calendar-outline" size={72} color={colors.textTertiary} />
-          <Text style={[typo.h3, { color: colors.text, marginTop: spacing.md, textAlign: 'center' }]}>
+          <View style={styles.illustrationWrap}>
+            <LinearGradient
+              colors={[colors.primary + '22', colors.secondary + '11']}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={styles.illustrationHalo}
+            />
+            <LinearGradient
+              colors={[colors.primary, colors.secondary]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={styles.illustrationCircle}
+            >
+              <Ionicons name="sparkles" size={48} color="#FFF" />
+            </LinearGradient>
+            <View style={[styles.illustrationDotA, { backgroundColor: colors.primary + '33' }]} />
+            <View style={[styles.illustrationDotB, { backgroundColor: colors.secondary + '33' }]} />
+          </View>
+          <Text style={[typo.h3, { color: colors.text, marginTop: spacing.lg, textAlign: 'center', fontWeight: '700' }]}>
             {t('home.noEvents')}
           </Text>
           <Text style={[typo.body, { color: colors.textSecondary, marginTop: spacing.xs, textAlign: 'center', paddingHorizontal: spacing.xl }]}>
             {t('home.noEventsHint')}
           </Text>
+          <TouchableOpacity
+            onPress={() => {
+              tapLight();
+              navigation.navigate('EventForm', {});
+            }}
+            activeOpacity={0.85}
+            style={{ marginTop: spacing.lg, borderRadius: borderRadius.full, overflow: 'hidden' }}
+          >
+            <LinearGradient
+              colors={[colors.primary, colors.secondary]}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
+              style={styles.emptyCta}
+            >
+              <Ionicons name="add" size={20} color="#FFF" />
+              <Text style={[typo.body, { color: '#FFF', fontWeight: '700', marginLeft: 6 }]}>
+                {t('home.addFirstEvent')}
+              </Text>
+            </LinearGradient>
+          </TouchableOpacity>
         </View>
       ) : (
         <FlatList
@@ -238,6 +275,47 @@ const styles = StyleSheet.create({
     fontWeight: '800',
     fontFamily: 'Inter_800ExtraBold',
     lineHeight: 20,
+  },
+  illustrationWrap: {
+    width: 180,
+    height: 180,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  illustrationHalo: {
+    position: 'absolute',
+    width: 180,
+    height: 180,
+    borderRadius: 90,
+  },
+  illustrationCircle: {
+    width: 112,
+    height: 112,
+    borderRadius: 56,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  illustrationDotA: {
+    position: 'absolute',
+    width: 16,
+    height: 16,
+    borderRadius: 8,
+    top: 22,
+    right: 28,
+  },
+  illustrationDotB: {
+    position: 'absolute',
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    bottom: 30,
+    left: 26,
+  },
+  emptyCta: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 18,
+    paddingVertical: 12,
   },
   fab: {
     position: 'absolute',

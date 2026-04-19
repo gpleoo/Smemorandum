@@ -13,6 +13,7 @@
     "thisMonth": "Ce mois-ci",
     "noEvents": "Aucun événement à venir",
     "noEventsHint": "Touchez + ci-dessous pour ajouter votre premier rappel",
+    "addFirstEvent": "Ajouter le premier événement",
     "upcoming": "Prochains événements",
     "daysLeft": "{{count}} jours",
     "tomorrow": "Demain",
@@ -85,6 +86,7 @@
     "birthdayToday": "🎂 Anniversaire aujourd'hui !"
   },
   "eventDetail": {
+    "title": "Détails de l'événement",
     "details": "Détails",
     "reminders": "Rappels",
     "notes": "Notes",

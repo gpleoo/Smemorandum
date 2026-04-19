@@ -13,15 +13,15 @@ spostare nella sezione "✅ Completato" in fondo.
 - [ ] 4. Descrizione Store IT + EN con keyword ASO
 - [ ] 5. Email supporto attiva
 - [ ] 6. Test reale su iPhone fisico (primo avvio, importa contatti, festività, notifiche, tap-to-call)
-- [ ] 7. Fix titolo navigator "Settings ImportContacts" → tradotto
+- [x] 7. Fix titolo navigator "Settings ImportContacts" → tradotto
 - [ ] 8. Categoria App Store: Produttività + Stile di vita
 
 ## 🚀 Fase 2 — Da fare prima del lancio (sprint 1–2 settimane)
 
-- [ ] 9. Onboarding 3 slide (illustrazioni + testo)
+- [x] 9. Onboarding 3 slide (illustrazioni + testo)
 - [ ] 10. Widget iOS small + medium (prossimo evento + countdown)
-- [ ] 11. Share card auguri (genera immagine + condividi)
-- [ ] 12. Empty state illustrato (no icona generica)
+- [x] 11. Share card auguri (genera immagine + condividi)
+- [x] 12. Empty state illustrato (no icona generica)
 - [ ] 13. Sentry o Bugsnag (crash reporting)
 - [ ] 14. Analytics base (PostHog / RevenueCat) — MAU, D7, conversion Premium
 - [ ] 15. TestFlight beta 7–10 giorni con 10–20 tester
@@ -63,4 +63,7 @@ spostare nella sezione "✅ Completato" in fondo.
 
 ## ✅ Completato
 
-(Spostare qui le voci finite con la data e il commit hash)
+- 2026-04-19 — #9 Onboarding 3 slide con icone gradient (commit c01f420)
+- 2026-04-19 — #11 Share card auguri snapshot + sheet OS (commit d1ebd7e)
+- 2026-04-19 — #7 Titoli navigator tradotti (eventDetail/eventForm/premium/manageCategories/importContacts)
+- 2026-04-19 — #12 Empty state Home con halo gradient + monogramma sparkle + CTA "Aggiungi il primo evento"
