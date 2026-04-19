@@ -17,9 +17,6 @@ export const SOUNDS = [
   { id: 'gentle-bell', name: 'Campanella', file: 'gentle-bell.mp3', premium: false },
   { id: 'urgent-alarm', name: 'Allarme urgente', file: 'urgent-alarm.mp3', premium: false },
   { id: 'celebration', name: 'Festa', file: 'celebration.mp3', premium: false },
-  { id: 'piano-note', name: 'Nota di piano', file: 'piano-note.mp3', premium: true },
-  { id: 'chime', name: 'Carillon', file: 'chime.mp3', premium: true },
-  { id: 'harp', name: 'Arpa', file: 'harp.mp3', premium: true },
 ] as const;
 
 export const DEFAULT_SETTINGS: AppSettings = {
