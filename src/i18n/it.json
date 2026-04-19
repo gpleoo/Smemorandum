@@ -105,6 +105,13 @@
     "legendScadenza": "Scadenze",
     "holidayBadge": "🎉 Festività"
   },
+  "share": {
+    "shareCard": "Condividi auguri",
+    "headlineToday": "Auguri di buon compleanno!",
+    "headlineSoon": "Tra {{days}} giorni",
+    "ageLine": "Compirà {{age}} anni",
+    "footer": "Creato con Smemorandum"
+  },
   "settings": {
     "title": "Impostazioni",
     "general": "Generali",

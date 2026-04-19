@@ -39,6 +39,7 @@
     "react-native-google-mobile-ads": "^13.5.0",
     "react-native-purchases": "^8.0.0",
     "react-native-calendars": "^1.1314.0",
+    "react-native-view-shot": "~4.0.3",
     "react-native-gesture-handler": "~2.20.2",
     "react-native-reanimated": "~3.16.2",
     "react-native-safe-area-context": "4.12.0",

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   View,
   Text,
@@ -28,6 +28,8 @@ import { SOUNDS } from '../utils/constants';
 import { nextAge, isMilestone } from '../services/nameDayService';
 import { getEventKind, getEventAccent } from '../theme/eventColors';
 import { HOLIDAY_TEMPLATES } from '../data/holidayTemplates';
+import { ShareCard } from '../components/ShareCard';
+import { shareViewSnapshot } from '../services/shareService';
 
 type DetailRoute = RouteProp<HomeStackParamList, 'EventDetail'>;
 type Nav = NativeStackNavigationProp<HomeStackParamList, 'EventDetail'>;
@@ -51,6 +53,7 @@ export function EventDetailScreen() {
   const { getCategoryById } = useCategories();
 
   const [showWishesModal, setShowWishesModal] = useState(false);
+  const shareCardRef = useRef<View>(null);
 
   const event = getEventById(route.params.eventId);
 
@@ -131,6 +134,15 @@ export function EventDetailScreen() {
         : '';
     const msg = `📅 ${event.title} — ${dateStr}${daysStr ? ` (${daysStr})` : ''}\n\n${t('common.sharedVia')} Smemorandum`;
     Share.share({ message: msg, title: event.title }).catch(() => {});
+  };
+
+  const handleShareCard = async () => {
+    tapLight();
+    try {
+      await shareViewSnapshot(shareCardRef, `smemorandum-${event.id}`);
+    } catch {
+      // Sharing cancelled or unavailable — silent
+    }
   };
 
   const getReminderLabel = (daysBefore: number): string => {
@@ -460,6 +472,28 @@ export function EventDetailScreen() {
             </Text>
           </TouchableOpacity>
 
+          {/* Birthday share card — image with name/age/date for socials */}
+          {kind === 'birthday' && nextDate && days !== null && days >= 0 && (
+            <TouchableOpacity
+              style={[
+                styles.actionButton,
+                {
+                  backgroundColor: colors.secondary,
+                  borderRadius: borderRadius.lg,
+                  paddingVertical: spacing.sm,
+                  marginTop: spacing.sm,
+                  justifyContent: 'center',
+                },
+              ]}
+              onPress={handleShareCard}
+            >
+              <Ionicons name="image-outline" size={20} color="#FFF" />
+              <Text style={[typo.body, { color: '#FFF', marginLeft: spacing.xs, fontWeight: '600' }]}>
+                {t('share.shareCard')}
+              </Text>
+            </TouchableOpacity>
+          )}
+
           {/* WhatsApp wishes — only for recurring events (birthdays/anniversaries) */}
           {event.eventType === 'ricorrenza' && (
             <TouchableOpacity
@@ -555,6 +589,11 @@ export function EventDetailScreen() {
           </TouchableOpacity>
         </TouchableOpacity>
       </Modal>
+
+      {/* Off-screen share card mounted only for birthdays so view-shot can snapshot it */}
+      {kind === 'birthday' && nextDate && days !== null && days >= 0 && (
+        <ShareCard ref={shareCardRef} event={event} nextDate={nextDate} daysAway={days} />
+      )}
     </>
   );
 }

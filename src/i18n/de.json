@@ -105,6 +105,13 @@
     "legendScadenza": "Fristen",
     "holidayBadge": "🎉 Feiertag"
   },
+  "share": {
+    "shareCard": "Karte teilen",
+    "headlineToday": "Alles Gute zum Geburtstag!",
+    "headlineSoon": "In {{days}} Tagen",
+    "ageLine": "Wird {{age}}",
+    "footer": "Erstellt mit Smemorandum"
+  },
   "settings": {
     "title": "Einstellungen",
     "general": "Allgemein",

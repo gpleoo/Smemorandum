@@ -105,6 +105,13 @@
     "legendScadenza": "Échéances",
     "holidayBadge": "🎉 Jour férié"
   },
+  "share": {
+    "shareCard": "Partager la carte",
+    "headlineToday": "Joyeux anniversaire !",
+    "headlineSoon": "Dans {{days}} jours",
+    "ageLine": "Aura {{age}} ans",
+    "footer": "Créé avec Smemorandum"
+  },
   "settings": {
     "title": "Paramètres",
     "general": "Général",

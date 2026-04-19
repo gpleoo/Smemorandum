@@ -105,6 +105,13 @@
     "legendScadenza": "Vencimientos",
     "holidayBadge": "🎉 Festivo"
   },
+  "share": {
+    "shareCard": "Compartir tarjeta",
+    "headlineToday": "¡Feliz cumpleaños!",
+    "headlineSoon": "En {{days}} días",
+    "ageLine": "Cumple {{age}}",
+    "footer": "Creado con Smemorandum"
+  },
   "settings": {
     "title": "Ajustes",
     "general": "General",

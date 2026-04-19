@@ -105,6 +105,13 @@
     "legendScadenza": "Deadlines",
     "holidayBadge": "🎉 Holiday"
   },
+  "share": {
+    "shareCard": "Share birthday card",
+    "headlineToday": "Happy birthday!",
+    "headlineSoon": "In {{days}} days",
+    "ageLine": "Turning {{age}}",
+    "footer": "Made with Smemorandum"
+  },
   "settings": {
     "title": "Settings",
     "general": "General",
