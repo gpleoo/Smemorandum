@@ -20,10 +20,13 @@ import { AppNavigator, navigationRef } from './src/navigation/AppNavigator';
 import { initializeNotifications } from './src/services/notificationService';
 import { initializeAdMob } from './src/services/adService';
 import { getSettings } from './src/storage/settingsStorage';
+import { ErrorBoundary } from './src/components/ErrorBoundary';
+import { initCrashReporting } from './src/services/crashReporting';
 import './src/i18n';
 
 // Initialize notifications at module load (before any component renders)
 initializeNotifications();
+initCrashReporting();
 
 function AppContent() {
   const { isDark, colors } = useTheme();
@@ -131,12 +134,14 @@ function AppContent() {
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <PremiumProvider>
-        <EventProvider>
-          <AppContent />
-        </EventProvider>
-      </PremiumProvider>
-    </ThemeProvider>
+    <ErrorBoundary>
+      <ThemeProvider>
+        <PremiumProvider>
+          <EventProvider>
+            <AppContent />
+          </EventProvider>
+        </PremiumProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
   );
 }

@@ -24,6 +24,7 @@ import { useEventContext } from '../context/EventContext';
 import { shareBackup, pickAndRestoreBackup } from '../services/backupService';
 import { setAdsConsent } from '../services/adService';
 import { scheduleWeeklyDigest } from '../services/notificationService';
+import { triggerDebugCrash } from '../services/crashReporting';
 
 type Nav = NativeStackNavigationProp<SettingsStackParamList, 'Settings'>;
 
@@ -34,6 +35,13 @@ export function SettingsScreen() {
   const { showTutorial } = useTutorial();
   const { events, refreshData } = useEventContext();
   const [settings, setSettings] = useState<AppSettings | null>(null);
+  const [debugCrash, setDebugCrash] = useState(false);
+  const versionTapsRef = React.useRef<{ count: number; last: number }>({ count: 0, last: 0 });
+
+  if (debugCrash) {
+    // Render-time throw so ErrorBoundary catches and reports it.
+    triggerDebugCrash();
+  }
 
   useEffect(() => {
     getSettings().then((s) => {
@@ -601,7 +609,18 @@ export function SettingsScreen() {
         {/* About */}
         <SectionHeader title={t('settings.about')} colors={colors} typo={typo} spacing={spacing} />
 
-        <View
+        <TouchableOpacity
+          activeOpacity={0.9}
+          onPress={() => {
+            const now = Date.now();
+            const tracker = versionTapsRef.current;
+            tracker.count = now - tracker.last < 800 ? tracker.count + 1 : 1;
+            tracker.last = now;
+            if (tracker.count >= 5) {
+              tracker.count = 0;
+              setDebugCrash(true);
+            }
+          }}
           style={[
             styles.settingsRow,
             {
@@ -615,7 +634,7 @@ export function SettingsScreen() {
             {t('settings.version')}
           </Text>
           <Text style={[typo.body, { color: colors.text }]}>1.0.0</Text>
-        </View>
+        </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   );

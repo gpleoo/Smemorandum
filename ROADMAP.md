@@ -22,10 +22,10 @@ spostare nella sezione "✅ Completato" in fondo.
 - [ ] 10. Widget iOS small + medium (prossimo evento + countdown)
 - [x] 11. Share card auguri (genera immagine + condividi)
 - [x] 12. Empty state illustrato (no icona generica)
-- [ ] 13. Sentry o Bugsnag (crash reporting)
+- [~] 13. Sentry o Bugsnag (crash reporting) — scaffolding pronto, manca DSN + SDK vendor
 - [ ] 14. Analytics base (PostHog / RevenueCat) — MAU, D7, conversion Premium
 - [ ] 15. TestFlight beta 7–10 giorni con 10–20 tester
-- [ ] 16. Revisione i18n EN/ES/FR/DE da madrelingua o Claude
+- [x] 16. Revisione i18n EN/ES/FR/DE da madrelingua o Claude
 
 ## 🌱 Fase 3 — Roadmap post-lancio (12 mesi)
 
@@ -67,3 +67,5 @@ spostare nella sezione "✅ Completato" in fondo.
 - 2026-04-19 — #11 Share card auguri snapshot + sheet OS (commit d1ebd7e)
 - 2026-04-19 — #7 Titoli navigator tradotti (eventDetail/eventForm/premium/manageCategories/importContacts)
 - 2026-04-19 — #12 Empty state Home con halo gradient + monogramma sparkle + CTA "Aggiungi il primo evento"
+- 2026-04-19 — #16 Revisione i18n 5 locali: plurali i18next v4 su daysLeft/summaryToday/summaryNext/headlineSoon + fix stile IT/ES/DE (commit 03c578f)
+- 2026-04-19 — #13 Scaffolding crash reporting: ErrorBoundary globale + crashReporting service + trigger debug (5 tap su versione in Impostazioni). Manca solo collegare SDK Sentry + DSN.
