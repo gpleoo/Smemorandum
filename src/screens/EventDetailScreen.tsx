@@ -13,6 +13,8 @@ import {
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { Ionicons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
+import { tapLight, notifySuccess, notifyWarning } from '../utils/haptics';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useTheme } from '../theme/ThemeContext';
@@ -81,6 +83,7 @@ export function EventDetailScreen() {
   const isToday = days === 0;
 
   const handleDelete = async () => {
+    notifyWarning();
     if (Platform.OS === 'web') {
       if (!window.confirm(t('events.deleteConfirm'))) return;
       await deleteEvent(event.id);
@@ -200,11 +203,13 @@ export function EventDetailScreen() {
           )}
 
           {nextDate && (
-            <View
+            <LinearGradient
+              colors={[accent + '20', accent + '08']}
+              start={{ x: 0, y: 0 }}
+              end={{ x: 1, y: 1 }}
               style={[
                 styles.nextDateBox,
                 {
-                  backgroundColor: accent + '15',
                   borderRadius: borderRadius.lg,
                   padding: spacing.md,
                   marginTop: spacing.md,
@@ -269,7 +274,7 @@ export function EventDetailScreen() {
                   )}
                 </View>
               )}
-            </View>
+            </LinearGradient>
           )}
         </View>
 
@@ -403,7 +408,10 @@ export function EventDetailScreen() {
                   marginRight: spacing.sm,
                 },
               ]}
-              onPress={() => navigation.navigate('EventForm', { eventId: event.id })}
+              onPress={() => {
+                tapLight();
+                navigation.navigate('EventForm', { eventId: event.id });
+              }}
             >
               <Ionicons name="create-outline" size={20} color="#FFF" />
               <Text style={[typo.button, { color: '#FFF', marginLeft: spacing.xs }]}>

@@ -99,8 +99,10 @@
     "title": "Calendario",
     "eventsForDay": "Eventos del día",
     "noEvents": "Sin eventos para este día",
-    "legendMine": "Mis eventos",
+    "legendMine": "Eventos",
     "legendHoliday": "Festivos",
+    "legendBirthday": "Cumpleaños",
+    "legendScadenza": "Vencimientos",
     "holidayBadge": "🎉 Festivo"
   },
   "settings": {

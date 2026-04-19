@@ -13,6 +13,7 @@ import { useTranslation } from 'react-i18next';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation, useRoute, RouteProp } from '@react-navigation/native';
 import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
+import { notifySuccess, notifyWarning } from '../utils/haptics';
 import { useTheme } from '../theme/ThemeContext';
 import { useEvents } from '../hooks/useEvents';
 import { useCategories } from '../hooks/useCategories';
@@ -103,6 +104,7 @@ export function EventFormScreen() {
 
   const handleSave = async () => {
     if (!title.trim()) {
+      notifyWarning();
       setTitleError(true);
       scrollViewRef.current?.scrollTo({ y: 0, animated: true });
       setTimeout(() => titleInputRef.current?.focus(), 300);
@@ -134,6 +136,7 @@ export function EventFormScreen() {
       trackEventSavedAndMaybePrompt().catch(() => {});
     }
 
+    notifySuccess();
     navigation.goBack();
   };
 

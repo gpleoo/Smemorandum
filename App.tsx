@@ -1,10 +1,18 @@
 import 'react-native-get-random-values';
 import React, { useEffect } from 'react';
-import { Platform, Linking } from 'react-native';
+import { Platform, Linking, View, ActivityIndicator } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import * as Notifications from 'expo-notifications';
+import {
+  useFonts,
+  Inter_400Regular,
+  Inter_500Medium,
+  Inter_600SemiBold,
+  Inter_700Bold,
+  Inter_800ExtraBold,
+} from '@expo-google-fonts/inter';
 import { ThemeProvider, useTheme } from './src/theme/ThemeContext';
 import { EventProvider } from './src/context/EventContext';
 import { PremiumProvider } from './src/context/PremiumContext';
@@ -17,7 +25,15 @@ import './src/i18n';
 initializeNotifications();
 
 function AppContent() {
-  const { isDark } = useTheme();
+  const { isDark, colors } = useTheme();
+
+  const [fontsLoaded] = useFonts({
+    Inter_400Regular,
+    Inter_500Medium,
+    Inter_600SemiBold,
+    Inter_700Bold,
+    Inter_800ExtraBold,
+  });
 
   useEffect(() => {
     // Initialize AdMob (no-op on web)
@@ -71,6 +87,14 @@ function AppContent() {
 
     return () => subscription.remove();
   }, []);
+
+  if (!fontsLoaded) {
+    return (
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: colors.background }}>
+        <ActivityIndicator size="large" color={colors.primary} />
+      </View>
+    );
+  }
 
   return (
     <SafeAreaProvider>

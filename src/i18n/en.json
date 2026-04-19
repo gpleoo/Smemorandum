@@ -99,8 +99,10 @@
     "title": "Calendar",
     "eventsForDay": "Events for this day",
     "noEvents": "No events for this day",
-    "legendMine": "My events",
+    "legendMine": "Events",
     "legendHoliday": "Holidays",
+    "legendBirthday": "Birthdays",
+    "legendScadenza": "Deadlines",
     "holidayBadge": "🎉 Holiday"
   },
   "settings": {

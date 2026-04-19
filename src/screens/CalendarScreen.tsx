@@ -10,6 +10,7 @@ import { EventCard } from '../components/EventCard';
 import { CalendarStackParamList } from '../models/types';
 import { getOccurrencesInRange } from '../utils/recurrenceEngine';
 import { toISODateString } from '../utils/dateUtils';
+import { getEventKind, getEventAccent } from '../theme/eventColors';
 import { addMonths } from 'date-fns';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
@@ -33,15 +34,14 @@ export function CalendarScreen() {
     const end = addMonths(start, 6);
 
     for (const event of events) {
-      const isHoliday = !!event.sourceTemplateId;
-      const dotKey = isHoliday ? 'holiday' : 'user';
-      const dotColor = isHoliday ? colors.warning : colors.primary;
+      const kind = getEventKind(event);
+      const dotColor = getEventAccent(kind, colors);
       const occurrences = getOccurrencesInRange(event, start, end);
       for (const date of occurrences) {
         const key = toISODateString(date);
         if (!marks[key]) marks[key] = { dots: [] };
-        if (!marks[key].dots.some((d) => d.key === dotKey)) {
-          marks[key].dots.push({ key: dotKey, color: dotColor });
+        if (!marks[key].dots.some((d) => d.key === kind)) {
+          marks[key].dots.push({ key: kind, color: dotColor });
         }
       }
     }
@@ -55,7 +55,7 @@ export function CalendarScreen() {
     }
 
     return marks;
-  }, [events, selectedDate, colors.primary, colors.warning]);
+  }, [events, selectedDate, colors]);
 
   const eventsForDay = useMemo(() => {
     if (!selectedDate) return [];
@@ -123,6 +123,18 @@ export function CalendarScreen() {
           </Text>
         </View>
         <View style={[styles.legendItem, { marginLeft: spacing.md }]}>
+          <View style={[styles.legendDot, { backgroundColor: colors.secondary }]} />
+          <Text style={[typo.caption, { color: colors.textSecondary, marginLeft: 4 }]}>
+            {t('calendar.legendBirthday')}
+          </Text>
+        </View>
+        <View style={[styles.legendItem, { marginLeft: spacing.md }]}>
+          <View style={[styles.legendDot, { backgroundColor: colors.error }]} />
+          <Text style={[typo.caption, { color: colors.textSecondary, marginLeft: 4 }]}>
+            {t('calendar.legendScadenza')}
+          </Text>
+        </View>
+        <View style={[styles.legendItem, { marginLeft: spacing.md }]}>
           <View style={[styles.legendDot, { backgroundColor: colors.warning }]} />
           <Text style={[typo.caption, { color: colors.textSecondary, marginLeft: 4 }]}>
             {t('calendar.legendHoliday')}
@@ -165,7 +177,7 @@ const styles = StyleSheet.create({
   center: { flex: 1, justifyContent: 'center', alignItems: 'center' },
   header: {},
   emptyDay: { alignItems: 'center' },
-  legend: { flexDirection: 'row', alignItems: 'center' },
+  legend: { flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', rowGap: 4 },
   legendItem: { flexDirection: 'row', alignItems: 'center' },
   legendDot: { width: 8, height: 8, borderRadius: 4 },
 });

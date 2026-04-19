@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import {
   View,
   Text,
@@ -7,6 +7,8 @@ import {
   StyleSheet,
   ActivityIndicator,
 } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+import { tapLight } from '../utils/haptics';
 
 function CountBadge({ count, colors, typo }: { count: number; colors: any; typo: any }) {
   return (
@@ -55,6 +57,33 @@ export function HomeScreen() {
     (item) => item.nextDate && daysUntil(item.nextDate) > 7 && daysUntil(item.nextDate) <= 30
   );
 
+  const greeting = useMemo(() => {
+    const h = new Date().getHours();
+    if (h < 12) return t('home.greetingMorning');
+    if (h < 18) return t('home.greetingAfternoon');
+    return t('home.greetingEvening');
+  }, [t]);
+
+  const nextEvent = useMemo(() => {
+    const future = upcomingEvents
+      .filter((i) => i.nextDate && daysUntil(i.nextDate) > 0)
+      .sort((a, b) => daysUntil(a.nextDate!) - daysUntil(b.nextDate!));
+    return future[0];
+  }, [upcomingEvents]);
+
+  const summary = useMemo(() => {
+    if (todayEvents.length > 0) {
+      return t('home.summaryToday', { count: todayEvents.length });
+    }
+    if (nextEvent && nextEvent.nextDate) {
+      return t('home.summaryNext', {
+        title: nextEvent.event.title,
+        days: daysUntil(nextEvent.nextDate),
+      });
+    }
+    return t('home.summaryNone');
+  }, [todayEvents.length, nextEvent, t]);
+
   if (isLoading) {
     return (
       <View style={[styles.center, { backgroundColor: colors.background }]}>
@@ -67,15 +96,29 @@ export function HomeScreen() {
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]} edges={['top']}>
-      <View style={[styles.header, { paddingHorizontal: spacing.lg, paddingVertical: spacing.md }]}>
-        <Text style={[typo.h1, { color: colors.text }]}>{t('home.title')}</Text>
-      </View>
+      <LinearGradient
+        colors={[colors.primary + '18', colors.primary + '04']}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        style={[styles.header, { paddingHorizontal: spacing.lg, paddingTop: spacing.md, paddingBottom: spacing.md }]}
+      >
+        <Text style={[typo.caption, { color: colors.primary, fontWeight: '700', letterSpacing: 0.5 }]}>
+          {t('home.title').toUpperCase()}
+        </Text>
+        <Text style={[typo.h1, { color: colors.text, marginTop: 2 }]}>{greeting}</Text>
+        <Text style={[typo.bodySmall, { color: colors.textSecondary, marginTop: 4 }]} numberOfLines={2}>
+          {summary}
+        </Text>
+      </LinearGradient>
 
       {!hasEvents ? (
         <View style={styles.center}>
-          <Ionicons name="calendar-outline" size={64} color={colors.textTertiary} />
-          <Text style={[typo.body, { color: colors.textSecondary, marginTop: spacing.md, textAlign: 'center', paddingHorizontal: spacing.xl }]}>
+          <Ionicons name="calendar-outline" size={72} color={colors.textTertiary} />
+          <Text style={[typo.h3, { color: colors.text, marginTop: spacing.md, textAlign: 'center' }]}>
             {t('home.noEvents')}
+          </Text>
+          <Text style={[typo.body, { color: colors.textSecondary, marginTop: spacing.xs, textAlign: 'center', paddingHorizontal: spacing.xl }]}>
+            {t('home.noEventsHint')}
           </Text>
         </View>
       ) : (
@@ -146,7 +189,10 @@ export function HomeScreen() {
             shadowColor: colors.shadow,
           },
         ]}
-        onPress={() => navigation.navigate('EventForm', {})}
+        onPress={() => {
+          tapLight();
+          navigation.navigate('EventForm', {});
+        }}
         activeOpacity={0.8}
       >
         <Ionicons name="add" size={28} color="#FFF" />
@@ -164,11 +210,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
+  header: {},
   fab: {
     position: 'absolute',
     right: 20,
