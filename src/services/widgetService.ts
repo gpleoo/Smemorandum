@@ -1,13 +1,8 @@
 import { Platform } from 'react-native';
-import { requestWidgetUpdate } from 'react-native-android-widget';
-import { UpcomingEventsWidget } from '../../widget/upcoming-events-widget';
 import { SEvent } from '../models/types';
 import { getNextOccurrence } from '../utils/recurrenceEngine';
 import { daysUntil } from '../utils/dateUtils';
 import { setWidgetString } from './appGroupService';
-import React from 'react';
-
-const WIDGET_NAME = 'UpcomingEvents';
 
 function formatShortDate(date: Date): string {
   const months = ['Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic'];
@@ -16,7 +11,8 @@ function formatShortDate(date: Date): string {
 
 /**
  * Request widget update with fresh event data.
- * Only runs on Android. No-op on other platforms.
+ * On iOS writes to App Group UserDefaults for WidgetKit.
+ * Android widget support is temporarily disabled (requires react-native-android-widget reinstall).
  */
 export async function updateWidget(events: SEvent[]): Promise<void> {
   const now = new Date();
@@ -37,18 +33,6 @@ export async function updateWidget(events: SEvent[]): Promise<void> {
 
   upcoming.sort((a, b) => a.daysLeft - b.daysLeft);
   const top5 = upcoming.slice(0, 5);
-
-  // Android widget update
-  if (Platform.OS === 'android') {
-    try {
-      await requestWidgetUpdate({
-        widgetName: WIDGET_NAME,
-        renderWidget: () => React.createElement(UpcomingEventsWidget, { events: top5 }),
-      });
-    } catch {
-      // Widget not on home screen or not supported — ignore
-    }
-  }
 
   // iOS widget update — write to App Group UserDefaults for WidgetKit
   if (Platform.OS === 'ios') {
