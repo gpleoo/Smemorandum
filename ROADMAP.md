@@ -11,7 +11,7 @@ spostare nella sezione "✅ Completato" in fondo.
 - [~] 2. Screenshot App Store 6.7" e 6.5" — guida completa in `docs/screenshots-guide.md` con dati demo, checklist 5 screen, captions 5 lingue, flusso upscale iPhone 12 → 1290×2796. Manca solo scattare + upscalare + upload.
 - [x] 3. Privacy policy online → **LIVE** su `https://gpleoo.github.io/Smemorandum/privacy-policy` (IT) + `/privacy-policy-en` (EN). GitHub Pages attivo da branch `main` /docs.
 - [x] 4. Descrizione Store IT + EN con keyword ASO → vedi `APP_STORE.md`
-- [~] 5. Email supporto attiva — riferimenti aggiornati a `smemorandum.support@gmail.com` in docs/privacy/APP_STORE/i18n/index.html (commit c272cc2). Resta da creare l'account Gmail e impostare forward.
+- [x] 5. Email supporto attiva — `smemorandum.support@gmail.com` creata e attiva. Riferimenti aggiornati in 10 file (docs, APP_STORE, index.html, 5 locali i18n).
 - [ ] 6. Test reale su iPhone fisico (primo avvio, importa contatti, festività, notifiche, tap-to-call)
 - [x] 7. Fix titolo navigator "Settings ImportContacts" → tradotto
 - [x] 8. Categoria App Store: Produttività + Stile di vita → Primary: Produttività / Secondary: Stile di vita (vedi `APP_STORE.md`)
@@ -71,5 +71,5 @@ spostare nella sezione "✅ Completato" in fondo.
 - 2026-04-19 — #13 Scaffolding crash reporting: ErrorBoundary globale + crashReporting service + trigger debug (5 tap su versione in Impostazioni). Manca solo collegare SDK Sentry + DSN.
 - 2026-04-19 — #4 + #8 Bozza App Store completa (`APP_STORE.md`): categoria, name/subtitle, keywords, descrizioni IT/EN, promo, release notes, checklist screenshot, privacy form, TestFlight welcome
 - 2026-04-20 — #3 Privacy Policy IT + EN in `docs/` pronta per GitHub Pages (offline-first, permessi contatti/notifiche/calendario, AdMob consent, RevenueCat, GDPR diritti, CCPA). **URL live:** `https://gpleoo.github.io/Smemorandum/privacy-policy` (IT) + `/privacy-policy-en` (EN).
-- 2026-04-20 — #5 (parziale) Tutti i riferimenti email migrati da `giampietro.leonoro@gmail.com` a `smemorandum.support@gmail.com` in 10 file (docs, APP_STORE, index.html, 5 locali i18n). Commit c272cc2.
+- 2026-04-20 — #5 Tutti i riferimenti email migrati da `giampietro.leonoro@gmail.com` a `smemorandum.support@gmail.com` in 10 file (docs, APP_STORE, index.html, 5 locali i18n). Account Gmail creato e attivo.
 - 2026-04-20 — #2 (parziale) Guida screenshot `docs/screenshots-guide.md`: dati demo coerenti (Anna/Luca/Mario&Giulia), checklist 5 schermate, captions in IT/EN/ES/FR/DE, flusso upscale iPhone 12 (1170×2532) → 1290×2796 via Waifu2x/iloveimg/GIMP, upload App Store Connect. `eas.json` già configurato con profilo `preview` per TestFlight.
