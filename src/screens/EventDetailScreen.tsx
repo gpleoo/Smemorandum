@@ -38,6 +38,12 @@ const WISH_TEMPLATE_KEYS = [
 
 const WISH_TEMPLATE_ICONS = ['🎂', '🎁', '⚡', '🌟', '😄'] as const;
 
+function firstName(fullTitle: string): string {
+  const trimmed = (fullTitle ?? '').trim();
+  if (!trimmed) return trimmed;
+  return trimmed.split(/\s+/)[0];
+}
+
 export function EventDetailScreen() {
   const { t, i18n } = useTranslation();
   const { colors, typography: typo, spacing, borderRadius } = useTheme();
@@ -95,7 +101,7 @@ export function EventDetailScreen() {
 
   const openWhatsApp = async (templateKey: string) => {
     setShowWishesModal(false);
-    const message = encodeURIComponent(t(templateKey, { name: event.title }));
+    const message = encodeURIComponent(t(templateKey, { name: firstName(event.title) }));
     const url = `whatsapp://send?text=${message}`;
     const canOpen = await Linking.canOpenURL(url).catch(() => false);
     if (!canOpen) {
@@ -423,7 +429,7 @@ export function EventDetailScreen() {
               {t('events.chooseWishTemplate')}
             </Text>
             <Text style={[typo.bodySmall, { color: colors.textSecondary, marginBottom: spacing.md }]}>
-              {t('events.chooseWishTemplateDesc', { name: event.title })}
+              {t('events.chooseWishTemplateDesc', { name: firstName(event.title) })}
             </Text>
 
             {WISH_TEMPLATE_KEYS.map((key, i) => (
@@ -442,7 +448,7 @@ export function EventDetailScreen() {
               >
                 <Text style={styles.templateIcon}>{WISH_TEMPLATE_ICONS[i]}</Text>
                 <Text style={[typo.bodySmall, { color: colors.text, flex: 1, marginLeft: spacing.sm }]}>
-                  {t(key, { name: event.title })}
+                  {t(key, { name: firstName(event.title) })}
                 </Text>
                 <Ionicons name="chevron-forward" size={18} color={colors.textTertiary} />
               </TouchableOpacity>

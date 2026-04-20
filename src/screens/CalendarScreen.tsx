@@ -10,7 +10,7 @@ import { EventCard } from '../components/EventCard';
 import { CalendarStackParamList } from '../models/types';
 import { getOccurrencesInRange } from '../utils/recurrenceEngine';
 import { toISODateString } from '../utils/dateUtils';
-import { addMonths } from 'date-fns';
+import { addMonths, startOfMonth, endOfMonth } from 'date-fns';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 
@@ -22,11 +22,14 @@ export function CalendarScreen() {
   const navigation = useNavigation<Nav>();
   const { events, isLoading } = useEvents();
   const [selectedDate, setSelectedDate] = useState(toISODateString(new Date()));
+  const [visibleMonth, setVisibleMonth] = useState(() => startOfMonth(new Date()));
 
   const markedDates = useMemo(() => {
     const marks: Record<string, { marked: boolean; dotColor: string; selected?: boolean; selectedColor?: string }> = {};
-    const start = new Date();
-    const end = addMonths(start, 6);
+    // Wide window around the visible month so badges show for past events and
+    // future yearly recurrences when the user scrolls.
+    const start = startOfMonth(addMonths(visibleMonth, -12));
+    const end = endOfMonth(addMonths(visibleMonth, 12));
 
     for (const event of events) {
       const occurrences = getOccurrencesInRange(event, start, end);
@@ -50,7 +53,7 @@ export function CalendarScreen() {
     }
 
     return marks;
-  }, [events, selectedDate, colors.primary]);
+  }, [events, selectedDate, colors.primary, visibleMonth]);
 
   const eventsForDay = useMemo(() => {
     if (!selectedDate) return [];
@@ -78,6 +81,9 @@ export function CalendarScreen() {
       <Calendar
         current={selectedDate}
         onDayPress={(day: DateData) => setSelectedDate(day.dateString)}
+        onMonthChange={(month: DateData) => {
+          setVisibleMonth(startOfMonth(new Date(month.year, month.month - 1, 1)));
+        }}
         markedDates={markedDates}
         firstDay={1}
         theme={{

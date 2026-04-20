@@ -24,7 +24,8 @@
         "NSContactsUsageDescription": "Smemorandum uses your contacts to import birthdays as reminders.",
         "UIBackgroundModes": ["remote-notification"],
         "CFBundleLocalizations": ["it", "en", "fr", "de", "es"],
-        "CFBundleDevelopmentRegion": "it"
+        "CFBundleDevelopmentRegion": "it",
+        "LSApplicationQueriesSchemes": ["whatsapp", "tel", "telprompt", "sms", "mailto"]
       }
     },
     "android": {

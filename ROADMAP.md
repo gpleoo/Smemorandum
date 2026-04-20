@@ -74,3 +74,9 @@ spostare nella sezione "✅ Completato" in fondo.
 - 2026-04-20 — #5 Tutti i riferimenti email migrati da `giampietro.leonoro@gmail.com` a `smemorandum.support@gmail.com` in 10 file (docs, APP_STORE, index.html, 5 locali i18n). Account Gmail creato e attivo.
 - 2026-04-20 — #2 (parziale) Guida screenshot `docs/screenshots-guide.md`: dati demo coerenti (Anna/Luca/Mario&Giulia), checklist 5 schermate, captions in IT/EN/ES/FR/DE, flusso upscale iPhone 12 (1170×2532) → 1290×2796 via Waifu2x/iloveimg/GIMP, upload App Store Connect. `eas.json` già configurato con profilo `preview` per TestFlight.
 - 2026-04-20 — #1 Icona `assets/icon.png` verificata: 1024×1024 RGBA, alpha 255 ovunque (zero trasparenza), angoli pieni. Apple-compliant, pronta per upload App Store Connect.
+- 2026-04-20 — #6 (parziale) Bug fix da test fisico iPhone 12:
+  - **Calendario**: badge eventi visibili anche per mesi passati/futuri (finestra estesa ±12 mesi attorno al mese visibile in `CalendarScreen.tsx`), risolve ricorrenze annuali multi-anno.
+  - **ImportContacts**: header non più troncato (flex:1 sul testo + flexShrink sul bottone), ora i contatti già importati sono ri-selezionabili per rimuoverli dall'app (bottone rosso "Rimuovi N" con conferma distruttiva).
+  - **Settings**: switch "Riepilogo settimanale" non più tagliato (aggiunto `flex:1, marginRight` a `settingsRowLeft`).
+  - **WhatsApp**: aggiunto `LSApplicationQueriesSchemes` in `app.json` (whatsapp, tel, telprompt, sms, mailto) per far riconoscere l'app a `canOpenURL`.
+  - **Auguri templates**: usa solo nome proprio (helper `firstName` in `EventDetailScreen.tsx`, es. "Monica Amato" → "Monica") + rimosse slash gendered in IT/EN/ES/FR/DE (template 5: "il/la migliore" → "al top").

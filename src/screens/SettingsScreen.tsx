@@ -660,6 +660,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.05,
     shadowRadius: 2,
   },
-  settingsRowLeft: { flexDirection: 'row', alignItems: 'center' },
+  settingsRowLeft: { flexDirection: 'row', alignItems: 'center', flex: 1, marginRight: 12 },
   infoBox: { flexDirection: 'row', alignItems: 'flex-start' },
 });

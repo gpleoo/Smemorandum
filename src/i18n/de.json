@@ -38,7 +38,7 @@
     "wishTemplate2": "Alles Gute zum Geburtstag, {{name}}! 🎁✨ Mögen alle deine Träume wahr werden!",
     "wishTemplate3": "Alles Gute zum Geburtstag, {{name}}! 🥳 Herzlichste Glückwünsche!",
     "wishTemplate4": "{{name}}, möge dieser besondere Tag der Beginn eines wundervollen Jahres sein! 🌟 Herzlichen Glückwunsch von Herzen!",
-    "wishTemplate5": "Ein Jahr älter, ein Jahr besser! 😄 Alles Gute zum Geburtstag, {{name}}! 🎂🎉 Du bist der/die Beste!"
+    "wishTemplate5": "Ein Jahr älter, ein Jahr besser! 😄 Alles Gute zum Geburtstag, {{name}}! 🎂🎉 Du bist einfach spitze!"
   },
   "eventForm": {
     "createTitle": "Neues Ereignis",
@@ -150,7 +150,14 @@
     "selectAll": "Alle auswählen",
     "deselectAll": "Alle abwählen",
     "importSelected": "{{count}} ausgewählte importieren",
+    "removeSelected": "{{count}} bereits importierte entfernen",
     "alreadyImported": "Bereits importiert",
+    "willRemove": "Wird entfernt",
+    "tapImportedHint": "Tippe auf einen bereits importierten Kontakt, um ihn aus der App zu entfernen.",
+    "removeConfirmTitle": "Geburtstage entfernen?",
+    "removeConfirmMessage": "{{count}} importierte Geburtstage werden gelöscht. Die Kontakte auf dem Telefon bleiben unberührt.",
+    "removeDoneTitle": "Entfernen abgeschlossen",
+    "removeDoneMessage": "{{count}} Geburtstage entfernt.",
     "noContacts": "Kein Kontakt in Ihrem Adressbuch hat ein gespeichertes Geburtsdatum.",
     "permissionDenied": "Zugriff auf Kontakte verweigert. Aktivieren Sie die Berechtigung in den Geräteeinstellungen.",
     "done": "Import abgeschlossen",

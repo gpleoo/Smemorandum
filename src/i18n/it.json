@@ -38,7 +38,7 @@
     "wishTemplate2": "Auguri {{name}}! 🎁✨ Che questo compleanno ti porti tanta gioia e felicità! Ti voglio bene!",
     "wishTemplate3": "Buon compleanno {{name}}! 🥳 Tantissimi auguri!",
     "wishTemplate4": "{{name}}, che questo giorno speciale sia l'inizio di un anno meraviglioso! 🌟 Tanti auguri di cuore!",
-    "wishTemplate5": "Un anno in più, un anno in meglio! 😄 Auguri {{name}}! 🎂🎉 Sei sempre il/la migliore!"
+    "wishTemplate5": "Un anno in più, un anno in meglio! 😄 Auguri {{name}}! 🎂🎉 Sei sempre al top!"
   },
   "eventForm": {
     "createTitle": "Nuovo evento",
@@ -150,7 +150,14 @@
     "selectAll": "Seleziona tutti",
     "deselectAll": "Deseleziona tutti",
     "importSelected": "Importa {{count}} selezionati",
+    "removeSelected": "Rimuovi {{count}} già importati",
     "alreadyImported": "Già importato",
+    "willRemove": "Da rimuovere",
+    "tapImportedHint": "Tocca un contatto già importato per rimuoverlo dall'app.",
+    "removeConfirmTitle": "Rimuovere i compleanni?",
+    "removeConfirmMessage": "Verranno eliminati {{count}} compleanni importati dalla rubrica. I contatti sul telefono non vengono toccati.",
+    "removeDoneTitle": "Rimozione completata",
+    "removeDoneMessage": "{{count}} compleanni rimossi.",
     "noContacts": "Nessun contatto nella rubrica ha una data di compleanno salvata.",
     "permissionDenied": "Accesso alla rubrica negato. Abilita il permesso dalle impostazioni del dispositivo.",
     "done": "Importazione completata",
