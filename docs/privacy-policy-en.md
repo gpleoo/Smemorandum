@@ -22,7 +22,7 @@ data.**
 ## 1. Data controller
 
 - **Developer:** Giampietro Leonoro
-- **Contact email:** [giampietro.leonoro@gmail.com](mailto:giampietro.leonoro@gmail.com)
+- **Contact email:** [smemorandum.support@gmail.com](mailto:smemorandum.support@gmail.com)
 - **Country:** Italy
 
 For any request related to this policy or your data, email the address
@@ -137,7 +137,7 @@ You have the right to:
   for Italy, or your local authority.
 
 To exercise these rights email
-[giampietro.leonoro@gmail.com](mailto:giampietro.leonoro@gmail.com). We
+[smemorandum.support@gmail.com](mailto:smemorandum.support@gmail.com). We
 reply within 30 days.
 
 ---
@@ -179,7 +179,7 @@ changes will be mentioned in app release notes.
 
 ## 10. Contacts
 
-- Email: [giampietro.leonoro@gmail.com](mailto:giampietro.leonoro@gmail.com)
+- Email: [smemorandum.support@gmail.com](mailto:smemorandum.support@gmail.com)
 - Public repository:
   [github.com/gpleoo/smemorandum](https://github.com/gpleoo/smemorandum)
 

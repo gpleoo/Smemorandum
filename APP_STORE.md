@@ -116,7 +116,7 @@ solo sul tuo iPhone. Gli annunci per gli utenti gratuiti possono essere
 anonimi o personalizzati (scegli tu nelle Impostazioni).
 
 Sviluppato in Italia da un indie developer.
-Feedback, bug e richieste: giampietro.leonoro@gmail.com
+Feedback, bug e richieste: smemorandum.support@gmail.com
 ```
 
 ---
@@ -170,7 +170,7 @@ your iPhone only. Ads for free users can be anonymous or personalized
 (your choice in Settings).
 
 Built in Italy by an indie developer.
-Feedback, bugs, requests: giampietro.leonoro@gmail.com
+Feedback, bugs, requests: smemorandum.support@gmail.com
 ```
 
 ---
@@ -243,7 +243,7 @@ Grazie per testare Smemorandum! Prova a:
 3) Creare un compleanno e usare "Condividi auguri"
 4) Rimanere aperto la app e aspettare una notifica
 
-Segnala bug a giampietro.leonoro@gmail.com — grazie!
+Segnala bug a smemorandum.support@gmail.com — grazie!
 ```
 
 ---

@@ -22,7 +22,7 @@ condividiamo dati personali.**
 ## 1. Titolare del trattamento
 
 - **Sviluppatore:** Giampietro Leonoro
-- **Email di contatto:** [giampietro.leonoro@gmail.com](mailto:giampietro.leonoro@gmail.com)
+- **Email di contatto:** [smemorandum.support@gmail.com](mailto:smemorandum.support@gmail.com)
 - **Paese:** Italia
 
 Per qualsiasi richiesta relativa a questa policy o ai tuoi dati, puoi
@@ -143,7 +143,7 @@ Hai diritto a:
   per l'Italia.
 
 Per esercitare questi diritti scrivi a
-[giampietro.leonoro@gmail.com](mailto:giampietro.leonoro@gmail.com).
+[smemorandum.support@gmail.com](mailto:smemorandum.support@gmail.com).
 Rispondiamo entro 30 giorni.
 
 ---
@@ -187,7 +187,7 @@ notes dell'app.
 
 ## 10. Contatti
 
-- Email: [giampietro.leonoro@gmail.com](mailto:giampietro.leonoro@gmail.com)
+- Email: [smemorandum.support@gmail.com](mailto:smemorandum.support@gmail.com)
 - Repository pubblico:
   [github.com/gpleoo/smemorandum](https://github.com/gpleoo/smemorandum)
 

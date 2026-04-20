@@ -16,7 +16,7 @@ tracciamento.
 
 - 📄 [Privacy Policy](./privacy-policy) — in italiano
 - 📄 [Privacy Policy (English)](./privacy-policy-en)
-- ✉️ Supporto: [giampietro.leonoro@gmail.com](mailto:giampietro.leonoro@gmail.com)
+- ✉️ Supporto: [smemorandum.support@gmail.com](mailto:smemorandum.support@gmail.com)
 - 💻 Codice sorgente: [github.com/gpleoo/smemorandum](https://github.com/gpleoo/smemorandum)
 
 ## Funzionalità principali
@@ -31,4 +31,4 @@ tracciamento.
 
 ---
 
-Sviluppato da Giampietro Leonoro — [giampietro.leonoro@gmail.com](mailto:giampietro.leonoro@gmail.com)
+Sviluppato da Giampietro Leonoro — [smemorandum.support@gmail.com](mailto:smemorandum.support@gmail.com)
