@@ -8,7 +8,7 @@ spostare nella sezione "✅ Completato" in fondo.
 ## 🔥 Fase 1 — Prerequisiti pubblicazione (BLOCKER App Store)
 
 - [~] 1. Icona app finale 1024×1024 + varianti — `assets/icon.png` è già 1024×1024. Da verificare conformità Apple (no trasparenza, no rounded corners).
-- [ ] 2. Screenshot App Store 6.7" e 6.5" (5 foto: home, dettaglio, calendario, festività, importa contatti)
+- [~] 2. Screenshot App Store 6.7" e 6.5" — guida completa in `docs/screenshots-guide.md` con dati demo, checklist 5 screen, captions 5 lingue, flusso upscale iPhone 12 → 1290×2796. Manca solo scattare + upscalare + upload.
 - [x] 3. Privacy policy online → `docs/privacy-policy.md` (IT) + `docs/privacy-policy-en.md` (EN). Da attivare GitHub Pages (Settings → Pages → source: `main` /docs).
 - [x] 4. Descrizione Store IT + EN con keyword ASO → vedi `APP_STORE.md`
 - [~] 5. Email supporto attiva — riferimenti aggiornati a `smemorandum.support@gmail.com` in docs/privacy/APP_STORE/i18n/index.html (commit c272cc2). Resta da creare l'account Gmail e impostare forward.
@@ -72,3 +72,4 @@ spostare nella sezione "✅ Completato" in fondo.
 - 2026-04-19 — #4 + #8 Bozza App Store completa (`APP_STORE.md`): categoria, name/subtitle, keywords, descrizioni IT/EN, promo, release notes, checklist screenshot, privacy form, TestFlight welcome
 - 2026-04-20 — #3 Privacy Policy IT + EN in `docs/` pronta per GitHub Pages (offline-first, permessi contatti/notifiche/calendario, AdMob consent, RevenueCat, GDPR diritti, CCPA). Resta da abilitare Pages dalle Settings del repo.
 - 2026-04-20 — #5 (parziale) Tutti i riferimenti email migrati da `giampietro.leonoro@gmail.com` a `smemorandum.support@gmail.com` in 10 file (docs, APP_STORE, index.html, 5 locali i18n). Commit c272cc2.
+- 2026-04-20 — #2 (parziale) Guida screenshot `docs/screenshots-guide.md`: dati demo coerenti (Anna/Luca/Mario&Giulia), checklist 5 schermate, captions in IT/EN/ES/FR/DE, flusso upscale iPhone 12 (1170×2532) → 1290×2796 via Waifu2x/iloveimg/GIMP, upload App Store Connect. `eas.json` già configurato con profilo `preview` per TestFlight.

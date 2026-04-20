@@ -16,6 +16,7 @@ tracciamento.
 
 - 📄 [Privacy Policy](./privacy-policy) — in italiano
 - 📄 [Privacy Policy (English)](./privacy-policy-en)
+- 📸 [Screenshots Guide](./screenshots-guide) — guida interna per App Store
 - ✉️ Supporto: [smemorandum.support@gmail.com](mailto:smemorandum.support@gmail.com)
 - 💻 Codice sorgente: [github.com/gpleoo/smemorandum](https://github.com/gpleoo/smemorandum)
 
