@@ -11,7 +11,7 @@ spostare nella sezione "✅ Completato" in fondo.
 - [ ] 2. Screenshot App Store 6.7" e 6.5" (5 foto: home, dettaglio, calendario, festività, importa contatti)
 - [x] 3. Privacy policy online → `docs/privacy-policy.md` (IT) + `docs/privacy-policy-en.md` (EN). Da attivare GitHub Pages (Settings → Pages → source: `main` /docs).
 - [x] 4. Descrizione Store IT + EN con keyword ASO → vedi `APP_STORE.md`
-- [ ] 5. Email supporto attiva
+- [~] 5. Email supporto attiva — riferimenti aggiornati a `smemorandum.support@gmail.com` in docs/privacy/APP_STORE/i18n/index.html (commit c272cc2). Resta da creare l'account Gmail e impostare forward.
 - [ ] 6. Test reale su iPhone fisico (primo avvio, importa contatti, festività, notifiche, tap-to-call)
 - [x] 7. Fix titolo navigator "Settings ImportContacts" → tradotto
 - [x] 8. Categoria App Store: Produttività + Stile di vita → Primary: Produttività / Secondary: Stile di vita (vedi `APP_STORE.md`)
@@ -71,3 +71,4 @@ spostare nella sezione "✅ Completato" in fondo.
 - 2026-04-19 — #13 Scaffolding crash reporting: ErrorBoundary globale + crashReporting service + trigger debug (5 tap su versione in Impostazioni). Manca solo collegare SDK Sentry + DSN.
 - 2026-04-19 — #4 + #8 Bozza App Store completa (`APP_STORE.md`): categoria, name/subtitle, keywords, descrizioni IT/EN, promo, release notes, checklist screenshot, privacy form, TestFlight welcome
 - 2026-04-20 — #3 Privacy Policy IT + EN in `docs/` pronta per GitHub Pages (offline-first, permessi contatti/notifiche/calendario, AdMob consent, RevenueCat, GDPR diritti, CCPA). Resta da abilitare Pages dalle Settings del repo.
+- 2026-04-20 — #5 (parziale) Tutti i riferimenti email migrati da `giampietro.leonoro@gmail.com` a `smemorandum.support@gmail.com` in 10 file (docs, APP_STORE, index.html, 5 locali i18n). Commit c272cc2.
