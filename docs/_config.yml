@@ -1,4 +1,33 @@
 title: Smemorandum
 description: Promemoria, compleanni e scadenze. Offline-first, privacy-first.
+url: https://gpleoo.github.io
+baseurl: /Smemorandum
 theme: jekyll-theme-minimal
 show_downloads: false
+lang: it
+
+# Force-publish dotfile dirs (Jekyll ignores them by default).
+# .well-known/ contains apple-app-site-association + assetlinks.json for deep linking.
+include:
+  - .well-known
+  - .well-known/apple-app-site-association
+  - .well-known/assetlinks.json
+
+# Don't process raw assets/manifest as Liquid (preserve content).
+keep_files:
+  - .well-known
+  - manifest.webmanifest
+
+# Plugins for SEO + auto sitemap (when GitHub Pages enables them).
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# SEO defaults
+author: Giampietro Leonoro
+twitter:
+  card: summary_large_image
+social:
+  name: Smemorandum
+  links:
+    - https://github.com/gpleoo/Smemorandum

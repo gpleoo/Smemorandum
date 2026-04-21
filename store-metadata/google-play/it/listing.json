@@ -1,0 +1,28 @@
+{
+  "_meta": {
+    "store": "Google Play",
+    "locale": "it-IT",
+    "limits": {
+      "title": 30,
+      "shortDescription": 80,
+      "fullDescription": 4000
+    },
+    "graphics": {
+      "appIcon": "512x512 PNG (32-bit, alpha)",
+      "featureGraphic": "1024x500 PNG/JPG (no transparency)",
+      "screenshotsPhone": "min 2, max 8 — 16:9 or 9:16, min 320px, max 3840px",
+      "screenshotsTablet7": "optional",
+      "screenshotsTablet10": "optional"
+    },
+    "category": "PRODUCTIVITY",
+    "secondaryCategory": "LIFESTYLE",
+    "contentRating": "Everyone (PEGI 3)",
+    "tags": ["calendar", "reminder", "productivity", "lifestyle"]
+  },
+  "title": "Smemorandum: Promemoria",
+  "shortDescription": "Promemoria per compleanni, festività e scadenze. Auguri WhatsApp inclusi! 🎂",
+  "fullDescription": "Smemorandum è il promemoria intelligente che non dimentica mai. Perfetto per chi vuole ricordare compleanni, anniversari, ricorrenze e scadenze importanti senza stress.\n\n📅 COSA PUOI FARE:\n\n• Promemoria compleanni e anniversari con notifiche personalizzabili\n• Gestione scadenze bollette, appuntamenti e rinnovi abbonamenti\n• 🔁 Ripeti avviso scadenze ogni 1–6 ore fino a fine giornata: mai più una bolletta dimenticata\n• 🌍 Festività precaricate per il tuo paese: aggiungi Natale, Pasqua, Ferragosto e 50+ festività nazionali in un tap\n• 💬 Manda gli auguri su WhatsApp con 5 template di messaggi già scritti, direttamente dal promemoria\n• Calendario visuale con vista giornaliera e mensile\n• Promemoria multipli per ogni evento (stesso giorno, giorno prima, settimana prima)\n• 📊 Statistiche sui tuoi eventi: distribuzione mensile e per categoria\n• 📅 Riepilogo settimanale ogni lunedì con gli eventi in arrivo\n• Suoni di notifica personalizzati per ogni evento\n• 🎨 5 temi colore per personalizzare l'interfaccia\n• Ricorrenze automatiche: annuali, mensili, settimanali\n• Categorie personalizzabili con icone e colori\n• Importazione compleanni dalla rubrica\n• Backup e ripristino dei dati\n• Tema chiaro, scuro e automatico\n• Italiano, inglese, spagnolo, francese, tedesco\n\n🔒 PRIVACY AL 100%:\nTutti i dati restano solo sul tuo dispositivo. Nessun server esterno, nessuna raccolta dati. Conforme GDPR.\n\n✨ FUNZIONI PREMIUM:\n• Zero pubblicità, per sempre\n• Categorie illimitate (gratis: max 3)\n• Promemoria multipli per evento\n• Tutti i suoni di notifica\n• Festività di tutti i paesi + tradizioni religiose\n• Backup illimitati\n\nNon dimenticare mai più un compleanno importante, una bolletta da pagare o un anniversario. Scarica Smemorandum ora gratuitamente!",
+  "videoUrl": "",
+  "promoText": "🎂 Mai più compleanni dimenticati! 100% privato, niente server.",
+  "releaseNotes": "Nuova funzione: ripeti avviso scadenze fino a fine giornata, configurabile da 1h a 6h. Mai più bollette dimenticate! Aggiunti 12 preset per scadenze frequenti (luce, gas, RCA, bollo, IMU…)."
+}

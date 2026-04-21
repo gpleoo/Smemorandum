@@ -1,0 +1,28 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": ["TEAMID.com.smemorandum.app"],
+        "components": [
+          {
+            "/": "/event/*",
+            "comment": "Open specific event in app"
+          },
+          {
+            "/": "/share/*",
+            "comment": "Open shared event/wish card"
+          },
+          {
+            "/": "/",
+            "exclude": true,
+            "comment": "Landing page stays on web"
+          }
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": ["TEAMID.com.smemorandum.app"]
+  }
+}

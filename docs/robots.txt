@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gpleoo.github.io/Smemorandum/sitemap.xml

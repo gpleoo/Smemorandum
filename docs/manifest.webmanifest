@@ -1,0 +1,35 @@
+{
+  "name": "Smemorandum – Promemoria & Scadenze",
+  "short_name": "Smemorandum",
+  "description": "App per non dimenticare mai compleanni, anniversari e scadenze importanti.",
+  "start_url": "/Smemorandum/",
+  "scope": "/Smemorandum/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#6C63FF",
+  "background_color": "#F8F9FA",
+  "lang": "it",
+  "dir": "ltr",
+  "categories": ["productivity", "lifestyle", "utilities"],
+  "icons": [
+    {
+      "src": "/Smemorandum/assets/icon.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/Smemorandum/assets/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Privacy Policy",
+      "short_name": "Privacy",
+      "url": "/Smemorandum/privacy-policy"
+    }
+  ]
+}
