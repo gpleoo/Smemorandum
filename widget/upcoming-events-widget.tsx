@@ -1,4 +1,8 @@
+// ORPHAN — not bundled. Waiting for react-native-android-widget to be
+// reinstalled (see ROADMAP #10 Widget iOS/Android). See commit baac916.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import React from 'react';
+// @ts-expect-error — package temporarily uninstalled
 import { FlexWidget, TextWidget } from 'react-native-android-widget';
 
 interface WidgetEvent {

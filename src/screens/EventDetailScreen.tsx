@@ -266,9 +266,17 @@ export function EventDetailScreen() {
                   ]}
                 >
                   <Ionicons name="notifications-outline" size={16} color={colors.primary} />
-                  <Text style={[typo.body, { color: colors.text, marginLeft: spacing.sm }]}>
+                  <Text style={[typo.body, { color: colors.text, marginLeft: spacing.sm, flex: 1 }]}>
                     {getReminderLabel(r.daysBefore)} - {r.time}
                   </Text>
+                  {r.repeatEnabled && r.repeatIntervalHours ? (
+                    <View style={[styles.repeatBadge, { backgroundColor: colors.primary + '20', borderRadius: borderRadius.full }]}>
+                      <Ionicons name="repeat" size={12} color={colors.primary} />
+                      <Text style={[typo.bodySmall, { color: colors.primary, fontWeight: '600', marginLeft: 2 }]}>
+                        {t('eventForm.repeatEveryHours', { count: r.repeatIntervalHours })}
+                      </Text>
+                    </View>
+                  ) : null}
                 </View>
               ))}
             </View>
@@ -523,6 +531,7 @@ const styles = StyleSheet.create({
   nextDateBox: {},
   section: {},
   reminderRow: { flexDirection: 'row', alignItems: 'center' },
+  repeatBadge: { flexDirection: 'row', alignItems: 'center', paddingHorizontal: 8, paddingVertical: 2 },
   actions: { flexDirection: 'row' },
   actionButton: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center' },
   modalBackdrop: {

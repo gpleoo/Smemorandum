@@ -63,6 +63,10 @@ spostare nella sezione "✅ Completato" in fondo.
 
 ## ✅ Completato
 
+- 2026-04-21 — **Ripeti avviso scadenze** (nuova feature): toggle per-reminder + intervallo (1/2/3/4/6h) che ripete la notifica fino a fine giornata (max 12 ripetizioni). Default globale attivabile in Impostazioni (auto-apply su reminder same-day delle scadenze). Badge 🔁 visibile su EventDetail. Logica scheduling estratta in funzione pura (`src/utils/reminderScheduling.ts`) con test case in `__tests__/`.
+- 2026-04-21 — **Preset scadenze frequenti**: 12 template (bollette luce/gas/acqua, canone TV, RCA auto, bollo, revisione, assicurazione casa, IMU/TARI, abbonamento, visita medica, condominio) pre-compilano titolo + categoria + ricorrenza suggerita. Visibili come chip quando crei una nuova scadenza senza titolo. Localizzati in 5 lingue.
+
+
 - 2026-04-19 — #9 Onboarding 3 slide con icone gradient (commit c01f420)
 - 2026-04-19 — #11 Share card auguri snapshot + sheet OS (commit d1ebd7e)
 - 2026-04-19 — #7 Titoli navigator tradotti (eventDetail/eventForm/premium/manageCategories/importContacts)

@@ -55,6 +55,8 @@ export interface AppSettings {
   weeklyDigestEnabled: boolean;
   holidayCountries: string[];          // ISO-3166 codes, e.g. ['IT']
   holidayTraditions: HolidayTradition[]; // e.g. ['secular','catholic']
+  defaultRepeatEnabled: boolean;         // Auto-enable repeat on new same-day reminders
+  defaultRepeatIntervalHours: number;    // Default interval when repeat is auto-enabled (e.g. 2)
 }
 
 export type RootStackParamList = {
