@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Platform } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Platform, Switch } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import { useTheme } from '../theme/ThemeContext';
@@ -18,6 +18,8 @@ const REMINDER_OPTIONS = [
   { daysBefore: 1, key: 'dayBefore' },
   { daysBefore: 7, key: 'weekBefore' },
 ];
+
+const REPEAT_INTERVAL_OPTIONS = [1, 2, 3, 4, 6];
 
 export function ReminderPicker({ reminders, onChange, maxReminders = 5 }: ReminderPickerProps) {
   const { colors, spacing, borderRadius, typography: typo } = useTheme();
@@ -73,7 +75,6 @@ export function ReminderPicker({ reminders, onChange, maxReminders = 5 }: Remind
         <View
           key={reminder.id}
           style={[
-            styles.reminderRow,
             {
               backgroundColor: colors.surfaceVariant,
               borderRadius: borderRadius.md,
@@ -82,6 +83,7 @@ export function ReminderPicker({ reminders, onChange, maxReminders = 5 }: Remind
             },
           ]}
         >
+          <View style={styles.reminderRow}>
           <Ionicons name="notifications-outline" size={18} color={colors.primary} />
           <Text style={[typo.body, { color: colors.text, marginLeft: spacing.sm }]}>
             {getReminderLabel(reminder.daysBefore)} -
@@ -136,6 +138,83 @@ export function ReminderPicker({ reminders, onChange, maxReminders = 5 }: Remind
           <TouchableOpacity onPress={() => removeReminder(reminder.id)}>
             <Ionicons name="close-circle" size={22} color={colors.error} />
           </TouchableOpacity>
+          </View>
+
+          {/* Repeat reminder row */}
+          <View style={[styles.repeatRow, { marginTop: spacing.xs }]}>
+            <Ionicons name="repeat" size={16} color={colors.textSecondary} />
+            <Text style={[typo.bodySmall, { color: colors.textSecondary, marginLeft: 6, flex: 1 }]}>
+              {t('eventForm.repeatReminder')}
+            </Text>
+            <Switch
+              value={!!reminder.repeatEnabled}
+              onValueChange={(v) =>
+                onChange(
+                  reminders.map((r) =>
+                    r.id === reminder.id
+                      ? {
+                          ...r,
+                          repeatEnabled: v,
+                          repeatIntervalHours: v ? (r.repeatIntervalHours ?? 2) : r.repeatIntervalHours,
+                        }
+                      : r,
+                  ),
+                )
+              }
+              trackColor={{ false: colors.border, true: colors.primary }}
+              thumbColor="#FFFFFF"
+            />
+          </View>
+
+          {reminder.repeatEnabled && (
+            <View style={[styles.intervalRow, { marginTop: spacing.xs }]}>
+              {REPEAT_INTERVAL_OPTIONS.map((hours) => {
+                const selected = (reminder.repeatIntervalHours ?? 2) === hours;
+                return (
+                  <TouchableOpacity
+                    key={hours}
+                    onPress={() =>
+                      onChange(
+                        reminders.map((r) =>
+                          r.id === reminder.id ? { ...r, repeatIntervalHours: hours } : r,
+                        ),
+                      )
+                    }
+                    style={[
+                      styles.intervalChip,
+                      {
+                        backgroundColor: selected ? colors.primary : 'transparent',
+                        borderColor: colors.primary,
+                        borderRadius: borderRadius.full,
+                        paddingHorizontal: spacing.sm,
+                        paddingVertical: 2,
+                        marginRight: spacing.xs,
+                      },
+                    ]}
+                  >
+                    <Text
+                      style={[
+                        typo.bodySmall,
+                        { color: selected ? '#FFF' : colors.primary, fontWeight: '600' },
+                      ]}
+                    >
+                      {t('eventForm.repeatEveryHours', { count: hours })}
+                    </Text>
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+          )}
+          {reminder.repeatEnabled && (
+            <Text
+              style={[
+                typo.bodySmall,
+                { color: colors.textSecondary, marginTop: 4, fontStyle: 'italic' },
+              ]}
+            >
+              {t('eventForm.repeatUntilDayEnd')}
+            </Text>
+          )}
         </View>
       ))}
 
@@ -201,5 +280,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 6,
     paddingVertical: 2,
+  },
+  repeatRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  intervalRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+  },
+  intervalChip: {
+    borderWidth: 1,
   },
 });
