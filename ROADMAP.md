@@ -16,6 +16,30 @@ spostare nella sezione "✅ Completato" in fondo.
 - [x] 7. Fix titolo navigator "Settings ImportContacts" → tradotto
 - [x] 8. Categoria App Store: Produttività + Stile di vita → Primary: Produttività / Secondary: Stile di vita (vedi `APP_STORE.md`)
 
+## 🔎 Fase 1.5 — SEO, ASO & Deep Linking (pre-lancio, code-only)
+
+Audit 2026-04-21: copertura attuale ~65% SEO, ~70% ASO. Base buona (JSON-LD SoftwareApplication + FAQ, meta OG/Twitter, metadata Store 5 lingue) ma mancano pezzi critici per "molto performante".
+
+### 🔴 Priorità alta — BLOCKER SEO indicizzazione
+- [ ] 31. **robots.txt + sitemap.xml** per GitHub Pages (`/docs/`). Senza, Google indicizza male la landing. Include URL canonici IT/EN + privacy policy + eventuali future sezioni.
+- [ ] 32. **hreflang** sulla landing → `<link rel="alternate" hreflang="en" href="...">` + creare `docs/index-en.html` (o sottopath `/en/`) per targetizzare IT e EN separatamente su Google.
+- [ ] 33. **Deep Linking iOS (Universal Links)** → `associated-domains` in `app.json` > `ios.infoPlist` + file `apple-app-site-association` in `docs/.well-known/`. Permette che cliccando un link `smemorandum.app/event/...` si apra l'app installata.
+- [ ] 34. **Deep Linking Android (App Links)** → `intent-filters` in `app.json` > `android` + file `assetlinks.json` in `docs/.well-known/`. Stesso scopo, lato Android + verified.
+- [ ] 35. **Schema URI custom** → `smemorandum://` definito in `app.json > scheme` per deep link interni (notifiche, share, widget tap).
+
+### 🟡 Priorità media — Growth & installabilità
+- [ ] 36. **PWA manifest + service worker** → `web/manifest.webmanifest` + SW minimale. Rende la web version installabile e offline-first.
+- [ ] 37. **`apple-touch-icon` + `<link rel="icon">`** espliciti in `index.html` (oggi dipende solo da Expo default).
+- [ ] 38. **Screenshot Store con caption overlay** — ora `docs/screenshots-guide.md` descrive i testi ma le immagini finali non li hanno sovrapposti. È il #2 fattore ranking App Store.
+- [ ] 39. **Google Search Console verification** → meta tag `google-site-verification` in `index.html` per monitorare impressions/click.
+- [ ] 40. **Google Play Store metadata** separato — oggi `store-metadata/` ha solo metadata App Store, Play Store ha requisiti diversi (short desc 80 char, full 4000, feature graphic 1024x500).
+
+### 🟢 Nice to have — post-lancio
+- [ ] 41. **Analytics privacy-friendly sulla landing** (Plausible o Simple Analytics, no cookie banner) per misurare conversioni click → download.
+- [ ] 42. **Organization schema JSON-LD** in aggiunta a SoftwareApplication (name, logo, email, sameAs social profiles).
+- [ ] 43. **Jekyll sitemap/SEO plugins** (`jekyll-seo-tag` + `jekyll-sitemap`) per auto-generazione se passiamo a build Jekyll completo.
+- [ ] 44. **Bing Webmaster Tools verification** (meta `msvalidate.01`) — market minore ma zero-effort.
+
 ## 🚀 Fase 2 — Da fare prima del lancio (sprint 1–2 settimane)
 
 - [x] 9. Onboarding 3 slide (illustrazioni + testo)
