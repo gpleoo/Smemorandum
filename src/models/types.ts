@@ -11,6 +11,8 @@ export interface Reminder {
   id: string;
   daysBefore: number;
   time: string; // "HH:mm"
+  repeatEnabled?: boolean;       // If true, re-notifies at interval until end of day
+  repeatIntervalHours?: number;  // Hours between repeats (e.g. 1, 2, 3, 4, 6)
 }
 
 export interface SEvent {

@@ -102,7 +102,8 @@ export async function scheduleAllEventNotifications(events: SEvent[]): Promise<v
   await Notifications.cancelAllScheduledNotificationsAsync();
 
   const now = new Date();
-  const toSchedule: { date: Date; event: SEvent; daysBefore: number }[] = [];
+  const toSchedule: { date: Date; event: SEvent; daysBefore: number; isRepeat: boolean }[] = [];
+  const MAX_REPEATS_PER_REMINDER = 12;
 
   for (const event of events) {
     if (event.reminders.length === 0) continue;
@@ -119,7 +120,23 @@ export async function scheduleAllEventNotifications(events: SEvent[]): Promise<v
       triggerDate = setMinutes(triggerDate, minutes);
 
       if (isAfter(triggerDate, now)) {
-        toSchedule.push({ date: triggerDate, event, daysBefore: reminder.daysBefore });
+        toSchedule.push({ date: triggerDate, event, daysBefore: reminder.daysBefore, isRepeat: false });
+      }
+
+      // Repeat follow-ups until end of the same day
+      if (reminder.repeatEnabled && reminder.repeatIntervalHours && reminder.repeatIntervalHours > 0) {
+        const endOfDay = new Date(triggerDate);
+        endOfDay.setHours(23, 59, 59, 999);
+        const intervalMs = reminder.repeatIntervalHours * 60 * 60 * 1000;
+        let next = new Date(triggerDate.getTime() + intervalMs);
+        let count = 0;
+        while (next.getTime() <= endOfDay.getTime() && count < MAX_REPEATS_PER_REMINDER) {
+          if (isAfter(next, now)) {
+            toSchedule.push({ date: new Date(next), event, daysBefore: reminder.daysBefore, isRepeat: true });
+          }
+          next = new Date(next.getTime() + intervalMs);
+          count++;
+        }
       }
     }
   }
@@ -131,11 +148,12 @@ export async function scheduleAllEventNotifications(events: SEvent[]): Promise<v
   for (const item of limited) {
     try {
       const soundFile = SOUNDS.find((s) => s.id === item.event.soundId)?.file;
-      const body = item.daysBefore === 0
+      const baseBody = item.daysBefore === 0
         ? `Oggi: ${item.event.title}`
         : item.daysBefore === 1
           ? `Domani: ${item.event.title}`
           : `Tra ${item.daysBefore} giorni: ${item.event.title}`;
+      const body = item.isRepeat ? `🔁 ${baseBody}` : baseBody;
 
       const hasPhone = !!item.event.contactPhone;
       await Notifications.scheduleNotificationAsync({
