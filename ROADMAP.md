@@ -32,7 +32,7 @@ Audit 2026-04-21: copertura attuale ~65% SEO, ~70% ASO. Base buona (JSON-LD Soft
 - [x] 37. **`apple-touch-icon` + `<link rel="icon">`** espliciti in `docs/index.html` + `docs/en/index.html`.
 - [ ] 38. **Screenshot Store con caption overlay** — ora `docs/screenshots-guide.md` descrive i testi ma le immagini finali non li hanno sovrapposti. È il #2 fattore ranking App Store.
 - [~] 39. **Google Search Console verification** → placeholder commentato in `docs/index.html` + `docs/en/index.html`. Sostituire token quando l'account è creato (search.google.com/search-console).
-- [x] 40. **Google Play Store metadata** separato — `store-metadata/google-play/{it,en}/listing.json` con limiti corretti (title 30, short 80, full 4000) + spec assets (feature graphic 1024×500). Mancano FR/DE/ES (clonare struttura).
+- [x] 40. **Google Play Store metadata** separato — `store-metadata/google-play/{it,en,fr,de,es}/listing.json` (5 lingue) con limiti corretti (title 30, short 80, full 4000, promo 170, release 500) + spec assets (feature graphic 1024×500). Tutti i conteggi caratteri verificati.
 
 ### 🟢 Nice to have — post-lancio
 - [~] 41. **Analytics privacy-friendly sulla landing** — placeholder Plausible commentato in `docs/index.html` + `docs/en/index.html`. Attivare quando account Plausible/Simple Analytics creato.
@@ -87,6 +87,7 @@ Audit 2026-04-21: copertura attuale ~65% SEO, ~70% ASO. Base buona (JSON-LD Soft
 
 ## ✅ Completato
 
+- 2026-04-27 — **#40 Google Play metadata 5 lingue completo**: aggiunti `store-metadata/google-play/{fr,de,es}/listing.json` (mancavano), tutti con `_meta` completo (limits, graphics, category PRODUCTIVITY/LIFESTYLE, contentRating PEGI 3, tags). Conteggi caratteri verificati su title (≤30), shortDescription (≤80), fullDescription (≤4000), promoText (≤170), releaseNotes (≤500). README google-play aggiornato con tabella conteggi per locale.
 - 2026-04-21 — **Sprint SEO/ASO/Deep Linking** (Fase 1.5 #31, #32, #35, #36, #37, #40, #42, #43 completi; #33, #34, #39, #41, #44 con placeholder/template):
   - `docs/robots.txt` + `docs/sitemap.xml` con hreflang IT/EN/x-default + privacy policy IT/EN.
   - `docs/index.html` riscritto con SEO completo (Schema.org SoftwareApplication + Organization + FAQ, Open Graph, Twitter Card, theme-color, apple-touch-icon, manifest, hreflang, lang switch).

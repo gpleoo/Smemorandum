@@ -28,12 +28,24 @@ because Google Play has different limits and assets.
 > top of the listing on mobile + featured collections. Plan: same gradient as
 > app hero (`#6C63FF → #5A52D5`) + tagline "Mai più dimenticato".
 
+## Localized listings
+
+All 5 locales are available. Counts (verified against Play Store limits):
+
+| Locale | Title | Short | Full  | Promo | Release |
+|--------|------:|------:|------:|------:|--------:|
+| it     | 23/30 | 75/80 | 1749  | 62    | 189     |
+| en     | 22/30 | 74/80 | 1597  | 58    | 164     |
+| fr     | 21/30 | 72/80 | 2028  | 68    | 218     |
+| de     | 26/30 | 77/80 | 1939  | 65    | 201     |
+| es     | 27/30 | 68/80 | 1947  | 65    | 224     |
+
 ## TODO before publishing
 
 - [ ] Create feature graphic 1024×500 (`assets/store/feature-graphic.png`)
 - [ ] Generate phone screenshots from `docs/screenshots-guide.md` flow
   (Google Play accepts the same captions as App Store; resize OK)
-- [ ] Add localized listings for `fr`, `de`, `es` (copy IT structure)
+- [x] Localized listings for `it`, `en`, `fr`, `de`, `es`
 - [ ] Set up Play Console → App content → Privacy Policy URL =
       `https://gpleoo.github.io/Smemorandum/privacy-policy`
 - [ ] Data safety form (analogous to Apple privacy nutrition labels)

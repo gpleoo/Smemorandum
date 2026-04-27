@@ -1,0 +1,28 @@
+{
+  "_meta": {
+    "store": "Google Play",
+    "locale": "es-ES",
+    "limits": {
+      "title": 30,
+      "shortDescription": 80,
+      "fullDescription": 4000
+    },
+    "graphics": {
+      "appIcon": "512x512 PNG (32-bit, alpha)",
+      "featureGraphic": "1024x500 PNG/JPG (no transparency)",
+      "screenshotsPhone": "min 2, max 8 — 16:9 or 9:16, min 320px, max 3840px",
+      "screenshotsTablet7": "optional",
+      "screenshotsTablet10": "optional"
+    },
+    "category": "PRODUCTIVITY",
+    "secondaryCategory": "LIFESTYLE",
+    "contentRating": "Everyone (PEGI 3)",
+    "tags": ["calendar", "reminder", "productivity", "lifestyle"]
+  },
+  "title": "Smemorandum – Recordatorios",
+  "shortDescription": "Cumpleaños, festivos y plazos. ¡Felicitaciones WhatsApp incluidas! 🎂",
+  "fullDescription": "Smemorandum es la app de recordatorios inteligentes que nunca olvida. Perfecta para no perderte ningún cumpleaños, aniversario, evento recurrente o vencimiento importante — sin estrés.\n\n📅 QUÉ PUEDES HACER:\n\n• Recordatorios de cumpleaños y aniversarios con notificaciones personalizables\n• Gestión de vencimientos de facturas, citas y renovaciones de suscripciones\n• 🔁 Repite las alertas de vencimiento cada 1–6 horas hasta el final del día: nunca más olvides una factura\n• 🌍 Festivos precargados para tu país: añade Navidad, Semana Santa, Día de la Hispanidad y más de 50 festivos nacionales en un toque\n• 💬 Envía felicitaciones de cumpleaños por WhatsApp con 5 plantillas de mensajes ya escritas, directamente desde el recordatorio\n• Calendario visual con vista diaria y mensual\n• Múltiples recordatorios por evento (mismo día, día anterior, semana anterior)\n• 📊 Estadísticas de tus eventos: distribución mensual y por categoría\n• 📅 Resumen semanal cada lunes por la mañana con los próximos eventos\n• Sonidos de notificación personalizados para cada evento\n• 🎨 5 temas de color para personalizar la interfaz\n• Recurrencias automáticas: anual, mensual, semanal, personalizada\n• Categorías personalizables con iconos y colores\n• Importación automática de cumpleaños desde tus contactos\n• Copia de seguridad y restauración de datos\n• Tema claro, oscuro y automático\n• Disponible en español, italiano, inglés, francés, alemán\n\n🔒 100% PRIVADO:\nTodos tus datos se guardan solo en tu dispositivo. Sin servidores externos, sin recopilación de datos. Compatible con el RGPD.\n\n✨ FUNCIONES PREMIUM:\n• Cero anuncios, para siempre\n• Categorías ilimitadas (gratis: máx. 3)\n• Múltiples recordatorios por evento\n• Todos los sonidos de notificación\n• Todos los paquetes de festivos + tradiciones religiosas\n• Copias de seguridad ilimitadas\n\nNo olvides nunca más un cumpleaños importante, una factura por pagar o un aniversario. ¡Descarga Smemorandum gratis ahora!",
+  "videoUrl": "",
+  "promoText": "🎂 ¡Nunca más olvides un cumpleaños! 100% privado, sin servidores.",
+  "releaseNotes": "Novedad: repite las alertas de vencimiento hasta el final del día, configurable de 1h a 6h. ¡Nunca más olvides una factura! Añadidos 12 ajustes preestablecidos para vencimientos frecuentes (suministros, seguros, impuestos…)."
+}

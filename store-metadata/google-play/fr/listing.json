@@ -1,0 +1,28 @@
+{
+  "_meta": {
+    "store": "Google Play",
+    "locale": "fr-FR",
+    "limits": {
+      "title": 30,
+      "shortDescription": 80,
+      "fullDescription": 4000
+    },
+    "graphics": {
+      "appIcon": "512x512 PNG (32-bit, alpha)",
+      "featureGraphic": "1024x500 PNG/JPG (no transparency)",
+      "screenshotsPhone": "min 2, max 8 — 16:9 or 9:16, min 320px, max 3840px",
+      "screenshotsTablet7": "optional",
+      "screenshotsTablet10": "optional"
+    },
+    "category": "PRODUCTIVITY",
+    "secondaryCategory": "LIFESTYLE",
+    "contentRating": "Everyone (PEGI 3)",
+    "tags": ["calendar", "reminder", "productivity", "lifestyle"]
+  },
+  "title": "Smemorandum – Rappels",
+  "shortDescription": "Rappels pour anniversaires, fêtes et échéances. Vœux WhatsApp inclus ! 🎂",
+  "fullDescription": "Smemorandum est l'application de rappels intelligents qui n'oublie jamais. Parfaite pour ne plus manquer un anniversaire, une fête, une échéance ou un renouvellement — sans stress.\n\n📅 CE QUE VOUS POUVEZ FAIRE :\n\n• Rappels d'anniversaires et d'anniversaires de mariage avec notifications personnalisables\n• Gestion des échéances de factures, rendez-vous et renouvellements d'abonnements\n• 🔁 Répétez les alertes d'échéance toutes les 1 à 6 heures jusqu'à la fin de la journée : ne manquez plus jamais une facture\n• 🌍 Jours fériés préchargés pour votre pays : ajoutez Noël, Pâques, Fête Nationale et plus de 50 jours fériés en un seul tap\n• 💬 Envoyez des vœux d'anniversaire sur WhatsApp avec 5 modèles de messages déjà rédigés, directement depuis le rappel\n• Calendrier visuel avec vue journalière et mensuelle\n• Rappels multiples par événement (même jour, veille, semaine avant)\n• 📊 Statistiques sur vos événements : répartition mensuelle et par catégorie\n• 📅 Résumé hebdomadaire chaque lundi matin avec les événements à venir\n• Sons de notification personnalisés pour chaque événement\n• 🎨 5 thèmes de couleurs pour personnaliser l'interface\n• Récurrences automatiques : annuelle, mensuelle, hebdomadaire, personnalisée\n• Catégories personnalisables avec icônes et couleurs\n• Importation automatique des anniversaires depuis vos contacts\n• Sauvegarde et restauration des données\n• Thème clair, sombre et automatique\n• Disponible en français, italien, anglais, espagnol, allemand\n\n🔒 100% PRIVÉ :\nToutes vos données restent uniquement sur votre appareil. Aucun serveur externe, aucune collecte de données. Conforme au RGPD.\n\n✨ FONCTIONNALITÉS PREMIUM :\n• Zéro publicité, pour toujours\n• Catégories illimitées (gratuit : max 3)\n• Rappels multiples par événement\n• Tous les sons de notification\n• Tous les packs de jours fériés + traditions religieuses\n• Sauvegardes illimitées\n\nNe manquez plus jamais un anniversaire important, une facture à payer ou un anniversaire de mariage. Téléchargez Smemorandum gratuitement dès maintenant !",
+  "videoUrl": "",
+  "promoText": "🎂 Ne manquez plus jamais un anniversaire ! 100% privé, sans serveur.",
+  "releaseNotes": "Nouveau : répétez les alertes d'échéance jusqu'à la fin de la journée, configurable de 1h à 6h. Ne manquez plus jamais une facture ! Ajout de 12 préréglages pour les échéances fréquentes (factures, assurance, impôts…)."
+}
