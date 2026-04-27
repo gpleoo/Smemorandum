@@ -33,6 +33,8 @@ export const DEFAULT_SETTINGS: AppSettings = {
   weeklyDigestEnabled: true,
   holidayCountries: [],        // empty = auto-detect from device locale
   holidayTraditions: ['secular'],
+  defaultRepeatEnabled: false,
+  defaultRepeatIntervalHours: 2,
 };
 
 export const HOLIDAY_COUNTRIES = [

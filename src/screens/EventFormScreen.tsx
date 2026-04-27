@@ -28,6 +28,9 @@ import { SOUNDS, FREE_PLAN_LIMITS } from '../utils/constants';
 import { showInterstitialIfDue } from '../services/adService';
 import { usePremium } from '../context/PremiumContext';
 import { trackEventSavedAndMaybePrompt } from '../services/reviewService';
+import { getSettings } from '../storage/settingsStorage';
+import { DEFAULT_SETTINGS } from '../utils/constants';
+import { DEADLINE_PRESETS, getPresetName } from '../data/deadlinePresets';
 import { toISODateString, formatDate } from '../utils/dateUtils';
 import { v4 as uuidv4 } from 'uuid';
 import { findNameDaysFromTitle, nameDayToISO, formatNameDay } from '../services/nameDayService';
@@ -63,6 +66,21 @@ export function EventFormScreen() {
   const [timeCapsula, setTimeCapsula] = useState(existingEvent?.timeCapsula ?? '');
   const [titleError, setTitleError] = useState(false);
   const [nameDaySuggestion, setNameDaySuggestion] = useState<{ name: string; dateStr: string; iso: string } | null>(null);
+  const [defaultRepeat, setDefaultRepeat] = useState<{ enabled: boolean; intervalHours: number }>({
+    enabled: DEFAULT_SETTINGS.defaultRepeatEnabled,
+    intervalHours: DEFAULT_SETTINGS.defaultRepeatIntervalHours,
+  });
+
+  useEffect(() => {
+    getSettings()
+      .then((s) =>
+        setDefaultRepeat({
+          enabled: s.defaultRepeatEnabled,
+          intervalHours: s.defaultRepeatIntervalHours,
+        }),
+      )
+      .catch(() => {});
+  }, []);
   const titleInputRef = useRef<TextInput>(null);
   const scrollViewRef = useRef<ScrollView>(null);
 
@@ -192,6 +210,47 @@ export function EventFormScreen() {
         <Text style={[typo.caption, { color: colors.error, marginTop: 2 }]}>
           {t('eventForm.requiredField')}
         </Text>
+      )}
+
+      {/* Deadline presets — shown on new scadenza with empty title */}
+      {!isEditing && eventType === 'scadenza' && !title.trim() && (
+        <View style={{ marginTop: spacing.sm }}>
+          <Text style={[typo.caption, { color: colors.textTertiary, marginBottom: spacing.xs }]}>
+            {t('eventForm.presetsHint')}
+          </Text>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+            {DEADLINE_PRESETS.map((preset) => (
+              <TouchableOpacity
+                key={preset.id}
+                onPress={() => {
+                  setTitle(getPresetName(preset, i18n.language));
+                  if (preset.categoryId && categories.some((c) => c.id === preset.categoryId)) {
+                    setCategoryId(preset.categoryId);
+                  }
+                  if (preset.recurrence === 'yearly') setRecurrence({ type: 'yearly' });
+                  else if (preset.recurrence === 'monthly') {
+                    const day = new Date(date).getDate();
+                    setRecurrence({ type: 'monthly', dayOfMonth: day });
+                  }
+                }}
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  backgroundColor: colors.surfaceVariant,
+                  borderRadius: borderRadius.full,
+                  paddingHorizontal: spacing.md,
+                  paddingVertical: spacing.xs,
+                  marginRight: spacing.xs,
+                }}
+              >
+                <Text style={[typo.bodySmall, { marginRight: 4 }]}>{preset.icon}</Text>
+                <Text style={[typo.bodySmall, { color: colors.text }]}>
+                  {getPresetName(preset, i18n.language)}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        </View>
       )}
 
       {/* Event Type */}
@@ -374,6 +433,7 @@ export function EventFormScreen() {
         reminders={reminders}
         onChange={setReminders}
         maxReminders={isPremium ? 999 : FREE_PLAN_LIMITS.MAX_REMINDERS_PER_EVENT}
+        defaultRepeat={eventType === 'scadenza' ? defaultRepeat : undefined}
       />
 
       {/* Sound */}

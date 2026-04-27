@@ -1,5 +1,7 @@
+// ORPHAN — not bundled. See comment in upcoming-events-widget.tsx.
 import React from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+// @ts-expect-error — package temporarily uninstalled
 import type { WidgetTaskHandlerProps } from 'react-native-android-widget';
 import { UpcomingEventsWidget } from './upcoming-events-widget';
 import { STORAGE_KEYS } from '../src/utils/constants';

@@ -3,7 +3,7 @@ import { Platform } from 'react-native';
 import { SEvent } from '../models/types';
 import { SOUNDS } from '../utils/constants';
 import { getNextOccurrence } from '../utils/recurrenceEngine';
-import { subDays, setHours, setMinutes, isAfter } from 'date-fns';
+import { computeEventTriggers } from '../utils/reminderScheduling';
 import { getSettings } from '../storage/settingsStorage';
 
 const MAX_SCHEDULED_NOTIFICATIONS = 54; // iOS limit is 64; leave room for 8 weekly digests
@@ -101,48 +101,7 @@ export async function scheduleAllEventNotifications(events: SEvent[]): Promise<v
   if (Platform.OS === 'web') return;
   await Notifications.cancelAllScheduledNotificationsAsync();
 
-  const now = new Date();
-  const toSchedule: { date: Date; event: SEvent; daysBefore: number; isRepeat: boolean }[] = [];
-  const MAX_REPEATS_PER_REMINDER = 12;
-
-  for (const event of events) {
-    if (event.reminders.length === 0) continue;
-
-    const nextOccurrence = getNextOccurrence(event, now);
-    if (!nextOccurrence) continue;
-
-    for (const reminder of event.reminders) {
-      const timeParts = reminder.time.split(':').map(Number);
-      if (timeParts.length !== 2 || isNaN(timeParts[0]) || isNaN(timeParts[1])) continue;
-      const [hours, minutes] = timeParts;
-      let triggerDate = subDays(nextOccurrence, reminder.daysBefore);
-      triggerDate = setHours(triggerDate, hours);
-      triggerDate = setMinutes(triggerDate, minutes);
-
-      if (isAfter(triggerDate, now)) {
-        toSchedule.push({ date: triggerDate, event, daysBefore: reminder.daysBefore, isRepeat: false });
-      }
-
-      // Repeat follow-ups until end of the same day
-      if (reminder.repeatEnabled && reminder.repeatIntervalHours && reminder.repeatIntervalHours > 0) {
-        const endOfDay = new Date(triggerDate);
-        endOfDay.setHours(23, 59, 59, 999);
-        const intervalMs = reminder.repeatIntervalHours * 60 * 60 * 1000;
-        let next = new Date(triggerDate.getTime() + intervalMs);
-        let count = 0;
-        while (next.getTime() <= endOfDay.getTime() && count < MAX_REPEATS_PER_REMINDER) {
-          if (isAfter(next, now)) {
-            toSchedule.push({ date: new Date(next), event, daysBefore: reminder.daysBefore, isRepeat: true });
-          }
-          next = new Date(next.getTime() + intervalMs);
-          count++;
-        }
-      }
-    }
-  }
-
-  // Sort by date and limit to MAX
-  toSchedule.sort((a, b) => a.date.getTime() - b.date.getTime());
+  const toSchedule = computeEventTriggers(events, new Date());
   const limited = toSchedule.slice(0, MAX_SCHEDULED_NOTIFICATIONS);
 
   for (const item of limited) {

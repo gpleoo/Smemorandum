@@ -1,0 +1,17 @@
+{
+  "_meta": {
+    "store": "Google Play",
+    "locale": "en-US",
+    "limits": {
+      "title": 30,
+      "shortDescription": 80,
+      "fullDescription": 4000
+    }
+  },
+  "title": "Smemorandum: Reminders",
+  "shortDescription": "Reminders for birthdays, holidays & deadlines. WhatsApp wishes included! 🎂",
+  "fullDescription": "Smemorandum is the smart reminder app that never forgets. Perfect for keeping track of birthdays, anniversaries, recurring events and important deadlines — stress free.\n\n📅 WHAT YOU CAN DO:\n\n• Birthday and anniversary reminders with customizable notifications\n• Manage deadlines for bills, appointments and subscription renewals\n• 🔁 Repeat deadline alerts every 1–6 hours until end of day: never forget a bill again\n• 🌍 Pre-loaded holidays for your country: add Christmas, Easter, Thanksgiving and 50+ national holidays in one tap\n• 💬 Send WhatsApp birthday wishes with 5 ready-made templates, directly from the reminder\n• Visual calendar with daily and monthly view\n• Multiple reminders per event (same day, day before, week before)\n• 📊 Event statistics: monthly distribution and by category\n• 📅 Weekly digest every Monday morning with upcoming events\n• Custom notification sounds for each event\n• 🎨 5 color themes to personalize the interface\n• Automatic recurrences: yearly, monthly, weekly\n• Customizable categories with icons and colors\n• Auto-import birthdays from your phone contacts\n• Backup and restore your data\n• Light, dark and automatic theme\n• English, Italian, Spanish, French, German\n\n🔒 100% PRIVATE:\nAll your data stays only on your device. No external servers, no data collection. GDPR compliant.\n\n✨ PREMIUM FEATURES:\n• Zero ads, forever\n• Unlimited categories (free: max 3)\n• Multiple reminders per event\n• All notification sounds\n• All country holiday packs + religious traditions\n• Unlimited backups\n\nNever miss an important birthday again. Download Smemorandum for free today!",
+  "videoUrl": "",
+  "promoText": "🎂 Never forget a birthday again! 100% private, no servers.",
+  "releaseNotes": "New: repeat deadline alerts until end of day, configurable 1h–6h. Never forget a bill again! Added 12 presets for frequent deadlines (utilities, insurance, taxes…)."
+}

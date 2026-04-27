@@ -16,6 +16,30 @@ spostare nella sezione "✅ Completato" in fondo.
 - [x] 7. Fix titolo navigator "Settings ImportContacts" → tradotto
 - [x] 8. Categoria App Store: Produttività + Stile di vita → Primary: Produttività / Secondary: Stile di vita (vedi `APP_STORE.md`)
 
+## 🔎 Fase 1.5 — SEO, ASO & Deep Linking (pre-lancio, code-only)
+
+Audit 2026-04-21: copertura attuale ~65% SEO, ~70% ASO. Base buona (JSON-LD SoftwareApplication + FAQ, meta OG/Twitter, metadata Store 5 lingue) ma mancano pezzi critici per "molto performante".
+
+### 🔴 Priorità alta — BLOCKER SEO indicizzazione
+- [x] 31. **robots.txt + sitemap.xml** per GitHub Pages — `docs/robots.txt` + `docs/sitemap.xml` con URL canonici IT/EN + privacy policy IT/EN + hreflang alternates.
+- [x] 32. **hreflang + landing EN** → meta `hreflang` it/en/x-default su `docs/index.html` + `docs/en/index.html` (landing EN dedicata, schema SoftwareApplication/Organization/FAQ tradotti).
+- [~] 33. **Deep Linking iOS (Universal Links)** — template `docs/.well-known/apple-app-site-association` pronto + `app.json > ios.associatedDomains: ["applinks:gpleoo.github.io"]`. **TODO:** sostituire `TEAMID` con Apple Developer Team ID reale (vedi `docs/.well-known/README.md`).
+- [~] 34. **Deep Linking Android (App Links)** — `docs/.well-known/assetlinks.json` + `app.json > android.intentFilters` con `autoVerify:true` per `gpleoo.github.io/Smemorandum/event|share`. **TODO:** sostituire `SHA256_FINGERPRINT_PLACEHOLDER` con SHA-256 del signing cert (post-prima EAS build).
+- [x] 35. **Schema URI custom** → `app.json > scheme: "smemorandum"` per deep link interni (notifiche, share, widget tap).
+
+### 🟡 Priorità media — Growth & installabilità
+- [x] 36. **PWA manifest** → `docs/manifest.webmanifest` (start_url, theme/background color, maskable icon, shortcut a privacy policy). Service worker rinviato (richiede build pipeline web Expo).
+- [x] 37. **`apple-touch-icon` + `<link rel="icon">`** espliciti in `docs/index.html` + `docs/en/index.html`.
+- [ ] 38. **Screenshot Store con caption overlay** — ora `docs/screenshots-guide.md` descrive i testi ma le immagini finali non li hanno sovrapposti. È il #2 fattore ranking App Store.
+- [~] 39. **Google Search Console verification** → placeholder commentato in `docs/index.html` + `docs/en/index.html`. Sostituire token quando l'account è creato (search.google.com/search-console).
+- [x] 40. **Google Play Store metadata** separato — `store-metadata/google-play/{it,en}/listing.json` con limiti corretti (title 30, short 80, full 4000) + spec assets (feature graphic 1024×500). Mancano FR/DE/ES (clonare struttura).
+
+### 🟢 Nice to have — post-lancio
+- [~] 41. **Analytics privacy-friendly sulla landing** — placeholder Plausible commentato in `docs/index.html` + `docs/en/index.html`. Attivare quando account Plausible/Simple Analytics creato.
+- [x] 42. **Organization schema JSON-LD** in aggiunta a SoftwareApplication (name, logo, email, founder, sameAs GitHub) — su entrambe le landing IT + EN.
+- [x] 43. **Jekyll SEO/sitemap plugins** → `jekyll-seo-tag` + `jekyll-sitemap` aggiunti a `docs/_config.yml` + `include: [.well-known]` per pubblicare i deep link templates.
+- [~] 44. **Bing Webmaster Tools verification** (meta `msvalidate.01`) — placeholder commentato in `docs/index.html` + `docs/en/index.html`.
+
 ## 🚀 Fase 2 — Da fare prima del lancio (sprint 1–2 settimane)
 
 - [x] 9. Onboarding 3 slide (illustrazioni + testo)
@@ -62,6 +86,21 @@ spostare nella sezione "✅ Completato" in fondo.
 ---
 
 ## ✅ Completato
+
+- 2026-04-21 — **Sprint SEO/ASO/Deep Linking** (Fase 1.5 #31, #32, #35, #36, #37, #40, #42, #43 completi; #33, #34, #39, #41, #44 con placeholder/template):
+  - `docs/robots.txt` + `docs/sitemap.xml` con hreflang IT/EN/x-default + privacy policy IT/EN.
+  - `docs/index.html` riscritto con SEO completo (Schema.org SoftwareApplication + Organization + FAQ, Open Graph, Twitter Card, theme-color, apple-touch-icon, manifest, hreflang, lang switch).
+  - `docs/en/index.html` landing EN dedicata speculare alla IT.
+  - `docs/manifest.webmanifest` PWA con maskable icon + shortcut privacy policy.
+  - `docs/.well-known/apple-app-site-association` template (Universal Links iOS, paths `/event/*` + `/share/*`) — TODO sostituire `TEAMID`.
+  - `docs/.well-known/assetlinks.json` template (App Links Android) — TODO sostituire SHA-256 fingerprint dopo prima EAS build.
+  - `docs/.well-known/README.md` con istruzioni per completare i deep link.
+  - `docs/_config.yml` esteso con `jekyll-seo-tag` + `jekyll-sitemap` + `include: [.well-known]`.
+  - `app.json` aggiornato: `scheme: "smemorandum"`, `ios.associatedDomains`, `android.intentFilters` con `autoVerify:true` per `gpleoo.github.io/Smemorandum/event|share`.
+  - `store-metadata/google-play/{it,en}/listing.json` + README con limiti Play Store (title 30, short 80, full 4000) e spec assets (feature graphic 1024×500).
+- 2026-04-21 — **Ripeti avviso scadenze** (nuova feature): toggle per-reminder + intervallo (1/2/3/4/6h) che ripete la notifica fino a fine giornata (max 12 ripetizioni). Default globale attivabile in Impostazioni (auto-apply su reminder same-day delle scadenze). Badge 🔁 visibile su EventDetail. Logica scheduling estratta in funzione pura (`src/utils/reminderScheduling.ts`) con test case in `__tests__/`.
+- 2026-04-21 — **Preset scadenze frequenti**: 12 template (bollette luce/gas/acqua, canone TV, RCA auto, bollo, revisione, assicurazione casa, IMU/TARI, abbonamento, visita medica, condominio) pre-compilano titolo + categoria + ricorrenza suggerita. Visibili come chip quando crei una nuova scadenza senza titolo. Localizzati in 5 lingue.
+
 
 - 2026-04-19 — #9 Onboarding 3 slide con icone gradient (commit c01f420)
 - 2026-04-19 — #11 Share card auguri snapshot + sheet OS (commit d1ebd7e)

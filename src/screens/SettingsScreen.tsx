@@ -60,6 +60,16 @@ export function SettingsScreen() {
     scheduleWeeklyDigest(events, value, updated.language).catch(() => {});
   };
 
+  const handleDefaultRepeatChange = async (value: boolean) => {
+    const updated = await updateSetting('defaultRepeatEnabled', value);
+    setSettings(updated);
+  };
+
+  const handleDefaultRepeatIntervalChange = async (hours: number) => {
+    const updated = await updateSetting('defaultRepeatIntervalHours', hours);
+    setSettings(updated);
+  };
+
   const handleThemeChange = async (theme: ThemeMode) => {
     setThemeMode(theme);
     const updated = await updateSetting('theme', theme);
@@ -316,6 +326,78 @@ export function SettingsScreen() {
             thumbColor={settings?.weeklyDigestEnabled ? colors.primary : colors.textTertiary}
           />
         </View>
+
+        {/* Default repeat reminder */}
+        <View
+          style={[
+            styles.settingsRow,
+            {
+              backgroundColor: colors.surface,
+              borderRadius: borderRadius.lg,
+              padding: spacing.md,
+              marginBottom: spacing.sm,
+            },
+          ]}
+        >
+          <View style={styles.settingsRowLeft}>
+            <Ionicons name="repeat" size={20} color={colors.primary} />
+            <View style={{ marginLeft: spacing.sm, flex: 1 }}>
+              <Text style={[typo.body, { color: colors.text }]}>
+                {t('settings.defaultRepeat')}
+              </Text>
+              <Text style={[typo.bodySmall, { color: colors.textSecondary }]}>
+                {t('settings.defaultRepeatDesc')}
+              </Text>
+            </View>
+          </View>
+          <Switch
+            value={settings?.defaultRepeatEnabled ?? false}
+            onValueChange={handleDefaultRepeatChange}
+            trackColor={{ false: colors.surfaceVariant, true: colors.primary + '80' }}
+            thumbColor={settings?.defaultRepeatEnabled ? colors.primary : colors.textTertiary}
+          />
+        </View>
+
+        {settings?.defaultRepeatEnabled && (
+          <View
+            style={{
+              backgroundColor: colors.surface,
+              borderRadius: borderRadius.lg,
+              padding: spacing.md,
+              marginBottom: spacing.sm,
+              flexDirection: 'row',
+              flexWrap: 'wrap',
+              alignItems: 'center',
+            }}
+          >
+            <Text style={[typo.bodySmall, { color: colors.textSecondary, marginRight: spacing.sm, marginBottom: spacing.xs }]}>
+              {t('settings.defaultRepeatInterval')}
+            </Text>
+            {[1, 2, 3, 4, 6].map((hours) => {
+              const selected = (settings?.defaultRepeatIntervalHours ?? 2) === hours;
+              return (
+                <TouchableOpacity
+                  key={hours}
+                  onPress={() => handleDefaultRepeatIntervalChange(hours)}
+                  style={{
+                    backgroundColor: selected ? colors.primary : 'transparent',
+                    borderColor: colors.primary,
+                    borderWidth: 1,
+                    borderRadius: borderRadius.full,
+                    paddingHorizontal: spacing.sm,
+                    paddingVertical: 2,
+                    marginRight: spacing.xs,
+                    marginBottom: spacing.xs,
+                  }}
+                >
+                  <Text style={[typo.bodySmall, { color: selected ? '#FFF' : colors.primary, fontWeight: '600' }]}>
+                    {t('eventForm.repeatEveryHours', { count: hours })}
+                  </Text>
+                </TouchableOpacity>
+              );
+            })}
+          </View>
+        )}
 
         {/* Festività */}
         <SectionHeader title={t('templates.holidays')} colors={colors} typo={typo} spacing={spacing} />

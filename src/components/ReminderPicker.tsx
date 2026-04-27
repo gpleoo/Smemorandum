@@ -11,6 +11,7 @@ interface ReminderPickerProps {
   reminders: Reminder[];
   onChange: (reminders: Reminder[]) => void;
   maxReminders?: number;
+  defaultRepeat?: { enabled: boolean; intervalHours: number };
 }
 
 const REMINDER_OPTIONS = [
@@ -21,7 +22,7 @@ const REMINDER_OPTIONS = [
 
 const REPEAT_INTERVAL_OPTIONS = [1, 2, 3, 4, 6];
 
-export function ReminderPicker({ reminders, onChange, maxReminders = 5 }: ReminderPickerProps) {
+export function ReminderPicker({ reminders, onChange, maxReminders = 5, defaultRepeat }: ReminderPickerProps) {
   const { colors, spacing, borderRadius, typography: typo } = useTheme();
   const { t } = useTranslation();
   const [editingReminderId, setEditingReminderId] = useState<string | null>(null);
@@ -52,9 +53,20 @@ export function ReminderPicker({ reminders, onChange, maxReminders = 5 }: Remind
     if (reminders.length >= maxReminders) return;
     if (reminders.some((r) => r.daysBefore === daysBefore)) return;
 
+    // Auto-enable repeat on same-day reminders when the user has set a default
+    const applyDefault = daysBefore === 0 && defaultRepeat?.enabled;
+
     onChange([
       ...reminders,
-      { id: uuidv4(), daysBefore, time: '09:00' },
+      {
+        id: uuidv4(),
+        daysBefore,
+        time: '09:00',
+        ...(applyDefault && {
+          repeatEnabled: true,
+          repeatIntervalHours: defaultRepeat!.intervalHours,
+        }),
+      },
     ]);
   };
 
