@@ -8,7 +8,7 @@ spostare nella sezione "✅ Completato" in fondo.
 ## 🔥 Fase 1 — Prerequisiti pubblicazione (BLOCKER App Store)
 
 - [x] 1. Icona app finale 1024×1024 + varianti — `assets/icon.png` 1024×1024 RGBA, alpha 255 ovunque (zero trasparenza), angoli pieni. Conforme Apple.
-- [~] 2. Screenshot App Store 6.7" e 6.5" — guida completa in `docs/screenshots-guide.md` con dati demo, checklist 5 screen, captions 5 lingue, flusso upscale iPhone 12 → 1290×2796. Manca solo scattare + upscalare + upload.
+- [~] 2. Screenshot App Store 6.7" e 6.5" — guida completa in `docs/screenshots-guide.md`. **7 raw screenshot catturati su iPhone fisico** (EventList, EventDetail scadenza, WhatsApp auguri modal, Calendario aprile, Festività precaricate, Impostazioni, EventDetail compleanno). **Da rifare/aggiungere:** (a) Home screen con sezione Oggi/Domani, (b) Importa contatti con lista+checkbox, (c) Calendario in italiano (device era in EN → "April 2026"). Poi upscale 1170→1290×2796 + upload App Store Connect.
 - [x] 3. Privacy policy online → **LIVE** su `https://gpleoo.github.io/Smemorandum/privacy-policy` (IT) + `/privacy-policy-en` (EN). GitHub Pages attivo da branch `main` /docs.
 - [x] 4. Descrizione Store IT + EN con keyword ASO → vedi `APP_STORE.md`
 - [x] 5. Email supporto attiva — `smemorandum.support@gmail.com` creata e attiva. Riferimenti aggiornati in 10 file (docs, APP_STORE, index.html, 5 locali i18n).
@@ -73,6 +73,7 @@ spostare nella sezione "✅ Completato" in fondo.
 - 2026-04-20 — #3 Privacy Policy IT + EN in `docs/` pronta per GitHub Pages (offline-first, permessi contatti/notifiche/calendario, AdMob consent, RevenueCat, GDPR diritti, CCPA). **URL live:** `https://gpleoo.github.io/Smemorandum/privacy-policy` (IT) + `/privacy-policy-en` (EN).
 - 2026-04-20 — #5 Tutti i riferimenti email migrati da `giampietro.leonoro@gmail.com` a `smemorandum.support@gmail.com` in 10 file (docs, APP_STORE, index.html, 5 locali i18n). Account Gmail creato e attivo.
 - 2026-04-20 — #2 (parziale) Guida screenshot `docs/screenshots-guide.md`: dati demo coerenti (Anna/Luca/Mario&Giulia), checklist 5 schermate, captions in IT/EN/ES/FR/DE, flusso upscale iPhone 12 (1170×2532) → 1290×2796 via Waifu2x/iloveimg/GIMP, upload App Store Connect. `eas.json` già configurato con profilo `preview` per TestFlight.
+- 2026-04-27 — #2 (avanzamento) 7 raw screenshot catturati su iPhone fisico: EventList, EventDetail-scadenza, WhatsApp-auguri-modal, Calendario, Festività-precaricate, Impostazioni, EventDetail-compleanno. Da completare: Home screen, Importa-contatti screen, ri-scattare Calendario con device in IT (era in EN). Poi upscale + upload.
 - 2026-04-20 — #1 Icona `assets/icon.png` verificata: 1024×1024 RGBA, alpha 255 ovunque (zero trasparenza), angoli pieni. Apple-compliant, pronta per upload App Store Connect.
 - 2026-04-20 — #6 (parziale) Bug fix da test fisico iPhone 12:
   - **Calendario**: badge eventi visibili anche per mesi passati/futuri (finestra estesa ±12 mesi attorno al mese visibile in `CalendarScreen.tsx`), risolve ricorrenze annuali multi-anno.
