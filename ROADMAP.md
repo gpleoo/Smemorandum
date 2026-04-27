@@ -8,7 +8,7 @@ spostare nella sezione "✅ Completato" in fondo.
 ## 🔥 Fase 1 — Prerequisiti pubblicazione (BLOCKER App Store)
 
 - [x] 1. Icona app finale 1024×1024 + varianti — `assets/icon.png` 1024×1024 RGBA, alpha 255 ovunque (zero trasparenza), angoli pieni. Conforme Apple.
-- [~] 2. Screenshot App Store 6.7" e 6.5" — guida completa in `docs/screenshots-guide.md`. **7 raw screenshot catturati su iPhone fisico** (EventList, EventDetail scadenza, WhatsApp auguri modal, Calendario aprile, Festività precaricate, Impostazioni, EventDetail compleanno). **Da rifare/aggiungere:** (a) Home screen con sezione Oggi/Domani, (b) Importa contatti con lista+checkbox, (c) Calendario in italiano (device era in EN → "April 2026"). Poi upscale 1170→1290×2796 + upload App Store Connect.
+- [~] 2. Screenshot App Store 6.7" e 6.5" — **8 raw PNG in `store-metadata/screenshots/raw/`** (01-home, 02-eventlist, 03-eventdetail-scadenza, 04-eventdetail-compleanno, 05-whatsapp-auguri, 06-calendario⚠️, 07-festivita, 08-impostazioni-import). ⚠️ `06-calendario.png` da sostituire dopo 1 maggio (fix locale IT attivo su main, serve `eas update` + nuovo screen). Poi upscale 1170→1290×2796 in `raw/` → `final/` + upload App Store Connect.
 - [x] 3. Privacy policy online → **LIVE** su `https://gpleoo.github.io/Smemorandum/privacy-policy` (IT) + `/privacy-policy-en` (EN). GitHub Pages attivo da branch `main` /docs.
 - [x] 4. Descrizione Store IT + EN con keyword ASO → vedi `APP_STORE.md`
 - [x] 5. Email supporto attiva — `smemorandum.support@gmail.com` creata e attiva. Riferimenti aggiornati in 10 file (docs, APP_STORE, index.html, 5 locali i18n).
