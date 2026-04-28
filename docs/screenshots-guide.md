@@ -174,20 +174,26 @@ Sfondo gradient: `#6C63FF → #4A42D6`.
 3. Interpolazione: **LoHalo** o **Lanczos3**
 4. Esporta come PNG
 
-## (Opzionale) Aggiungi frame + caption
+## Aggiungi caption overlay (automatico ✅)
 
-Tool consigliati:
+Le caption sono già pronte: `store-metadata/screenshots/captions.json`.
+
+```bash
+python3 scripts/generate_screenshot_captions.py
+```
+
+Genera **40 PNG** (8 screen × 5 lingue) in `store-metadata/screenshots/captioned/{locale}/`:
+- Banda gradiente brand `#6C63FF → #4A42D6` (380px in alto)
+- Titolo bold 76pt + sottotitolo regular 42pt, centrati, con ombra
+- Screenshot letterbox sotto (scala proporzionale, sidebar brand-colored)
+
+⚠️ Dopo aver sostituito `raw/06-calendario.png` (post 1 maggio), riesegui lo script:
+solo le 5 versioni del calendario verranno riscritte.
+
+### (Alternativa manuale) Tool online
 
 - **[shots.so](https://shots.so)** — gratis, 1 click, frame iOS + background gradient
 - **[appmockup.com](https://appmockup.com)** — gratis, più controllo
-- **[previewed.app](https://previewed.app)** — a pagamento, qualità pro
-
-Workflow shots.so:
-1. Upload PNG (1290×2796)
-2. Device: iPhone 15 Pro Max (Natural Titanium)
-3. Background: Solid `#6C63FF` o gradient `#6C63FF → #4A42D6`
-4. Add text overlay → incolla caption dalla tabella sopra
-5. Export 1290×2796 PNG
 
 ## Upload su App Store Connect
 
