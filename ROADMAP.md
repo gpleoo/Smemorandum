@@ -30,7 +30,7 @@ Audit 2026-04-21: copertura attuale ~65% SEO, ~70% ASO. Base buona (JSON-LD Soft
 ### 🟡 Priorità media — Growth & installabilità
 - [x] 36. **PWA manifest** → `docs/manifest.webmanifest` (start_url, theme/background color, maskable icon, shortcut a privacy policy). Service worker rinviato (richiede build pipeline web Expo).
 - [x] 37. **`apple-touch-icon` + `<link rel="icon">`** espliciti in `docs/index.html` + `docs/en/index.html`.
-- [ ] 38. **Screenshot Store con caption overlay** — ora `docs/screenshots-guide.md` descrive i testi ma le immagini finali non li hanno sovrapposti. È il #2 fattore ranking App Store.
+- [x] 38. **Screenshot Store con caption overlay** — `store-metadata/screenshots/captions.json` con 8×5 caption (IT/EN/ES/FR/DE). Script `scripts/generate_screenshot_captions.py` genera 40 PNG (1170×2532) in `store-metadata/screenshots/captioned/{locale}/`. Banda gradiente brand (#6C63FF→#4A42D6) 380px + screenshot letterbox. ⚠️ `06-calendario` da rigenerare post 1 maggio.
 - [~] 39. **Google Search Console verification** → placeholder commentato in `docs/index.html` + `docs/en/index.html`. Sostituire token quando l'account è creato (search.google.com/search-console).
 - [x] 40. **Google Play Store metadata** separato — `store-metadata/google-play/{it,en,fr,de,es}/listing.json` (5 lingue) con limiti corretti (title 30, short 80, full 4000, promo 170, release 500) + spec assets (feature graphic 1024×500). Tutti i conteggi caratteri verificati.
 
@@ -87,6 +87,7 @@ Audit 2026-04-21: copertura attuale ~65% SEO, ~70% ASO. Base buona (JSON-LD Soft
 
 ## ✅ Completato
 
+- 2026-04-28 — **#38 Caption overlay screenshot**: `captions.json` (8 screenshot × 5 lingue), script `generate_screenshot_captions.py`, 40 PNG pronti in `store-metadata/screenshots/captioned/{it,en,es,fr,de}/`. Dimensione 1170×2532, banda gradiente brand in alto. ⚠️ `06-calendario` da rigenerare post 1 maggio.
 - 2026-04-27 — **#40 Google Play metadata 5 lingue completo**: aggiunti `store-metadata/google-play/{fr,de,es}/listing.json` (mancavano), tutti con `_meta` completo (limits, graphics, category PRODUCTIVITY/LIFESTYLE, contentRating PEGI 3, tags). Conteggi caratteri verificati su title (≤30), shortDescription (≤80), fullDescription (≤4000), promoText (≤170), releaseNotes (≤500). README google-play aggiornato con tabella conteggi per locale.
 - 2026-04-21 — **Sprint SEO/ASO/Deep Linking** (Fase 1.5 #31, #32, #35, #36, #37, #40, #42, #43 completi; #33, #34, #39, #41, #44 con placeholder/template):
   - `docs/robots.txt` + `docs/sitemap.xml` con hreflang IT/EN/x-default + privacy policy IT/EN.

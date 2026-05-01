@@ -1,0 +1,93 @@
+{
+  "_note": "Caption overlay per gli 8 raw screenshot. Titolo ≤ 4 parole, sottotitolo ≤ 9 parole.",
+  "screenshots": [
+    {
+      "file": "01-home.png",
+      "slot": 1,
+      "captions": {
+        "it": { "title": "Mai più dimenticato",      "subtitle": "Compleanni, ricorrenze e scadenze in un tap" },
+        "en": { "title": "Never miss a date",        "subtitle": "Birthdays, anniversaries and deadlines at a glance" },
+        "es": { "title": "Nunca olvides una fecha",  "subtitle": "Cumpleaños, aniversarios y plazos de un vistazo" },
+        "fr": { "title": "Ne rien oublier",          "subtitle": "Anniversaires, dates clés et échéances en un clin d'œil" },
+        "de": { "title": "Nie mehr vergessen",       "subtitle": "Geburtstage, Jahrestage und Fristen auf einen Blick" }
+      }
+    },
+    {
+      "file": "02-eventlist.png",
+      "slot": 2,
+      "captions": {
+        "it": { "title": "I tuoi eventi",            "subtitle": "Tutto ordinato per data, subito sotto gli occhi" },
+        "en": { "title": "Your events",              "subtitle": "Everything sorted by date, right in front of you" },
+        "es": { "title": "Tus eventos",              "subtitle": "Todo ordenado por fecha, siempre a la vista" },
+        "fr": { "title": "Tes événements",           "subtitle": "Tout trié par date, toujours sous les yeux" },
+        "de": { "title": "Deine Ereignisse",         "subtitle": "Alles nach Datum sortiert, immer im Blick" }
+      }
+    },
+    {
+      "file": "03-eventdetail-scadenza.png",
+      "slot": 3,
+      "captions": {
+        "it": { "title": "Mai più scadenze",         "subtitle": "Avvisi ripetuti ogni ora fino a fine giornata" },
+        "en": { "title": "Never miss a deadline",   "subtitle": "Hourly repeat alerts until end of day" },
+        "es": { "title": "Sin vencimientos olvidados", "subtitle": "Alertas repetidas cada hora hasta el final del día" },
+        "fr": { "title": "Zéro échéance oubliée",   "subtitle": "Alertes répétées toutes les heures jusqu'au soir" },
+        "de": { "title": "Keine Frist verpassen",   "subtitle": "Stündliche Erinnerungen bis Tagesende" }
+      }
+    },
+    {
+      "file": "04-eventdetail-compleanno.png",
+      "slot": 4,
+      "captions": {
+        "it": { "title": "Auguri in un tap",         "subtitle": "Card personalizzate pronte per WhatsApp" },
+        "en": { "title": "Wishes in one tap",        "subtitle": "Personalized cards ready for WhatsApp" },
+        "es": { "title": "Felicita con un toque",    "subtitle": "Tarjetas personalizadas listas para WhatsApp" },
+        "fr": { "title": "Souhaits en un geste",     "subtitle": "Cartes personnalisées prêtes pour WhatsApp" },
+        "de": { "title": "Glückwünsche per Tipp",    "subtitle": "Persönliche Karten direkt für WhatsApp" }
+      }
+    },
+    {
+      "file": "05-whatsapp-auguri.png",
+      "slot": 5,
+      "captions": {
+        "it": { "title": "5 template WhatsApp",      "subtitle": "Auguri già scritti, basta scegliere e inviare" },
+        "en": { "title": "5 WhatsApp templates",     "subtitle": "Pre-written wishes, just pick and send" },
+        "es": { "title": "5 plantillas WhatsApp",    "subtitle": "Felicitaciones ya escritas, elige y envía" },
+        "fr": { "title": "5 modèles WhatsApp",       "subtitle": "Vœux déjà rédigés, choisis et envoie" },
+        "de": { "title": "5 WhatsApp-Vorlagen",      "subtitle": "Fertige Glückwünsche, einfach auswählen und senden" }
+      }
+    },
+    {
+      "file": "06-calendario.png",
+      "slot": 6,
+      "captions": {
+        "it": { "title": "Tutto a colpo d'occhio",   "subtitle": "Calendario visuale con badge colorati" },
+        "en": { "title": "Everything at a glance",   "subtitle": "Visual calendar with colored badges" },
+        "es": { "title": "Todo de un vistazo",       "subtitle": "Calendario visual con insignias de colores" },
+        "fr": { "title": "Tout en un coup d'œil",    "subtitle": "Calendrier visuel avec badges colorés" },
+        "de": { "title": "Alles auf einen Blick",    "subtitle": "Visueller Kalender mit farbigen Markierungen" }
+      }
+    },
+    {
+      "file": "07-festivita.png",
+      "slot": 7,
+      "captions": {
+        "it": { "title": "Festività pronte",         "subtitle": "Scegli il tuo paese e la tua tradizione" },
+        "en": { "title": "Holidays built-in",        "subtitle": "Pick your country and tradition" },
+        "es": { "title": "Festividades listas",      "subtitle": "Elige tu país y tu tradición" },
+        "fr": { "title": "Fêtes prêtes",             "subtitle": "Choisis ton pays et ta tradition" },
+        "de": { "title": "Feiertage inklusive",      "subtitle": "Wähle Land und Tradition" }
+      }
+    },
+    {
+      "file": "08-impostazioni-import.png",
+      "slot": 8,
+      "captions": {
+        "it": { "title": "Importa in un tocco",      "subtitle": "Compleanni dalla rubrica, zero stress" },
+        "en": { "title": "Import with one tap",      "subtitle": "Birthdays from contacts, stress-free" },
+        "es": { "title": "Importa con un toque",     "subtitle": "Cumpleaños desde contactos, sin esfuerzo" },
+        "fr": { "title": "Importer en un geste",     "subtitle": "Anniversaires depuis tes contacts, sans effort" },
+        "de": { "title": "Mit einem Tipp importieren", "subtitle": "Geburtstage direkt aus Kontakten" }
+      }
+    }
+  ]
+}
