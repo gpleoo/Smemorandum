@@ -30,6 +30,8 @@
       "infoPlist": {
         "NSCalendarsUsageDescription": "Smemorandum needs calendar access to sync your events.",
         "NSContactsUsageDescription": "Smemorandum uses your contacts to import birthdays as reminders.",
+        "NSUserTrackingUsageDescription": "Smemorandum may use your device identifier to deliver personalized ads.",
+        "GADApplicationIdentifier": "ca-app-pub-3940256099942544~1458002511",
         "UIBackgroundModes": ["remote-notification"],
         "CFBundleLocalizations": ["it", "en", "fr", "de", "es"],
         "CFBundleDevelopmentRegion": "it",
