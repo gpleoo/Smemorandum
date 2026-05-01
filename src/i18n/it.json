@@ -13,7 +13,8 @@
     "thisMonth": "Questo mese",
     "noEvents": "Nessun evento in programma",
     "upcoming": "Prossimi eventi",
-    "daysLeft": "{{count}} giorni",
+    "daysLeft_one": "{{count}} giorno",
+    "daysLeft_other": "{{count}} giorni",
     "tomorrow": "Domani",
     "todayLabel": "Oggi"
   },
@@ -78,7 +79,8 @@
     "nameDaySuggestion": "💐 {{name}} festeggia il suo onomastico il {{date}}",
     "nameDayAdd": "Aggiungi promemoria",
     "nameDayAdded": "Onomastico di {{name}} aggiunto!",
-    "ageLabel": "Compirà {{age}} anni",
+    "ageLabel_one": "Compirà {{count}} anno",
+    "ageLabel_other": "Compirà {{count}} anni",
     "milestoneLabel": "🎉 Anno speciale!",
     "birthdayToday": "🎂 Compleanno oggi!"
   },

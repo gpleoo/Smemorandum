@@ -201,7 +201,7 @@ export function EventDetailScreen() {
                 <View style={[styles.badgeRow, { marginTop: spacing.sm }]}>
                   <View style={[styles.ageBadge, { backgroundColor: colors.primary + '20', borderRadius: borderRadius.full, paddingHorizontal: spacing.sm, paddingVertical: 2 }]}>
                     <Text style={[typo.bodySmall, { color: colors.primary, fontWeight: '700' }]}>
-                      {t('eventForm.ageLabel', { age })}
+                      {t('eventForm.ageLabel', { count: age, age })}
                     </Text>
                   </View>
                   {milestone && (

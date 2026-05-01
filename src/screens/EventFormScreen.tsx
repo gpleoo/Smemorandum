@@ -32,7 +32,7 @@ import { getSettings } from '../storage/settingsStorage';
 import { DEFAULT_SETTINGS } from '../utils/constants';
 import { DEADLINE_PRESETS, getPresetName } from '../data/deadlinePresets';
 import { toISODateString, formatDate } from '../utils/dateUtils';
-import { v4 as uuidv4 } from 'uuid';
+import { localId } from '../utils/localId';
 import { findNameDaysFromTitle, nameDayToISO, formatNameDay } from '../services/nameDayService';
 
 type FormRoute = RouteProp<HomeStackParamList, 'EventForm'>;
@@ -129,7 +129,7 @@ export function EventFormScreen() {
 
     const now = new Date().toISOString();
     const event: SEvent = {
-      id: existingEvent?.id ?? uuidv4(),
+      id: existingEvent?.id ?? localId(),
       title: title.trim(),
       description: description.trim(),
       eventType,
@@ -490,7 +490,7 @@ export function EventFormScreen() {
             style={[{ backgroundColor: colors.primary, borderRadius: borderRadius.md, paddingHorizontal: spacing.md, paddingVertical: spacing.xs, marginLeft: spacing.sm }]}
             onPress={async () => {
               const nameDayEvent: SEvent = {
-                id: uuidv4(),
+                id: localId(),
                 title: `Onomastico di ${nameDaySuggestion.name}`,
                 description: '',
                 eventType: 'ricorrenza',
