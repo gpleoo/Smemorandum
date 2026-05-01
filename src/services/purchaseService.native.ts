@@ -42,7 +42,10 @@ export async function configurePurchases(): Promise<void> {
 // ---------------------------------------------------------------------------
 // Status
 // ---------------------------------------------------------------------------
+const ALL_PREMIUM = process.env.EXPO_PUBLIC_ALL_PREMIUM === 'true';
+
 export async function isPremiumUser(): Promise<boolean> {
+  if (ALL_PREMIUM) return true;
   try {
     const info = await Purchases.getCustomerInfo();
     return info.entitlements.active[ENTITLEMENT_ID] !== undefined;
