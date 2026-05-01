@@ -42,7 +42,7 @@ export function PremiumProvider({ children }: { children: React.ReactNode }) {
       setIsLoadingPremium(false);
     })();
 
-    if (Platform.OS !== 'web') {
+    if (Platform.OS !== 'web' && process.env.EXPO_PUBLIC_ALL_PREMIUM !== 'true') {
       unsub = addCustomerInfoListener((info) => {
         setIsPremium(info.entitlements.active['premium'] !== undefined);
       });
