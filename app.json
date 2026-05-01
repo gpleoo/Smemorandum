@@ -27,7 +27,6 @@
       "bundleIdentifier": "com.smemorandum.app",
       "buildNumber": "1",
       "requireFullScreen": false,
-      "associatedDomains": ["applinks:gpleoo.github.io"],
       "infoPlist": {
         "NSCalendarsUsageDescription": "Smemorandum needs calendar access to sync your events.",
         "NSContactsUsageDescription": "Smemorandum uses your contacts to import birthdays as reminders.",
