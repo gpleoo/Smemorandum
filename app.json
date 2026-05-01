@@ -88,7 +88,15 @@
       "expo-localization",
       "expo-secure-store",
       "expo-contacts",
-      "expo-document-picker"
+      "expo-document-picker",
+      [
+        "react-native-google-mobile-ads",
+        {
+          "iosAppId": "ca-app-pub-3940256099942544~1458002511",
+          "androidAppId": "ca-app-pub-3940256099942544~3347511713",
+          "userTrackingPermission": "Smemorandum may use your device identifier to deliver personalized ads."
+        }
+      ]
     ],
     "extra": {
       "eas": {
