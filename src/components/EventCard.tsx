@@ -65,7 +65,7 @@ export function EventCard({ event, onPress }: EventCardProps) {
           </View>
           {age !== null && (
             <Text style={[typo.caption, { color: colors.primary, fontWeight: '700' }]}>
-              {t('eventForm.ageLabel', { age })}
+              {t('eventForm.ageLabel', { count: age, age })}
             </Text>
           )}
           <View style={[styles.meta, { marginTop: spacing.xs }]}>

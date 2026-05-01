@@ -27,7 +27,7 @@ import {
 } from '../services/templatesService';
 import { getSettings, updateSetting } from '../storage/settingsStorage';
 import { HOLIDAY_COUNTRIES } from '../utils/constants';
-import { v4 as uuidv4 } from 'uuid';
+import { localId } from '../utils/localId';
 
 type Nav = NativeStackNavigationProp<SettingsStackParamList, 'HolidayTemplates'>;
 
@@ -137,7 +137,7 @@ export function HolidayTemplatesScreen() {
     const name = getTemplateName(template, i18n.language);
 
     const event = {
-      id: uuidv4(),
+      id: localId(),
       title: name,
       description: template.approximate ? t('templates.approximate') : '',
       eventType: 'ricorrenza' as const,

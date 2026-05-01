@@ -1,6 +1,6 @@
 import * as Contacts from 'expo-contacts';
 import { SEvent, Reminder } from '../models/types';
-import { v4 as uuidv4 } from 'uuid';
+import { localId } from '../utils/localId';
 
 export interface ContactBirthday {
   name: string;
@@ -46,7 +46,7 @@ export async function getContactsWithBirthdays(): Promise<ContactBirthday[]> {
     results.push({
       name: contact.name,
       birthday: `${y}-${m}-${d}`,
-      phoneContactId: contact.id ?? uuidv4(),
+      phoneContactId: contact.id ?? localId(),
       phone,
     });
   }
@@ -66,13 +66,13 @@ export function contactsToEvents(
 
   return contacts.map((contact) => {
     const reminder: Reminder = {
-      id: uuidv4(),
+      id: localId(),
       daysBefore: 1,
       time: '09:00',
     };
 
     return {
-      id: uuidv4(),
+      id: localId(),
       title: contact.name,
       description: '',
       eventType: 'ricorrenza' as const,

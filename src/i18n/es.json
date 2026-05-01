@@ -13,7 +13,8 @@
     "thisMonth": "Este mes",
     "noEvents": "No hay eventos próximos",
     "upcoming": "Próximos eventos",
-    "daysLeft": "{{count}} días",
+    "daysLeft_one": "{{count}} día",
+    "daysLeft_other": "{{count}} días",
     "tomorrow": "Mañana",
     "todayLabel": "Hoy"
   },
@@ -78,7 +79,8 @@
     "nameDaySuggestion": "💐 {{name}} celebra su santo el {{date}}",
     "nameDayAdd": "Añadir recordatorio",
     "nameDayAdded": "¡Santo de {{name}} añadido!",
-    "ageLabel": "Cumplirá {{age}} años",
+    "ageLabel_one": "Cumplirá {{count}} año",
+    "ageLabel_other": "Cumplirá {{count}} años",
     "milestoneLabel": "🎉 ¡Año especial!",
     "birthdayToday": "🎂 ¡Cumpleaños hoy!"
   },

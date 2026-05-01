@@ -13,7 +13,8 @@
     "thisMonth": "This month",
     "noEvents": "No upcoming events",
     "upcoming": "Upcoming events",
-    "daysLeft": "{{count}} days",
+    "daysLeft_one": "{{count}} day",
+    "daysLeft_other": "{{count}} days",
     "tomorrow": "Tomorrow",
     "todayLabel": "Today"
   },
@@ -78,7 +79,8 @@
     "nameDaySuggestion": "💐 {{name}}'s name day is on {{date}}",
     "nameDayAdd": "Add reminder",
     "nameDayAdded": "{{name}}'s name day added!",
-    "ageLabel": "Turning {{age}}",
+    "ageLabel_one": "Turning {{count}}",
+    "ageLabel_other": "Turning {{count}}",
     "milestoneLabel": "🎉 Special year!",
     "birthdayToday": "🎂 Birthday today!"
   },

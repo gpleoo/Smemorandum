@@ -5,7 +5,7 @@ import DateTimePicker, { DateTimePickerEvent } from '@react-native-community/dat
 import { useTheme } from '../theme/ThemeContext';
 import { useTranslation } from 'react-i18next';
 import { Reminder } from '../models/types';
-import { v4 as uuidv4 } from 'uuid';
+import { localId } from '../utils/localId';
 
 interface ReminderPickerProps {
   reminders: Reminder[];
@@ -59,7 +59,7 @@ export function ReminderPicker({ reminders, onChange, maxReminders = 5, defaultR
     onChange([
       ...reminders,
       {
-        id: uuidv4(),
+        id: localId(),
         daysBefore,
         time: '09:00',
         ...(applyDefault && {

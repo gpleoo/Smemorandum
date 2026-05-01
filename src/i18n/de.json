@@ -13,7 +13,8 @@
     "thisMonth": "Diesen Monat",
     "noEvents": "Keine bevorstehenden Ereignisse",
     "upcoming": "Kommende Ereignisse",
-    "daysLeft": "{{count}} Tage",
+    "daysLeft_one": "{{count}} Tag",
+    "daysLeft_other": "{{count}} Tage",
     "tomorrow": "Morgen",
     "todayLabel": "Heute"
   },
@@ -78,7 +79,8 @@
     "nameDaySuggestion": "💐 {{name}} feiert seinen Namenstag am {{date}}",
     "nameDayAdd": "Erinnerung hinzufügen",
     "nameDayAdded": "Namenstag von {{name}} hinzugefügt!",
-    "ageLabel": "Wird {{age}} Jahre alt",
+    "ageLabel_one": "Wird {{count}} Jahr alt",
+    "ageLabel_other": "Wird {{count}} Jahre alt",
     "milestoneLabel": "🎉 Besonderes Jahr!",
     "birthdayToday": "🎂 Heute Geburtstag!"
   },
