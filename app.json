@@ -86,7 +86,19 @@
       "es": "./src/i18n/es.json"
     },
     "plugins": [
-      "expo-notifications",
+      [
+        "expo-notifications",
+        {
+          "sounds": [
+            "./assets/sounds/gentle-bell.wav",
+            "./assets/sounds/urgent-alarm.wav",
+            "./assets/sounds/celebration.wav",
+            "./assets/sounds/piano-note.wav",
+            "./assets/sounds/chime.wav",
+            "./assets/sounds/harp.wav"
+          ]
+        }
+      ],
       "expo-localization",
       "expo-secure-store",
       "expo-contacts",
