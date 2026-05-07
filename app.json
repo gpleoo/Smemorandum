@@ -24,7 +24,7 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.smemorandum.app",
+      "bundleIdentifier": "com.gpleoo.smemorandum",
       "buildNumber": "1",
       "requireFullScreen": false,
       "infoPlist": {
@@ -39,7 +39,7 @@
       }
     },
     "android": {
-      "package": "com.smemorandum.app",
+      "package": "com.gpleoo.smemorandum",
       "versionCode": 1,
       "adaptiveIcon": {
         "backgroundColor": "#6C63FF",
