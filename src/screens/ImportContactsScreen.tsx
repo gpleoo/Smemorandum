@@ -31,13 +31,18 @@ export function ImportContactsScreen() {
   const [contacts, setContacts] = useState<ContactBirthday[]>([]);
   const [selectedToAdd, setSelectedToAdd] = useState<Set<string>>(new Set());
   const [selectedToRemove, setSelectedToRemove] = useState<Set<string>>(new Set());
-  // Contacts the user has explicitly removed in this session — hide them
-  // from the list so they don't reappear flagged for re-import.
   const [recentlyRemoved, setRecentlyRemoved] = useState<Set<string>>(new Set());
   const [loading, setLoading] = useState(true);
   const [working, setWorking] = useState(false);
   const [permissionDenied, setPermissionDenied] = useState(false);
-  const initialLoadDone = useRef(false);
+
+  // Keep a stable ref to events so loadContacts doesn't need events as dep
+  // (avoids re-fetching the whole contact list on every addEvent call)
+  const eventsRef = useRef(events);
+  useEffect(() => { eventsRef.current = events; }, [events]);
+
+  const recentlyRemovedRef = useRef(recentlyRemoved);
+  useEffect(() => { recentlyRemovedRef.current = recentlyRemoved; }, [recentlyRemoved]);
 
   // Map contactId -> eventId (to delete by eventId)
   const importedEventByContact = React.useMemo(() => {
@@ -48,50 +53,50 @@ export function ImportContactsScreen() {
     return map;
   }, [events]);
 
+  // Stable fetch — does NOT re-run on every event change.
+  // Reads latest events and recentlyRemoved via refs at call time.
   const loadContacts = useCallback(async (showSpinner: boolean) => {
     if (showSpinner) setLoading(true);
-    const granted = await requestContactsPermission();
-    if (!granted) {
-      setPermissionDenied(true);
-      if (showSpinner) setLoading(false);
-      initialLoadDone.current = true;
-      return;
-    }
-
-    const result = await getContactsWithBirthdays();
-    setContacts(result);
-
-    // Pre-select all non-imported, non-recently-removed contacts for import
-    const alreadyImported = new Set(
-      events.filter((e) => e.sourceContactId).map((e) => e.sourceContactId!),
-    );
-    const preAdd = new Set<string>();
-    for (const c of result) {
-      if (
-        !alreadyImported.has(c.phoneContactId) &&
-        !recentlyRemoved.has(c.phoneContactId)
-      ) {
-        preAdd.add(c.phoneContactId);
+    try {
+      const granted = await requestContactsPermission();
+      if (!granted) {
+        setPermissionDenied(true);
+        return;
       }
-    }
-    setSelectedToAdd(preAdd);
-    setSelectedToRemove(new Set());
-    if (showSpinner) setLoading(false);
-    initialLoadDone.current = true;
-  }, [events, recentlyRemoved]);
 
-  // Initial load shows spinner; subsequent reloads are silent
+      const result = await getContactsWithBirthdays();
+      const alreadyImported = new Set(
+        eventsRef.current
+          .filter((e) => e.sourceContactId)
+          .map((e) => e.sourceContactId!),
+      );
+      const excluded = recentlyRemovedRef.current;
+      const preAdd = new Set<string>();
+      for (const c of result) {
+        if (!alreadyImported.has(c.phoneContactId) && !excluded.has(c.phoneContactId)) {
+          preAdd.add(c.phoneContactId);
+        }
+      }
+      setContacts(result);
+      setSelectedToAdd(preAdd);
+      setSelectedToRemove(new Set());
+    } catch {
+      // keep whatever was shown before; don't freeze the screen
+    } finally {
+      setLoading(false);
+    }
+  }, []); // stable — no deps needed, reads via refs
+
+  // Load on mount
   useEffect(() => {
-    loadContacts(!initialLoadDone.current);
+    loadContacts(true);
   }, [loadContacts]);
 
-  // Refresh silently when screen regains focus (e.g. user added/removed
-  // contacts in the iPhone rubrica and came back)
+  // Refresh silently each time the screen comes back into focus
+  // (picks up new contacts added to the iPhone rubrica in the meantime)
   useFocusEffect(
     useCallback(() => {
-      if (initialLoadDone.current) {
-        loadContacts(false);
-      }
+      loadContacts(false);
     }, [loadContacts]),
   );
 
@@ -147,7 +152,8 @@ export function ImportContactsScreen() {
     }
 
     setWorking(false);
-    setSelectedToAdd(new Set());
+    // Refresh list so newly-imported show as green and remaining stay selectable
+    await loadContacts(false);
 
     Alert.alert(
       t('importContacts.done'),
