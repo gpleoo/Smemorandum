@@ -696,7 +696,7 @@ export function SettingsScreen() {
           <Text style={[typo.body, { color: colors.textSecondary }]}>
             {t('settings.version')}
           </Text>
-          <Text style={[typo.body, { color: colors.text }]}>1.0.0</Text>
+          <Text style={[typo.body, { color: colors.text }]}>1.0.0 · OTA ✓</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
