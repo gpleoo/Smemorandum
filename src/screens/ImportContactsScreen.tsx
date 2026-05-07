@@ -7,6 +7,7 @@ import {
   StyleSheet,
   ActivityIndicator,
   Alert,
+  TextInput,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -32,6 +33,7 @@ export function ImportContactsScreen() {
   const [selectedToAdd, setSelectedToAdd] = useState<Set<string>>(new Set());
   const [selectedToRemove, setSelectedToRemove] = useState<Set<string>>(new Set());
   const [recentlyRemoved, setRecentlyRemoved] = useState<Set<string>>(new Set());
+  const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
   const [working, setWorking] = useState(false);
   const [permissionDenied, setPermissionDenied] = useState(false);
@@ -65,20 +67,10 @@ export function ImportContactsScreen() {
       }
 
       const result = await getContactsWithBirthdays();
-      const alreadyImported = new Set(
-        eventsRef.current
-          .filter((e) => e.sourceContactId)
-          .map((e) => e.sourceContactId!),
-      );
-      const excluded = recentlyRemovedRef.current;
-      const preAdd = new Set<string>();
-      for (const c of result) {
-        if (!alreadyImported.has(c.phoneContactId) && !excluded.has(c.phoneContactId)) {
-          preAdd.add(c.phoneContactId);
-        }
-      }
       setContacts(result);
-      setSelectedToAdd(preAdd);
+      // Don't pre-select anything: with thousands of contacts the user
+      // would have to deselect manually. They explicitly tap to add.
+      setSelectedToAdd(new Set());
       setSelectedToRemove(new Set());
     } catch {
       // keep whatever was shown before; don't freeze the screen
@@ -120,20 +112,35 @@ export function ImportContactsScreen() {
   };
 
   // Visible contacts: exclude the ones the user just removed in this session
+  // visibleContacts = all contacts minus those just removed in this session
   const visibleContacts = contacts.filter(
     (c) => !recentlyRemoved.has(c.phoneContactId),
   );
 
-  const selectableContacts = visibleContacts.filter(
+  // filteredContacts = visibleContacts narrowed by the search query
+  const trimmedQuery = searchQuery.trim().toLowerCase();
+  const filteredContacts = trimmedQuery
+    ? visibleContacts.filter((c) => c.name.toLowerCase().includes(trimmedQuery))
+    : visibleContacts;
+
+  // Selectable = currently visible AND not yet imported
+  const selectableContacts = filteredContacts.filter(
     (c) => !importedEventByContact.has(c.phoneContactId),
   );
 
   const toggleAll = () => {
-    if (selectedToAdd.size === selectableContacts.length) {
-      setSelectedToAdd(new Set());
-    } else {
-      setSelectedToAdd(new Set(selectableContacts.map((c) => c.phoneContactId)));
-    }
+    // Operate only on contacts currently visible (respects active search)
+    const selectableIds = selectableContacts.map((c) => c.phoneContactId);
+    const allSelectedNow = selectableIds.every((id) => selectedToAdd.has(id));
+    setSelectedToAdd((prev) => {
+      const next = new Set(prev);
+      if (allSelectedNow) {
+        for (const id of selectableIds) next.delete(id);
+      } else {
+        for (const id of selectableIds) next.add(id);
+      }
+      return next;
+    });
   };
 
   const runImport = async () => {
@@ -326,18 +333,53 @@ export function ImportContactsScreen() {
 
   const hasAdd = selectedToAdd.size > 0;
   const hasRemove = selectedToRemove.size > 0;
-  const allSelected =
-    selectableContacts.length > 0 && selectedToAdd.size === selectableContacts.length;
+  const allSelectedInView =
+    selectableContacts.length > 0 &&
+    selectableContacts.every((c) => selectedToAdd.has(c.phoneContactId));
 
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>
-      {/* Header with count + select all */}
+      {/* Search bar */}
+      <View style={{ paddingHorizontal: spacing.md, paddingTop: spacing.md }}>
+        <View
+          style={[
+            styles.searchBar,
+            {
+              backgroundColor: colors.surface,
+              borderRadius: borderRadius.lg,
+              paddingHorizontal: spacing.md,
+            },
+          ]}
+        >
+          <Ionicons name="search" size={18} color={colors.textTertiary} />
+          <TextInput
+            style={[
+              styles.searchInput,
+              { color: colors.text, marginLeft: spacing.sm },
+            ]}
+            placeholder={t('importContacts.searchPlaceholder')}
+            placeholderTextColor={colors.textTertiary}
+            value={searchQuery}
+            onChangeText={setSearchQuery}
+            autoCorrect={false}
+            autoCapitalize="none"
+            returnKeyType="search"
+          />
+          {searchQuery.length > 0 && (
+            <TouchableOpacity onPress={() => setSearchQuery('')}>
+              <Ionicons name="close-circle" size={18} color={colors.textTertiary} />
+            </TouchableOpacity>
+          )}
+        </View>
+      </View>
+
+      {/* Header with count + select all (acts on filtered view) */}
       <View style={[styles.headerRow, { padding: spacing.md }]}>
         <Text
           style={[typo.body, styles.headerText, { color: colors.textSecondary }]}
           numberOfLines={2}
         >
-          {t('importContacts.found', { count: visibleContacts.length })}
+          {t('importContacts.found', { count: filteredContacts.length })}
         </Text>
         {selectableContacts.length > 0 && (
           <TouchableOpacity onPress={toggleAll} style={styles.headerAction}>
@@ -345,7 +387,7 @@ export function ImportContactsScreen() {
               style={[typo.body, { color: colors.primary, fontWeight: '600' }]}
               numberOfLines={1}
             >
-              {allSelected
+              {allSelectedInView
                 ? t('importContacts.deselectAll')
                 : t('importContacts.selectAll')}
             </Text>
@@ -367,11 +409,29 @@ export function ImportContactsScreen() {
         {t('importContacts.tapImportedHint')}
       </Text>
 
-      {/* Contact list */}
+      {/* Contact list (search-filtered) */}
       <FlatList
-        data={visibleContacts}
+        data={filteredContacts}
         keyExtractor={(item) => item.phoneContactId}
         renderItem={renderContact}
+        keyboardShouldPersistTaps="handled"
+        ListEmptyComponent={
+          trimmedQuery ? (
+            <Text
+              style={[
+                typo.body,
+                {
+                  color: colors.textSecondary,
+                  textAlign: 'center',
+                  marginTop: spacing.xl,
+                  paddingHorizontal: spacing.md,
+                },
+              ]}
+            >
+              {t('importContacts.noSearchResults', { query: searchQuery })}
+            </Text>
+          ) : null
+        }
         contentContainerStyle={{ paddingHorizontal: spacing.md, paddingBottom: 120 }}
       />
 
@@ -483,4 +543,14 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
   },
   actionButton: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center' },
+  searchBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    height: 44,
+  },
+  searchInput: {
+    flex: 1,
+    fontSize: 16,
+    paddingVertical: 0,
+  },
 });

@@ -157,6 +157,8 @@
   "importContacts": {
     "title": "Import contacts",
     "found": "{{count}} contacts with birthday",
+    "searchPlaceholder": "Search by name",
+    "noSearchResults": "No contact matches \"{{query}}\"",
     "selectAll": "Select all",
     "deselectAll": "Deselect all",
     "importSelected": "Import {{count}} selected",

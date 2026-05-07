@@ -157,6 +157,8 @@
   "importContacts": {
     "title": "Kontakte importieren",
     "found": "{{count}} Kontakte mit Geburtstag",
+    "searchPlaceholder": "Nach Name suchen",
+    "noSearchResults": "Kein Kontakt entspricht „{{query}}\"",
     "selectAll": "Alle auswählen",
     "deselectAll": "Alle abwählen",
     "importSelected": "{{count}} ausgewählte importieren",
