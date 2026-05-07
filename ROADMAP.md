@@ -46,7 +46,7 @@ Audit 2026-04-21: copertura attuale ~65% SEO, ~70% ASO. Base buona (JSON-LD Soft
 - [ ] 10. Widget iOS small + medium (prossimo evento + countdown)
 - [x] 11. Share card auguri (genera immagine + condividi)
 - [x] 12. Empty state illustrato (no icona generica)
-- [~] 13. Sentry o Bugsnag (crash reporting) — scaffolding pronto, manca DSN + SDK vendor
+- [~] 13. Sentry o Bugsnag (crash reporting) — `crashReporting.ts` + `ErrorBoundary.tsx` + wiring in App.tsx pronti. Per attivare: `npm i @sentry/react-native`, settare `EXPO_PUBLIC_SENTRY_DSN`, scommentare le call in `crashReporting.ts`.
 - [ ] 14. Analytics base (PostHog / RevenueCat) — MAU, D7, conversion Premium
 - [ ] 15. TestFlight beta 7–10 giorni con 10–20 tester
 - [x] 16. Revisione i18n EN/ES/FR/DE da madrelingua o Claude

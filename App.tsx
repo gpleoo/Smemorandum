@@ -10,9 +10,12 @@ import { PremiumProvider } from './src/context/PremiumContext';
 import { AppNavigator, navigationRef } from './src/navigation/AppNavigator';
 import { initializeNotifications } from './src/services/notificationService';
 import { initializeAdMob } from './src/services/adService';
+import { initCrashReporting } from './src/services/crashReporting';
+import { ErrorBoundary } from './src/components/ErrorBoundary';
 import './src/i18n';
 
-// Initialize notifications at module load (before any component renders)
+// Initialize crash reporting and notifications at module load
+initCrashReporting();
 initializeNotifications();
 
 function AppContent() {
@@ -83,12 +86,14 @@ function AppContent() {
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <PremiumProvider>
-        <EventProvider>
-          <AppContent />
-        </EventProvider>
-      </PremiumProvider>
-    </ThemeProvider>
+    <ErrorBoundary>
+      <ThemeProvider>
+        <PremiumProvider>
+          <EventProvider>
+            <AppContent />
+          </EventProvider>
+        </PremiumProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
   );
 }
