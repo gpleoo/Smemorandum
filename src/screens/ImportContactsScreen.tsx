@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import {
   View,
   Text,
@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useFocusEffect } from '@react-navigation/native';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from '../theme/ThemeContext';
 import { useEventContext } from '../context/EventContext';
@@ -30,9 +31,13 @@ export function ImportContactsScreen() {
   const [contacts, setContacts] = useState<ContactBirthday[]>([]);
   const [selectedToAdd, setSelectedToAdd] = useState<Set<string>>(new Set());
   const [selectedToRemove, setSelectedToRemove] = useState<Set<string>>(new Set());
+  // Contacts the user has explicitly removed in this session — hide them
+  // from the list so they don't reappear flagged for re-import.
+  const [recentlyRemoved, setRecentlyRemoved] = useState<Set<string>>(new Set());
   const [loading, setLoading] = useState(true);
   const [working, setWorking] = useState(false);
   const [permissionDenied, setPermissionDenied] = useState(false);
+  const initialLoadDone = useRef(false);
 
   // Map contactId -> eventId (to delete by eventId)
   const importedEventByContact = React.useMemo(() => {
@@ -43,36 +48,52 @@ export function ImportContactsScreen() {
     return map;
   }, [events]);
 
-  const loadContacts = useCallback(async () => {
-    setLoading(true);
+  const loadContacts = useCallback(async (showSpinner: boolean) => {
+    if (showSpinner) setLoading(true);
     const granted = await requestContactsPermission();
     if (!granted) {
       setPermissionDenied(true);
-      setLoading(false);
+      if (showSpinner) setLoading(false);
+      initialLoadDone.current = true;
       return;
     }
 
     const result = await getContactsWithBirthdays();
     setContacts(result);
 
-    // Pre-select all non-imported contacts for import
+    // Pre-select all non-imported, non-recently-removed contacts for import
     const alreadyImported = new Set(
       events.filter((e) => e.sourceContactId).map((e) => e.sourceContactId!),
     );
     const preAdd = new Set<string>();
     for (const c of result) {
-      if (!alreadyImported.has(c.phoneContactId)) {
+      if (
+        !alreadyImported.has(c.phoneContactId) &&
+        !recentlyRemoved.has(c.phoneContactId)
+      ) {
         preAdd.add(c.phoneContactId);
       }
     }
     setSelectedToAdd(preAdd);
     setSelectedToRemove(new Set());
-    setLoading(false);
-  }, [events]);
+    if (showSpinner) setLoading(false);
+    initialLoadDone.current = true;
+  }, [events, recentlyRemoved]);
 
+  // Initial load shows spinner; subsequent reloads are silent
   useEffect(() => {
-    loadContacts();
+    loadContacts(!initialLoadDone.current);
   }, [loadContacts]);
+
+  // Refresh silently when screen regains focus (e.g. user added/removed
+  // contacts in the iPhone rubrica and came back)
+  useFocusEffect(
+    useCallback(() => {
+      if (initialLoadDone.current) {
+        loadContacts(false);
+      }
+    }, [loadContacts]),
+  );
 
   const toggleContact = (id: string) => {
     const isImported = importedEventByContact.has(id);
@@ -93,7 +114,12 @@ export function ImportContactsScreen() {
     }
   };
 
-  const selectableContacts = contacts.filter(
+  // Visible contacts: exclude the ones the user just removed in this session
+  const visibleContacts = contacts.filter(
+    (c) => !recentlyRemoved.has(c.phoneContactId),
+  );
+
+  const selectableContacts = visibleContacts.filter(
     (c) => !importedEventByContact.has(c.phoneContactId),
   );
 
@@ -146,6 +172,13 @@ export function ImportContactsScreen() {
               const eventId = importedEventByContact.get(contactId);
               if (eventId) await deleteEvent(eventId);
             }
+            // Hide just-removed contacts so they disappear from the list
+            // instead of reappearing as "ready to re-import"
+            setRecentlyRemoved((prev) => {
+              const next = new Set(prev);
+              for (const id of ids) next.add(id);
+              return next;
+            });
             setWorking(false);
             setSelectedToRemove(new Set());
             Alert.alert(
@@ -261,7 +294,7 @@ export function ImportContactsScreen() {
     );
   }
 
-  if (contacts.length === 0) {
+  if (visibleContacts.length === 0) {
     return (
       <SafeAreaView
         style={[styles.center, { backgroundColor: colors.background }]}
@@ -298,7 +331,7 @@ export function ImportContactsScreen() {
           style={[typo.body, styles.headerText, { color: colors.textSecondary }]}
           numberOfLines={2}
         >
-          {t('importContacts.found', { count: contacts.length })}
+          {t('importContacts.found', { count: visibleContacts.length })}
         </Text>
         {selectableContacts.length > 0 && (
           <TouchableOpacity onPress={toggleAll} style={styles.headerAction}>
@@ -330,7 +363,7 @@ export function ImportContactsScreen() {
 
       {/* Contact list */}
       <FlatList
-        data={contacts}
+        data={visibleContacts}
         keyExtractor={(item) => item.phoneContactId}
         renderItem={renderContact}
         contentContainerStyle={{ paddingHorizontal: spacing.md, paddingBottom: 120 }}
