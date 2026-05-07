@@ -22,6 +22,7 @@
       "distribution": "store",
       "channel": "staging",
       "android": { "buildType": "app-bundle" },
+      "ios": { "image": "latest" },
       "env": {
         "APP_ENV": "staging",
         "EXPO_PUBLIC_ALL_PREMIUM": "true"
@@ -31,6 +32,7 @@
       "autoIncrement": true,
       "channel": "production",
       "android": { "buildType": "app-bundle" },
+      "ios": { "image": "latest" },
       "env": { "APP_ENV": "production" }
     }
   },
