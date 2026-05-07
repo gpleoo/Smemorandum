@@ -23,7 +23,7 @@ Audit 2026-04-21: copertura attuale ~65% SEO, ~70% ASO. Base buona (JSON-LD Soft
 ### 🔴 Priorità alta — BLOCKER SEO indicizzazione
 - [x] 31. **robots.txt + sitemap.xml** per GitHub Pages — `docs/robots.txt` + `docs/sitemap.xml` con URL canonici IT/EN + privacy policy IT/EN + hreflang alternates.
 - [x] 32. **hreflang + landing EN** → meta `hreflang` it/en/x-default su `docs/index.html` + `docs/en/index.html` (landing EN dedicata, schema SoftwareApplication/Organization/FAQ tradotti).
-- [~] 33. **Deep Linking iOS (Universal Links)** — template `docs/.well-known/apple-app-site-association` pronto + `app.json > ios.associatedDomains: ["applinks:gpleoo.github.io"]`. **TODO:** sostituire `TEAMID` con Apple Developer Team ID reale (vedi `docs/.well-known/README.md`).
+- [x] 33. **Deep Linking iOS (Universal Links)** — `docs/.well-known/apple-app-site-association` configurato con `AFD5T627MN.com.gpleoo.smemorandum` + `app.json > ios.associatedDomains: ["applinks:gpleoo.github.io"]`.
 - [~] 34. **Deep Linking Android (App Links)** — `docs/.well-known/assetlinks.json` + `app.json > android.intentFilters` con `autoVerify:true` per `gpleoo.github.io/Smemorandum/event|share`. **TODO:** sostituire `SHA256_FINGERPRINT_PLACEHOLDER` con SHA-256 del signing cert (post-prima EAS build).
 - [x] 35. **Schema URI custom** → `app.json > scheme: "smemorandum"` per deep link interni (notifiche, share, widget tap).
 

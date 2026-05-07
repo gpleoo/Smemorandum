@@ -3,7 +3,7 @@
     "apps": [],
     "details": [
       {
-        "appIDs": ["TEAMID.com.smemorandum.app"],
+        "appIDs": ["AFD5T627MN.com.gpleoo.smemorandum"],
         "components": [
           {
             "/": "/event/*",
@@ -23,6 +23,6 @@
     ]
   },
   "webcredentials": {
-    "apps": ["TEAMID.com.smemorandum.app"]
+    "apps": ["AFD5T627MN.com.gpleoo.smemorandum"]
   }
 }
