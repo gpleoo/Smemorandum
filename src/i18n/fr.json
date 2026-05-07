@@ -157,6 +157,8 @@
   "importContacts": {
     "title": "Importer des contacts",
     "found": "{{count}} contacts avec anniversaire",
+    "searchPlaceholder": "Rechercher par nom",
+    "noSearchResults": "Aucun contact ne correspond à « {{query}} »",
     "selectAll": "Tout sélectionner",
     "deselectAll": "Tout désélectionner",
     "importSelected": "Importer {{count}} sélectionnés",
