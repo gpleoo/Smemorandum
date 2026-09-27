@@ -6,12 +6,12 @@ on:
       profile:
         description: 'Build profile'
         required: true
-        default: 'development'
+        default: 'production'
         type: choice
         options:
-          - development
-          - preview
           - production
+          - preview
+          - development
 
 jobs:
   build:
