@@ -37,4 +37,9 @@ jobs:
           packager: npm
 
       - name: Build on EAS
-        run: eas build --platform ios --profile ${{ inputs.profile }} --non-interactive
+        run: |
+          if [ "${{ inputs.profile }}" = "production" ]; then
+            eas build --platform ios --profile production --non-interactive --auto-submit
+          else
+            eas build --platform ios --profile "${{ inputs.profile }}" --non-interactive
+          fi
