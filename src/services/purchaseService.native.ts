@@ -103,5 +103,8 @@ export async function restorePurchases(): Promise<boolean> {
 export function addCustomerInfoListener(
   callback: (info: CustomerInfo) => void,
 ): () => void {
-  return Purchases.addCustomerInfoUpdateListener(callback);
+  Purchases.addCustomerInfoUpdateListener(callback);
+  return () => {
+    Purchases.removeCustomerInfoUpdateListener(callback);
+  };
 }
