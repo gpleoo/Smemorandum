@@ -12,6 +12,14 @@ on:
           - production
           - preview
           - development
+      mode:
+        description: 'build = compile + submit; submit-only = reuse last build'
+        required: true
+        default: 'build'
+        type: choice
+        options:
+          - build
+          - submit-only
 
 jobs:
   build:
@@ -38,7 +46,9 @@ jobs:
 
       - name: Build on EAS
         run: |
-          if [ "${{ inputs.profile }}" = "production" ]; then
+          if [ "${{ inputs.mode }}" = "submit-only" ]; then
+            eas submit --platform ios --profile "${{ inputs.profile }}" --latest --non-interactive
+          elif [ "${{ inputs.profile }}" = "production" ]; then
             eas build --platform ios --profile production --non-interactive --auto-submit
           else
             eas build --platform ios --profile "${{ inputs.profile }}" --non-interactive
