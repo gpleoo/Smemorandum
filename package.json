@@ -48,11 +48,6 @@
     "typescript": "~5.8.3"
   },
   "private": true,
-  "codegenConfig": {
-    "name": "SmemorandumSpec",
-    "type": "all",
-    "jsSrcsDir": "./specs"
-  },
   "expo": {
     "doctor": {
       "reactNativeDirectoryCheck": {
