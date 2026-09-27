@@ -3,7 +3,8 @@
     "name": "Smemorandum",
     "slug": "smemorandum",
     "description": "Smemorandum - Promemoria & Scadenze. Non dimenticare mai più compleanni, anniversari e scadenze importanti.",
-    "version": "1.0.1",
+    "version": "1.0.2",
+    "newArchEnabled": true,
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "automatic",
@@ -25,7 +26,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.gpleoo.smemorandum",
-      "buildNumber": "2",
+      "buildNumber": "1",
       "requireFullScreen": false,
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
@@ -41,7 +42,7 @@
     },
     "android": {
       "package": "com.gpleoo.smemorandum",
-      "versionCode": 2,
+      "versionCode": 3,
       "adaptiveIcon": {
         "backgroundColor": "#6C63FF",
         "foregroundImage": "./assets/android-icon-foreground.png",

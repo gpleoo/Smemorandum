@@ -3,7 +3,7 @@ import {
   writeAsStringAsync,
   readAsStringAsync,
   EncodingType,
-} from 'expo-file-system';
+} from 'expo-file-system/legacy';
 import * as Sharing from 'expo-sharing';
 import * as DocumentPicker from 'expo-document-picker';
 import { SEvent, Category } from '../models/types';
